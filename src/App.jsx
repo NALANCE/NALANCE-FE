@@ -1,15 +1,16 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import router from "routes/pagesRoutes.jsx";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "styles/GlobalStyle";
+import theme from "styles/theme";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <h1>NALANCE</h1>
-    </>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <RouterProvider router={router} />
+    </ThemeProvider>
   );
 }
 
