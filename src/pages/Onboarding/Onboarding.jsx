@@ -3,36 +3,36 @@ import onboarding2 from "assets/icons/onboarding2.svg";
 import onboarding_logo from "assets/icons/onboarding_logo.svg";
 import onboarding_cat from "assets/icons/onboarding_cat.svg";
 import RoundBtn from "components/RoundBtn/RoundBtn";
+import * as S from "./Onboarding.style";
 
 const Onboarding = () => {
   return (
     <>
-      <div>
+      <S.OnboardingContainer>
         {/* 말풍선 */}
-        <div>
+        <S.ChatContainer>
           <div>
             <img src={onboarding1} />
           </div>
-          <div>
+          <S.ChatWrapper>
             <img src={onboarding2} />
-          </div>
-        </div>
+          </S.ChatWrapper>
+        </S.ChatContainer>
 
         {/* 로고 */}
         <div>
-          <div>
+          <S.LogoWrapper>
             <img src={onboarding_logo} />
-          </div>
-          <div>
+          </S.LogoWrapper>
+          <S.CatWrapper>
             <img src={onboarding_cat} />
-          </div>
+          </S.CatWrapper>
 
           {/* 버튼 */}
-
           <RoundBtn></RoundBtn>
           <RoundBtn></RoundBtn>
         </div>
-      </div>
+      </S.OnboardingContainer>
     </>
   );
 };
