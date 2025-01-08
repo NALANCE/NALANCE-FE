@@ -1,4 +1,4 @@
-import PageTitle from "components/common/PageTitle.jsx/PageTitle";
+import PageTitle from "components/common/PageTitle/PageTitle";
 
 const Login = () => {
   return (

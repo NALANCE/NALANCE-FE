@@ -1,37 +1,21 @@
-import onboarding1 from "assets/icons/onboarding1.svg";
-import onboarding2 from "assets/icons/onboarding2.svg";
-import onboarding_logo from "assets/icons/onboarding_logo.svg";
-import onboarding_cat from "assets/icons/onboarding_cat.svg";
-import RoundBtn from "components/RoundBtn/RoundBtn";
+import OnboardingLogo from "components/OnboardingLogo/OnboardingLogo";
+import LoginBtn from "components/common/LoginBtn/LoginBtn";
 import * as S from "./Onboarding.style";
+
+import { Link } from "react-router-dom";
+import RoundBtn from "../../components/common/RoundBtn/RoundBtn";
 
 const Onboarding = () => {
   return (
     <>
       <S.OnboardingContainer>
-        {/* 말풍선 */}
-        <S.ChatContainer>
-          <div>
-            <img src={onboarding1} />
-          </div>
-          <S.ChatWrapper>
-            <img src={onboarding2} />
-          </S.ChatWrapper>
-        </S.ChatContainer>
+        <OnboardingLogo />
 
-        {/* 로고 */}
-        <div>
-          <S.LogoWrapper>
-            <img src={onboarding_logo} />
-          </S.LogoWrapper>
-          <S.CatWrapper>
-            <img src={onboarding_cat} />
-          </S.CatWrapper>
+        <S.BtnContainer>
+          <LoginBtn text="로그인" link="/login" />
 
-          {/* 버튼 */}
-          <RoundBtn></RoundBtn>
-          <RoundBtn></RoundBtn>
-        </div>
+          <LoginBtn text="회원가입" width="33vw" link="/user1" />
+        </S.BtnContainer>
       </S.OnboardingContainer>
     </>
   );

@@ -1,25 +1,20 @@
 import styled from "styled-components";
 
-export const ChatContainer = styled.div`
-  width: 24.8rem;
-  margin-top: 14vh;
-`;
-
-export const ChatWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
 export const OnboardingContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+
+  height: 100vh;
 `;
 
-export const LogoWrapper = styled.div`
-  margin-top: 3vh;
-`;
+export const BtnContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-export const CatWrapper = styled.div`
-  margin-top: 9vh;
+  & > :nth-child(2) {
+    margin-top: 8px;
+  }
 `;
