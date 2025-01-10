@@ -9,8 +9,6 @@ export const NotificationContainer = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
 
-  margin-top: 200px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,8 +24,8 @@ export const NotificationContainer = styled.div`
     top: 2%; // 상단
     left: ${(props) => props.left}; // 꼬리 위치
 
-    width: 24px; // 삼각형 넓이
-    height: 20px; // 삼각형 높이
+    width: 15px; // 삼각형 넓이
+    height: 15px; // 삼각형 높이
 
     background: #f0f2f0;
     clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
@@ -38,7 +36,7 @@ export const NotificationContainer = styled.div`
   }
 
   h1 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: ${({ theme }) => theme.colors.error};
     line-height: 17px;
     letter-spacing: 1px;
