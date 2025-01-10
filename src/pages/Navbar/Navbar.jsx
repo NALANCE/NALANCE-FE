@@ -1,22 +1,29 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import navLogo from "assets/icons/navLogo.svg";
 import navIcon from "assets/icons/navIcon.svg";
 import footerLogo from "assets/icons/footerLogo.svg";
 import * as S from "./Navbar.style";
-import { footer } from "framer-motion/client";
 
 const Navbar = () => {
   const navigate = useNavigate();
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState(null);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
 
-  const handleMenuClick = (path) => {
-    navigate(path); // 경로 이동
-    toggleSidebar();
+  const handleMenuClick = (path, menuId) => {
+    setActiveMenu(menuId); // 메뉴 클릭 시 해당 메뉴 스타일링 변경
+
+    // 스타일 변경 후 페이지 이동
+    setTimeout(() => {
+      navigate(path); // 경로 이동
+      setActiveMenu(null); // 다시 원래대로
+      toggleSidebar();
+    }, 100); // 잠시 딜레이를 주어서 스타일이 반영될 시간을 확보
   };
 
   return (
@@ -40,10 +47,18 @@ const Navbar = () => {
 
             {/* 메뉴 */}
             <S.MenuList>
-              <S.MenuItem onClick={() => handleMenuClick("/todo")}>하루 기록</S.MenuItem>
-              <S.MenuItem onClick={() => handleMenuClick("/daily")}>하루 비율</S.MenuItem>
-              <S.MenuItem onClick={() => handleMenuClick("/monthly")}>한달 비율</S.MenuItem>
-              <S.MenuItem onClick={() => handleMenuClick("/mypage")}>마이페이지</S.MenuItem>
+              <S.MenuItem onClick={() => handleMenuClick("/todo", "todo")} isActive={activeMenu === "todo"}>
+                하루 기록
+              </S.MenuItem>
+              <S.MenuItem onClick={() => handleMenuClick("/daily", "daily")} isActive={activeMenu === "daily"}>
+                하루 비율
+              </S.MenuItem>
+              <S.MenuItem onClick={() => handleMenuClick("/monthly", "monthly")} isActive={activeMenu === "monthly"}>
+                한달 비율
+              </S.MenuItem>
+              <S.MenuItem onClick={() => handleMenuClick("/mypage", "mypage")} isActive={activeMenu === "mypage"}>
+                마이페이지
+              </S.MenuItem>
             </S.MenuList>
             <S.FooterLogo>
               <img src={footerLogo} />

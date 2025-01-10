@@ -72,6 +72,8 @@ export const MenuItem = styled.li`
   font-size: 2.4rem;
 
   margin-top: 5rem;
+
+  text-shadow: ${(props) => (props.isActive ? "0.2px 0.2px 1px #2f2f2f" : "none")};
 `;
 
 export const FooterLogo = styled.div`
