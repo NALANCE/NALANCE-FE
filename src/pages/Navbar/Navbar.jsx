@@ -1,14 +1,22 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import navLogo from "assets/icons/navLogo.svg";
 import navIcon from "assets/icons/navIcon.svg";
+import footerLogo from "assets/icons/footerLogo.svg";
 import * as S from "./Navbar.style";
+import { footer } from "framer-motion/client";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
+  };
+
+  const handleMenuClick = (path) => {
+    navigate(path); // 경로 이동
+    toggleSidebar();
   };
 
   return (
@@ -26,26 +34,20 @@ const Navbar = () => {
         {/* navbar(sidebar) */}
         <S.SidebarContainer isOpen={isSidebarOpen}>
           <S.SidebarContent isOpen={isSidebarOpen}>
-            <S.FishIcon onClick={toggleSidebar}>
+            <S.FishNavIcon onClick={toggleSidebar}>
               <img src={navIcon}></img>
-            </S.FishIcon>
+            </S.FishNavIcon>
 
             {/* 메뉴 */}
-            <Link to={"/todo"} style={{ fontSize: "24px" }}>
-              하루 기록
-            </Link>
-            <br />
-            <Link to={"/daily"} style={{ fontSize: "24px" }}>
-              하루 비율
-            </Link>
-            <br />
-            <Link to={"/monthly"} style={{ fontSize: "24px" }}>
-              한달 비율
-            </Link>
-            <br />
-            <Link to={"/mypage"} style={{ fontSize: "24px" }}>
-              마이페이지
-            </Link>
+            <S.MenuList>
+              <S.MenuItem onClick={() => handleMenuClick("/todo")}>하루 기록</S.MenuItem>
+              <S.MenuItem onClick={() => handleMenuClick("/daily")}>하루 비율</S.MenuItem>
+              <S.MenuItem onClick={() => handleMenuClick("/monthly")}>한달 비율</S.MenuItem>
+              <S.MenuItem onClick={() => handleMenuClick("/mypage")}>마이페이지</S.MenuItem>
+            </S.MenuList>
+            <S.FooterLogo>
+              <img src={footerLogo} />
+            </S.FooterLogo>
           </S.SidebarContent>
         </S.SidebarContainer>
       </S.NavContainer>
