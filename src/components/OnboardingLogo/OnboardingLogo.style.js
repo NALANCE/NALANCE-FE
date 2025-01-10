@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const ChatContainer = styled.div`
   width: 24.8rem;
@@ -20,6 +21,14 @@ export const LogoWrapper = styled.div`
 `;
 
 export const CatWrapper = styled.div`
-  margin-top: 9vh;
+  margin-top: 25px;
   margin-bottom: 25px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const FishWrapper = styled(motion.div)`
+  margin-left: 50px;
 `;
