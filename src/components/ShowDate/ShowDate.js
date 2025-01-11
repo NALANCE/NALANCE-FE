@@ -19,6 +19,8 @@ export const DateContainer = styled.div`
   button {
     background: none;
     border: none;
+
+    cursor: pointer;
   }
 
   p {
