@@ -1,7 +1,9 @@
+import ShowDate from "components/ShowDate/ShowDate.jsx";
+
 const Dailly = () => {
   return (
     <>
-      <h1>하루비율</h1>
+      <ShowDate />
     </>
   );
 };
