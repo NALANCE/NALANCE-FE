@@ -34,15 +34,18 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   height: 40px;
-  width: 40px;
-  min-width: 40px;
+  min-width: 2px;
   padding: 0px 13px;
-  gap: 2px;
+  gap: 6px;
   background: ${({ backgroundColor }) => backgroundColor};
   border-radius: 10px;
   border: 0.3px solid var(--category_outline, #6f6f6f);
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
   transition: width 0.2s ease;
+  box-sizing: border-box;
+
+  overflow: hidden; /* 내용 초과 방지 */
+  white-space: nowrap;
 `;
 
 export const ArrowIcon = styled.div`
@@ -55,18 +58,24 @@ export const ArrowIcon = styled.div`
 
 export const InputField = styled.input`
   color: ${({ theme }) => theme.colors.black};
-  justify-content: center;
-  font-size: 20px;
+  font-size: 20px; /* 폰트 크기 설정 */
   font-weight: 500;
   line-height: 40px;
   text-align: center;
   border: none;
   outline: none;
   background: transparent;
-  flex-grow: 1;
-  width: 100%;
+
+  min-width: 2px;
+  max-width: 100%;
   padding: 0;
+  margin: 0;
   letter-spacing: 0.9px;
+
+  /* 말줄임표 처리 */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 export const DisplayText = styled.span`
