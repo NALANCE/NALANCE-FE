@@ -34,7 +34,6 @@ const CategoryInput = ({
     COLORS[Math.floor(Math.random() * COLORS.length)];
 
   const [text, setText] = useState(defaultValue);
-  const [displayText, setDisplayText] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -51,8 +50,11 @@ const CategoryInput = ({
   const adjustContainerWidth = (inputValue) => {
     const container = containerRef.current;
     if (container) {
-      const length = inputValue.length > 5 ? 5 : inputValue.length;
-      container.style.width = `${Math.max(40, 40 + length * 14)}px`;
+      const length = Math.min(inputValue.length, 5);
+
+      container.style.width = `${Math.max(40, 40 + length * 18)}px`;
+
+      console.log(`Container width: ${container.style.width}`);
     }
   };
 
@@ -61,23 +63,17 @@ const CategoryInput = ({
       setRandomBackground(getRandomColor());
     }
 
-    // 기본값으로 초기화 시 너비와 표시 텍스트 업데이트
-    setDisplayText(defaultValue.length > 5 ? '...' : '');
     adjustContainerWidth(defaultValue);
   }, [backgroundColor, defaultValue]);
 
   const handleFocusOrClick = () => {
     setIsFocused(true);
-
     if (inputRef.current) {
       const length = text.length;
-      // 커서를 맨 뒤로 이동
       inputRef.current.setSelectionRange(length, length);
-      // 입력 필드가 텍스트의 끝으로 스크롤되도록
       inputRef.current.scrollLeft = inputRef.current.scrollWidth;
     }
   };
-
   const handleBlur = () => {
     if (!text.trim()) {
       setErrorMessage('카테고리명을 입력해주세요.');
@@ -96,7 +92,6 @@ const CategoryInput = ({
   const handleChange = (e) => {
     const inputValue = e.target.value;
     setText(inputValue);
-    setDisplayText(inputValue.length > 5 ? '...' : '');
     adjustContainerWidth(inputValue);
 
     if (inputValue.trim()) {
@@ -165,7 +160,6 @@ const CategoryInput = ({
               placeholder=""
               autoFocus
             />
-            {!isFocused && <S.DisplayText>{displayText}</S.DisplayText>}
           </S.Container>
 
           <S.ButtonGroup>
