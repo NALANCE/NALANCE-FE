@@ -22,12 +22,11 @@ const Warning = () => {
   }, [isClicked]);
 
   return (
-    <>
-      <S.WarningContainer>
-        <div onClick={handleCatClicked}>
-          <img src={sadCat}></img>
-        </div>
-        {isClicked ? (
+    <S.WarningContainer>
+      <S.CatContainer onClick={handleCatClicked}>
+        <img src={sadCat} alt="Sad Cat Icon" />
+
+        {isClicked && (
           <Notification
             width="144px"
             height="52px"
@@ -38,11 +37,9 @@ const Warning = () => {
               </>
             }
           />
-        ) : (
-          <></>
         )}
-      </S.WarningContainer>
-    </>
+      </S.CatContainer>
+    </S.WarningContainer>
   );
 };
 

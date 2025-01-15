@@ -6,7 +6,7 @@ export const ItemContainer = styled.div`
 `;
 
 export const ItemWrapper = styled.div`
-  border-bottom: 1px solid #868686;
+  border-bottom: 0.5px solid #868686;
   width: 22.3rem;
   height: 4.4rem;
 

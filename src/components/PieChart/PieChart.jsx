@@ -2,7 +2,7 @@ import { DAILY } from "../../../public/data/dailyDummy.js";
 import ReactApexChart from "react-apexcharts";
 
 const Daily = {
-  series: [37.4, 16.4, 46.2],
+  series: DAILY.graphData.data, // 더미데이터의 퍼센트 값
   options: {
     chart: {
       type: "donut",
@@ -11,7 +11,7 @@ const Daily = {
       show: false,
     },
     responsive: [
-      // 반응형 디자인
+      // 반응형 디자인 추후 수정
       {
         breakpoint: 480, // 480px 이하일 때
         options: {
@@ -50,7 +50,7 @@ const Daily = {
       width: 5,
     },
   },
-  labels: ["가족", "친구", "학업"], // series 배열의 각 값과 연결
+  labels: DAILY.graphData.labels, // series 배열의 각 값과 연결
   title: {
     text: "이벤트별 통계",
     align: "center",

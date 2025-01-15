@@ -26,21 +26,22 @@ const CategoryWarning = () => {
       <S.WarningContainer>
         <S.WarningBox onClick={handleCatClicked}>
           <img src={angryCat}></img>
+
+          {isClicked ? (
+            <Notification
+              width="167px"
+              height="52px"
+              left="70%"
+              text={
+                <>
+                  카테고리를 1개 이상 보유해야 <br /> 회원가입이 가능합니다.
+                </>
+              }
+            />
+          ) : (
+            <></>
+          )}
         </S.WarningBox>
-        {isClicked ? (
-          <Notification
-            width="167px"
-            height="52px"
-            left="70%"
-            text={
-              <>
-                카테고리를 1개 이상 보유해야 <br /> 회원가입이 가능합니다.
-              </>
-            }
-          />
-        ) : (
-          <></>
-        )}
       </S.WarningContainer>
     </>
   );

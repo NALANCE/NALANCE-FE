@@ -5,7 +5,12 @@ import CategoryBtn from '../common/CategoryBtn/CategoryBtn';
 import ConfirmModal from '../common/ConfirmModal/ConfirmModal';
 import ColorPickerModal from '../ColorPickerModal/ColorPickerModal';
 
-const CategoryInput = ({ backgroundColor, onSubmit, onDelete }) => {
+const CategoryInput = ({
+  backgroundColor,
+  defaultValue = '',
+  onSubmit,
+  onDelete,
+}) => {
   const COLORS = [
     '#FFE292',
     '#FFDAA3',
@@ -28,7 +33,7 @@ const CategoryInput = ({ backgroundColor, onSubmit, onDelete }) => {
   const getRandomColor = () =>
     COLORS[Math.floor(Math.random() * COLORS.length)];
 
-  const [text, setText] = useState('');
+  const [text, setText] = useState(defaultValue);
   const [displayText, setDisplayText] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
@@ -42,13 +47,36 @@ const CategoryInput = ({ backgroundColor, onSubmit, onDelete }) => {
   const [isErrorAnimating, setIsErrorAnimating] = useState(false);
   const [isInteractionBlocked, setIsInteractionBlocked] = useState(false);
 
+  // 입력 창 너비 조정 함수
+  const adjustContainerWidth = (inputValue) => {
+    const container = containerRef.current;
+    if (container) {
+      const length = inputValue.length > 5 ? 5 : inputValue.length;
+      container.style.width = `${Math.max(40, 40 + length * 14)}px`;
+    }
+  };
+
   useEffect(() => {
     if (!backgroundColor) {
       setRandomBackground(getRandomColor());
     }
-  }, [backgroundColor]);
 
-  const handleFocus = () => setIsFocused(true);
+    // 기본값으로 초기화 시 너비와 표시 텍스트 업데이트
+    setDisplayText(defaultValue.length > 5 ? '...' : '');
+    adjustContainerWidth(defaultValue);
+  }, [backgroundColor, defaultValue]);
+
+  const handleFocusOrClick = () => {
+    setIsFocused(true);
+
+    if (inputRef.current) {
+      const length = text.length;
+      // 커서를 맨 뒤로 이동
+      inputRef.current.setSelectionRange(length, length);
+      // 입력 필드가 텍스트의 끝으로 스크롤되도록
+      inputRef.current.scrollLeft = inputRef.current.scrollWidth;
+    }
+  };
 
   const handleBlur = () => {
     if (!text.trim()) {
@@ -68,28 +96,12 @@ const CategoryInput = ({ backgroundColor, onSubmit, onDelete }) => {
   const handleChange = (e) => {
     const inputValue = e.target.value;
     setText(inputValue);
-    updateDisplayText(inputValue);
+    setDisplayText(inputValue.length > 5 ? '...' : '');
     adjustContainerWidth(inputValue);
 
     if (inputValue.trim()) {
       setErrorMessage('');
       setIsInteractionBlocked(false);
-    }
-  };
-
-  const updateDisplayText = (inputValue) => {
-    if (inputValue.length > 5) {
-      setDisplayText('...');
-    } else {
-      setDisplayText('');
-    }
-  };
-
-  const adjustContainerWidth = (inputValue) => {
-    const container = containerRef.current;
-    if (container) {
-      const length = inputValue.length > 5 ? 5 : inputValue.length;
-      container.style.width = `${Math.max(40, 40 + length * 15.6)}px`;
     }
   };
 
@@ -147,7 +159,8 @@ const CategoryInput = ({ backgroundColor, onSubmit, onDelete }) => {
               type="text"
               value={text}
               onChange={handleChange}
-              onFocus={handleFocus}
+              onFocus={handleFocusOrClick}
+              onClick={handleFocusOrClick}
               onBlur={handleBlur}
               placeholder=""
               autoFocus
