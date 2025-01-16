@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ShowDate from "components/ShowDate/ShowDate.jsx";
 
 export const DailyContainer = styled.div`
   display: flex;

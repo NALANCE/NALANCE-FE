@@ -1,11 +1,19 @@
 import styled from "styled-components";
 
 export const ItemContainer = styled.div`
-  overflow: scroll;
+  overflow-y: scroll;
+
+  width: 85%;
   height: 20rem; // 4개까지 표시되도록
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 4rem;
+
   &::-webkit-scrollbar {
-    width: 0rem;
+    width: 0.2rem;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -22,6 +30,7 @@ export const ItemWrapper = styled.div`
   border-bottom: 0.5px solid #868686;
   width: 22.3rem;
   height: 4.4rem;
+  flex-shrink: 0;
 
   padding: 2px 10px;
 
@@ -29,8 +38,33 @@ export const ItemWrapper = styled.div`
   align-items: center;
 `;
 
+export const NoItemWrapper = styled.div`
+  border-bottom: 0.5px solid #868686;
+  width: 22.3rem;
+  height: 4.4rem;
+
+  padding: 2px 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const NoItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 4rem;
+`;
+
 export const CategoryItem = styled.span`
   font-size: 1.8rem;
 
-  margin-right: 1rem;
+  margin-right: 0.5rem;
+`;
+
+export const CatWrapper = styled.div`
+  margin-top: 2rem;
 `;
