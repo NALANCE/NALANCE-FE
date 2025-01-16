@@ -1,6 +1,8 @@
 import ShowDate from "components/ShowDate/ShowDate.jsx";
 import PieChart from "components/PieChart/PieChart";
 import PieList from "components/PieList/PieList";
+import ImgSave from "components/ImgSave/ImgSave";
+
 import * as S from "./Daily.style";
 import { useState } from "react";
 
@@ -24,10 +26,11 @@ const Dailly = () => {
   };
 
   return (
-    <S.DailyContainer>
+    <S.DailyContainer className="DailyContainer">
       <ShowDate date={date} onDateChange={handleDateChange} />
       <PieChart date={date} />
       <PieList date={date} />
+      <ImgSave />
     </S.DailyContainer>
   );
 };
