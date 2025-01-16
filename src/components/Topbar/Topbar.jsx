@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import PageTitle from "../common/PageTitle/PageTitle";
-import * as S from "./Topbar.style";
-import back from "assets/icons/back.svg";
+import { useNavigate } from 'react-router-dom';
+import PageTitle from '../common/PageTitle/PageTitle';
+import * as S from './Topbar.style';
+import back from 'assets/icons/back.svg';
 
 const Topbar = ({ pageTitle }) => {
   const navigate = useNavigate();

@@ -5,11 +5,10 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 400px;
   margin: 0 auto;
+  align-items: center;
+
 `;
 
 export const Input = styled.input`
@@ -59,4 +58,10 @@ export const InputContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+`;
+
+export const CurrentEmail = styled.div`
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
 `;
