@@ -52,7 +52,7 @@ const CategoryInput = ({
     if (container) {
       const length = Math.min(inputValue.length, 5);
 
-      container.style.width = `${Math.max(40, 40 + length * 18)}px`;
+      container.style.width = `${Math.max(40, 40 + length * 17.9)}px`;
 
       console.log(`Container width: ${container.style.width}`);
     }

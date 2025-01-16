@@ -23,7 +23,7 @@ export const Container = styled.div`
   margin-right: auto;
 
   /* 스크롤바 설정 */
-  max-height: 350px; /* 카테고리 목록의 최대 높이 */
+  max-height: 320px; /* 카테고리 목록의 최대 높이 */
   overflow-y: auto; /* 스크롤 활성화 */
 
   /* 스크롤바 숨기기 */
@@ -35,19 +35,25 @@ export const Container = styled.div`
   }
 `;
 
+// 버튼 컨테이너와 고양이를 감싸는 최상위 컨테이너
+export const WarningAndButtonWrapper = styled.div`
+  display: flex; /* 버튼 컨테이너와 고양이를 가로로 배치 */
+  align-items: center;
+  justify-content: space-between;
+  margin: auto; /* 전체 컨테이너를 중앙 정렬 */
+  width: 270px;
+  margin-top: 14px;
+`;
+
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 14px;
-  width: 270px;
-
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 export const ErrorMessage = styled.div`
   color: #b3261e;
+
   font-size: 11px;
   font-style: normal;
   font-weight: 410;
