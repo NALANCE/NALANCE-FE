@@ -3,6 +3,19 @@ import styled from "styled-components";
 export const ItemContainer = styled.div`
   overflow: scroll;
   height: 20rem; // 4개까지 표시되도록
+
+  &::-webkit-scrollbar {
+    width: 0rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #868686;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: white;
+  }
 `;
 
 export const ItemWrapper = styled.div`
