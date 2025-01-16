@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import PageTitle from "../common/PageTitle.jsx/PageTitle";
+import PageTitle from "../common/PageTitle/PageTitle";
 import * as S from "./Topbar.style";
 import back from "assets/icons/back.svg";
 
