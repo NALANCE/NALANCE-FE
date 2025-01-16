@@ -1,4 +1,5 @@
 import imgSave from "assets/icons/imgSave.svg";
+import * as S from "./ImgSave.style";
 import html2canvas from "html2canvas";
 
 const ImgSave = () => {
@@ -17,9 +18,9 @@ const ImgSave = () => {
     });
   };
   return (
-    <div>
+    <S.BtnWrapper>
       <img src={imgSave} onClick={onClickImgBtn}></img>
-    </div>
+    </S.BtnWrapper>
   );
 };
 
