@@ -43,6 +43,11 @@ const ModEmail = () => {
     // TODO: Add API call to update the email
   };
 
+  const isVerificationCodeValid = (code) => {
+    const regex = /^[A-Za-z0-9]{6}$/;
+    return regex.test(code);
+  };
+
   const handleChangeComplete = () => {
     alert("이메일 변경이 완료되었습니다.");
     // TODO: Add API call to finalize the email change
@@ -66,10 +71,12 @@ const ModEmail = () => {
             placeholder="새 이메일을 입력하세요"
           />
           <S.Button onClick={handleSendCode} disabled={!email}>
-            전송
+            {isCodeSent ? "재전송" : "전송"}
           </S.Button>
         </S.InputContainer>
-        {errorMessage1 && <S.ErrorText>{errorMessage1}</S.ErrorText>}
+        <S.ErrorTextContainer>
+          {errorMessage1 && <S.ErrorText>{errorMessage1}</S.ErrorText>}
+        </S.ErrorTextContainer>
         <S.InputContainer>
           <S.Input
             as={errorMessage2 ? S.ErrorInput : S.Input}
@@ -78,14 +85,17 @@ const ModEmail = () => {
             onChange={(e) => setVerificationCode(e.target.value)}
             placeholder="인증번호를 입력하세요"
           />
-          <S.Button onClick={handleVerifyCode} disabled={!isCodeSent}>
+          <S.Button onClick={handleVerifyCode} disabled={!isCodeSent || !isVerificationCodeValid(verificationCode)}>
             확인
           </S.Button>
         </S.InputContainer>
-        {errorMessage2 && <S.ErrorText>{errorMessage2}</S.ErrorText>}
+        <S.ErrorTextContainer>
+          {errorMessage2 && <S.ErrorText>{errorMessage2}</S.ErrorText>}
+        </S.ErrorTextContainer>
         <ChangeCompleteBtn
           onClick={handleChangeComplete}
           disabled={!isCodeSent || !isVerified}
+          marginTop="200px"
         />
       </S.Container>
     </>
