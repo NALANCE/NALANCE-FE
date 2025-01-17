@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import emailValidator from "email-validator";
 import Topbar from "components/Topbar/Topbar";
 import ChangeCompleteBtn from "components/common/ChangeCompleteBtn/ChangeCompleteBtn";
+import originalCat from "assets/icons/originalCat.svg";
 import * as S from "./ModEmail.style";
 
 const ModEmail = () => {
@@ -21,7 +23,7 @@ const ModEmail = () => {
       setErrorMessage1("기존의 이메일과 동일합니다.");
       return;
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!emailValidator.validate(email)) {
       setErrorMessage1("잘못된 형식의 이메일입니다.");
       return;
     }
@@ -36,7 +38,7 @@ const ModEmail = () => {
       setErrorMessage2("인증번호가 일치하지 않습니다.");
       return;
     }
-    setErrorMessage1("");
+    setErrorMessage2("");
     setIsVerified(true);
     // TODO: Add API call to update the email
   };
@@ -50,10 +52,14 @@ const ModEmail = () => {
     <>
       <Topbar pageTitle="이메일 수정" />
       <S.Container>
-        <p>{currentEmail}</p>
+        <S.CurrentEmailContainer>
+          <S.Icon src={originalCat} alt="Icon" />
+          <S.CurrentEmail>{currentEmail}</S.CurrentEmail>
+        </S.CurrentEmailContainer>
         <S.HR />
         <S.InputContainer>
           <S.Input
+            as={errorMessage1 ? S.ErrorInput : S.Input}
             type="email"
             value={email}
             onChange={handleEmailChange}
@@ -66,6 +72,7 @@ const ModEmail = () => {
         {errorMessage1 && <S.ErrorText>{errorMessage1}</S.ErrorText>}
         <S.InputContainer>
           <S.Input
+            as={errorMessage2 ? S.ErrorInput : S.Input}
             type="text"
             value={verificationCode}
             onChange={(e) => setVerificationCode(e.target.value)}

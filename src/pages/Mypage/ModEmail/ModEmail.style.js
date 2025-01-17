@@ -5,10 +5,9 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 16px;
   padding: 16px;
+  align-items: center;
   max-width: 400px;
   margin: 0 auto;
-  align-items: center;
-
 `;
 
 export const Input = styled.input`
@@ -42,7 +41,7 @@ export const Button = styled.button`
 
 export const ErrorText = styled.p`
   font-size: 12px;
-  color: red;
+  color: ${({ theme }) => theme.colors.error};
   margin: 0;
 `;
 
@@ -50,7 +49,6 @@ export const HR = styled.hr`
   border: 0;
   height: 1px;
   background-color: #ccc;
-  margin: 16px 0;
   width: 100%;
 `;
 
@@ -60,8 +58,22 @@ export const InputContainer = styled.div`
   gap: 8px;
 `;
 
+export const ErrorInput = styled(Input)`
+  border-color: ${({ theme }) => theme.colors.error};
+`;
+
+export const CurrentEmailContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const Icon = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
 export const CurrentEmail = styled.div`
   font-size: 14px;
   color: #333;
-  margin-bottom: 8px;
 `;
