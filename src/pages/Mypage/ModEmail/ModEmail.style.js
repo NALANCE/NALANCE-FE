@@ -3,20 +3,21 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
   padding: 16px;
   align-items: center;
-  max-width: 400px;
+  max-width: 425px; 
   margin: 0 auto;
+  margin-top: 50px;
 `;
 
 export const Input = styled.input`
   padding: 8px 12px;
-  font-size: 14px;
+  font-size: 15px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   &:focus {
-    border-color: #007bff;
+    border-color: ${({ theme }) => theme.colors.b};
     outline: none;
   }
 `;
@@ -29,18 +30,20 @@ export const DisabledInput = styled(Input)`
 export const Button = styled.button`
   padding: 10px 16px;
   font-size: 14px;
-  color: white;
-  background-color: ${(props) => (props.disabled ? "#ccc" : "#007bff")};
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  color: ${({theme}) => (theme.colors.white)};  
+  background-color: ${({disabled, theme}) => (disabled ? theme.colors.btnLight : theme.colors.btnDark)};
   border: none;
-  border-radius: 4px;
+  border-radius: 26px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  width: 65px; 
   &:hover {
-    background-color: ${(props) => (props.disabled ? "#ccc" : "#0056b3")};
+    background-color: ${({disabled, theme}) => (disabled ? theme.colors.btnLight : theme.colors.btnDark)};
   }
 `;
 
 export const ErrorText = styled.p`
-  font-size: 12px;
+  font-size: 11px;
   color: ${({ theme }) => theme.colors.error};
   margin: 0;
 `;
@@ -48,14 +51,16 @@ export const ErrorText = styled.p`
 export const HR = styled.hr`
   border: 0;
   height: 1px;
+  margin-top: 20px;
   background-color: #ccc;
   width: 100%;
 `;
 
 export const InputContainer = styled.div`
+  margin-top: 20px;
   display: flex;
+  gap: 16px;
   align-items: center;
-  gap: 8px;
 `;
 
 export const ErrorInput = styled(Input)`
@@ -76,4 +81,12 @@ export const Icon = styled.img`
 export const CurrentEmail = styled.div`
   font-size: 14px;
   color: #333;
+`;
+
+export const ErrorTextContainer = styled.div`
+  display: flex;
+  width: 70%;
+  margin-top: 5px;
+  height: 14px;
+  text-align: left;
 `;
