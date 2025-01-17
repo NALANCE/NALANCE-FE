@@ -13,6 +13,7 @@ export const Question = styled.div`
 `;
 
 export const Label = styled.span`
+  font-family: 'HumanExpo', sans-serif;
   color: ${({ theme }) => theme.colors.black};
   font-size: 18px;
   font-style: normal;

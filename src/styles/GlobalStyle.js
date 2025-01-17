@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -160,6 +160,14 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Freesentation';
     src: url('/src/assets/fonts/Freesentation-8ExtraBold.ttf') format('truetype');
     font-weight: 800; /* ExtraBold */
+    font-style: normal;
+  }
+
+  /* 휴먼엑스포 폰트 */
+  @font-face {
+    font-family: 'HumanExpo';
+    src: url('/src/assets/fonts/휴먼엑스포.ttf') format('truetype');
+    font-weight: normal;
     font-style: normal;
   }
 
