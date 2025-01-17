@@ -4,7 +4,7 @@ export const ItemContainer = styled.div`
   overflow-y: scroll;
 
   width: 85%;
-  height: 20rem; // 4개까지 표시되도록
+  height: 16rem; // 4개까지 표시되도록
 
   display: flex;
   flex-direction: column;
