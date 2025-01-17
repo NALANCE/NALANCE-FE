@@ -27,21 +27,6 @@ export const DisabledInput = styled(Input)`
   color: #6c757d;
 `;
 
-export const Button = styled.button`
-  padding: 10px 16px;
-  font-size: 14px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  color: ${({theme}) => (theme.colors.white)};  
-  background-color: ${({disabled, theme}) => (disabled ? theme.colors.btnLight : theme.colors.btnDark)};
-  border: none;
-  border-radius: 26px;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  width: 65px; 
-  &:hover {
-    background-color: ${({disabled, theme}) => (disabled ? theme.colors.btnLight : theme.colors.btnDark)};
-  }
-`;
-
 export const ErrorText = styled.p`
   font-size: 11px;
   color: ${({ theme }) => theme.colors.error};
