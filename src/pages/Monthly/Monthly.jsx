@@ -1,7 +1,9 @@
+import ShowMonth from "components/ShowMonth/ShowMonth";
+
 const Monthly = () => {
   return (
     <>
-      <h1>한달비율</h1>
+      <ShowMonth />
     </>
   );
 };
