@@ -3,10 +3,12 @@ import ReactApexChart from "react-apexcharts";
 import * as S from "./PieChart.style.js";
 import { useEffect, useState } from "react";
 import { label, legend } from "framer-motion/client";
+import Percentage from "../Percentage/Percentage.jsx";
 
 const PieChart = ({ date }) => {
   const [chartData, setChartData] = useState({ series: [], labels: [] });
   const [colors, setColors] = useState(["#555555"]); // 기본 색상
+  const [selectedCategory, setSelectedCategory] = useState(null); // 클릭된 카테고리
 
   useEffect(() => {
     // 날짜 변경시 데이터 업데이트하기
@@ -51,7 +53,7 @@ const PieChart = ({ date }) => {
       chart: {
         type: "donut",
         events: {
-          dataPointSelection: () => {
+          dataPointSelection: (event, chartContext, config) => {
             // 클릭 시 filter 제거
             setTimeout(() => {
               const paths = document.querySelectorAll("path[filter]");
@@ -112,6 +114,7 @@ const PieChart = ({ date }) => {
   return (
     <S.ChartWrapper>
       <ReactApexChart options={Daily.options} series={Daily.series} type="donut" width="300" className="chart" />
+      {selectedCategory && <Percentage percentage={selectedCategory.percentage} />}
     </S.ChartWrapper>
   );
 };

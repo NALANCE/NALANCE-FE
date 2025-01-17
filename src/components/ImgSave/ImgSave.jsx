@@ -4,7 +4,7 @@ import html2canvas from "html2canvas";
 
 const ImgSave = () => {
   const onClickImgBtn = () => {
-    const target = document.getElementsByClassName("DailyContainer")[0];
+    const target = document.getElementsByClassName("ImgContainer")[0];
     if (!target) {
       return alert("사진 저장에 실패했습니다.");
     }
