@@ -7,8 +7,7 @@ export const WarningContainer = styled.div`
   justify-content: center;
 
   position: relative;
-
-  left: 20%;
+  right: -50%;
 
   div {
     cursor: pointer;
