@@ -16,7 +16,11 @@ const ModEmail = () => {
   const [errorMessage2, setErrorMessage2] = useState("");
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    const value = e.target.value;
+    setEmail(value);
+    if (!value) {
+      setErrorMessage1("");
+    }
   };
 
   const handleSendCode = () => {
@@ -94,7 +98,13 @@ const ModEmail = () => {
             as={errorMessage2 ? S.ErrorInput : S.Input}
             type="text"
             value={verificationCode}
-            onChange={(e) => setVerificationCode(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              setVerificationCode(value);
+              if (!value) {
+                setErrorMessage2("");
+              }
+            }}
             placeholder="인증번호를 입력하세요"
           />
           <ControlBtn
