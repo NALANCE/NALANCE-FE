@@ -13,13 +13,13 @@ export const Question = styled.div`
 `;
 
 export const Label = styled.span`
-  font-family: 'HumanExpo', sans-serif;
   color: ${({ theme }) => theme.colors.black};
-  font-size: 18px;
+  font-size: 17px;
   font-style: normal;
   font-weight: 400;
   line-height: 50px;
   letter-spacing: 0.36px;
+  font-family: 'HumanExpo', sans-serif;
 `;
 
 export const QuestionText = styled.span`

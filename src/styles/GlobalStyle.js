@@ -166,7 +166,7 @@ const GlobalStyle = createGlobalStyle`
   /* 휴먼엑스포 폰트 */
   @font-face {
     font-family: 'HumanExpo';
-    src: url('/src/assets/fonts/휴먼엑스포.ttf') format('truetype');
+    src: url('/src/assets/fonts/HumanExpo.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
   }
