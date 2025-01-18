@@ -7,7 +7,7 @@ export const WarningContainer = styled.div`
   justify-content: center;
 
   position: relative;
-  right: -50%;
+  right: ${(props) => props.right || "-50%"};
 
   div {
     cursor: pointer;

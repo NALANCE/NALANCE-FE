@@ -3,7 +3,7 @@ import Notification from "components/common/Notification/Notification";
 import * as S from "./Warning.style";
 import { useEffect, useState } from "react";
 
-const Warning = () => {
+const Warning = ({ right }) => {
   const [isClicked, setIsClicked] = useState(false); // 말풍선
 
   const handleCatClicked = () => {
@@ -22,7 +22,7 @@ const Warning = () => {
   }, [isClicked]);
 
   return (
-    <S.WarningContainer>
+    <S.WarningContainer right={right}>
       <S.CatContainer onClick={handleCatClicked}>
         <img src={sadCat} alt="Sad Cat Icon" />
 
