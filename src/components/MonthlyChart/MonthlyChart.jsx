@@ -19,7 +19,7 @@ const formatDate = (date) => {
   return `${year}-${month}-${day}`; // 년-월-일 형태로 반환 (문자열 형태, 더미데이터에서 비교를 위해)
 };
 
-const MonthlyChart = () => {
+const MonthlyChart = ({ date }) => {
   const [pieIcon, setPieIcon] = useState(pieActive); // 원형 그래프
   const [barIcon, setBarIcon] = useState(barUnactive); // 막대 그래프
 
@@ -28,14 +28,13 @@ const MonthlyChart = () => {
     setBarIcon((prev) => (prev === barUnactive ? barActive : barUnactive));
   };
 
-  const [date, setDate] = useState(formatDate(new Date()));
-  //console.log(date); 2025-01-17
+  //const [date_, setDate] = useState(formatDate(new Date(date)));
+  //console.log(date_);
 
-  // 날짜 변경시
-  const handleDateChange = (newDate) => {
-    const formattedDate = typeof newDate === "object" && newDate instanceof Date ? formatDate(newDate) : newDate; // 포맷 (문자열로)
-    setDate(formattedDate); // 새로운 날짜 상태 업데이트
-  };
+  // const handleDateChange = (newDate) => {
+  //   const formattedDate = typeof newDate === "object" && newDate instanceof Date ? formatDate(newDate) : newDate; // 포맷 (문자열로)
+  //   setDate(formattedDate); // 새로운 날짜 상태 업데이트
+  // };
 
   return (
     <S.ChartDiv>
