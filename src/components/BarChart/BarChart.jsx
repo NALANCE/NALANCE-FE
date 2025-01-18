@@ -56,7 +56,7 @@ const BarChart = ({ date }) => {
                 </S.Bar>
               </S.BarWrapper>
 
-              {smallestCategories.some((category) => category.category === item.category) && <Warning right={"-5%"} />}
+              {smallestCategories.some((category) => category.category === item.category) && <Warning date={date} />}
             </S.StyledItemWrapper>
           ))}
         </S.StyledItemContainer>

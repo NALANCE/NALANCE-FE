@@ -36,6 +36,10 @@ export const ItemWrapper = styled.div`
 
   display: flex;
   align-items: center;
+
+  .itemBar {
+    width: 156px;
+  }
 `;
 
 export const NoItemWrapper = styled.div`

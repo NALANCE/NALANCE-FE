@@ -3,6 +3,8 @@ import Notification from "components/common/Notification/Notification";
 import * as S from "./CategoryWarning.style";
 import { useEffect, useState } from "react";
 
+import warningCategory from "assets/icons/warningCategory.svg";
+
 const CategoryWarning = () => {
   const [isClicked, setIsClicked] = useState(false); // 말풍선
 
@@ -27,20 +29,7 @@ const CategoryWarning = () => {
         <S.WarningBox onClick={handleCatClicked}>
           <img src={angryCat}></img>
 
-          {isClicked ? (
-            <Notification
-              width="167px"
-              height="52px"
-              left="70%"
-              text={
-                <>
-                  카테고리를 1개 이상 보유해야 <br /> 회원가입이 가능합니다.
-                </>
-              }
-            />
-          ) : (
-            <></>
-          )}
+          {isClicked ? <Notification img={warningCategory} isClicked={isClicked} /> : <></>}
         </S.WarningBox>
       </S.WarningContainer>
     </>

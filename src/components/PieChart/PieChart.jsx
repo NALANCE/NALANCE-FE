@@ -8,7 +8,7 @@ import Percentage from "../Percentage/Percentage.jsx";
 const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" }) => {
   const [chartData, setChartData] = useState({ series: [], labels: [] });
   const [colors, setColors] = useState(["#555555"]); // 기본 색상
-  const [selectedCategory, setSelectedCategory] = useState(null); // 클릭된 카테고리
+  const [dataLabels, setDataLabels] = useState([]); // 각 카테고리별 레이블 상태
 
   useEffect(() => {
     // 날짜 변경시 데이터 업데이트하기
@@ -22,6 +22,8 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
           labels: DAILY.graphData.labels, // 더미 데이터의 라벨 부분
         });
         setColors(["#7DA7D9", "#ADC49E", "#F8A19A"]);
+
+        setDataLabels(DAILY.graphData.data.map(() => false)); // 처음엔 다 false로
       } else {
         // 데이터가 없으면 (날짜가 다르면)
         setChartData({
@@ -54,6 +56,8 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
         type: "donut",
         events: {
           dataPointSelection: (event, chartContext, config) => {
+            console.log("config", config);
+
             // 클릭 시 filter 제거
             setTimeout(() => {
               const paths = document.querySelectorAll("path[filter]");
@@ -61,6 +65,17 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
                 path.removeAttribute("filter");
               });
             }, 0); // ApexCharts 렌더링 직후 실행
+
+            // 0이 아닌 값들만 필터링한 배열 생성
+            const filteredSeries = chartData.series.filter((item) => item !== 0);
+            console.log("filteredSeries", filteredSeries);
+
+            // 선택된 카테고리만 dataLabels를 true로 설정하고 나머지는 false로 설정
+            const updatedDataLabels = filteredSeries.map((_, index) =>
+              index + 1 === config.dataPointIndex ? true : false
+            );
+            setDataLabels(updatedDataLabels);
+            console.log("dataLabels", dataLabels);
           },
         },
         animations: {
@@ -121,7 +136,6 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
         height={height}
         className="chart"
       />
-      {selectedCategory && <Percentage percentage={selectedCategory.percentage} />}
     </S.ChartWrapper>
   );
 };

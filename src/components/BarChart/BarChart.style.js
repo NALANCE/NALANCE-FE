@@ -3,15 +3,18 @@ import * as S from "components/PieList/PieList.style.js";
 
 export const StyledItemWrapper = styled(S.ItemWrapper)`
   // justify-content: center;
+  width: 20rem;
 `;
 
 export const StyledItemContainer = styled(S.ItemContainer)`
   width: 100%;
   height: 15rem;
+
+  margin-top: 3rem;
 `;
 
 export const BarWrapper = styled.div`
-  width: 100px;
+  width: 75px;
 
   margin-left: -50px;
   text-align: start;

@@ -41,9 +41,12 @@ const PieList = ({ date }) => {
         <S.ItemContainer>
           {categoryRates.map((item) => (
             <S.ItemWrapper key={item.category}>
-              <S.CategoryItem>{item.category}</S.CategoryItem>
-              <S.CategoryItem>{item.percentage}%</S.CategoryItem>
-              {smallestCategories.some((category) => category.category === item.category) && <Warning />}
+              <div className="itemBar">
+                <S.CategoryItem>{item.category}</S.CategoryItem>
+                <S.CategoryItem>{item.percentage}%</S.CategoryItem>
+              </div>
+
+              {smallestCategories.some((category) => category.category === item.category) && <Warning date={date} />}
             </S.ItemWrapper>
           ))}
         </S.ItemContainer>
