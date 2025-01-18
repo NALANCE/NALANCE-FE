@@ -1,36 +1,49 @@
 import { useState } from "react";
-import useCalendar from "hooks/useCalendar"; // useCalendar 훅 import
+import useCalendar from "hooks/useCalendar";
+import * as S from "./Calendar.style";
+
+const DAY_LIST = ["S", "M", "T", "W", "T", "F", "S"];
 
 const Calendar = () => {
-  const { weekCalendarList } = useCalendar();
-  const [select, setSelect] = useState([]);
+  const { weekCalendarList, currentDate } = useCalendar();
 
   const handleDayClick = (day) => {};
 
+  const isToday = (day) => {
+    const today = new Date();
+
+    return (
+      day === today.getDate() &&
+      today.getMonth() === currentDate.getMonth() &&
+      today.getFullYear() === currentDate.getFullYear()
+    );
+  };
+
   return (
-    <>
+    <S.CalendarContainer>
+      <S.DayContainer>
+        {DAY_LIST.map((day) => (
+          <S.DayWrapper>{day}</S.DayWrapper> // 요일 표시
+        ))}
+      </S.DayContainer>
+
       {weekCalendarList.map((week, idx) => (
-        <div key={idx} style={{ display: "flex", flexDirection: "row" }}>
+        <S.DateContainer key={idx}>
           {week.map((day, i) => (
-            <button
-              onClick={() => handleDayClick(day)}
-              style={{
-                minWidth: "calc(100% / 7)",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                textAlign: "center",
-                cursor: day === 0 ? "default" : "pointer", // 비어있는 날짜는 클릭 불가
-                opacity: day === 0 ? 0 : 1,
-              }}
-              key={i}
-            >
-              <div style={{ margin: "0 auto" }}>{day !== 0 ? day : ""}</div>
-            </button>
+            <S.DateWrapper>
+              <S.DateBtn onClick={() => handleDayClick(day)} key={i} isToday={isToday(day)} day={day}>
+                <S.DateTxt isToday={isToday(day)} day={day}>
+                  {day !== 0 ? day : ""}
+                </S.DateTxt>
+              </S.DateBtn>
+
+              {day !== 0 && isToday(day) && <S.TodayRed>TODAY</S.TodayRed>}
+              {day !== 0 && !isToday(day) && <S.CategoryCircle color={"#F8A19A"}></S.CategoryCircle>}
+            </S.DateWrapper>
           ))}
-        </div>
+        </S.DateContainer>
       ))}
-    </>
+    </S.CalendarContainer>
   );
 };
 

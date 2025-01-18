@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { label, legend } from "framer-motion/client";
 import Percentage from "../Percentage/Percentage.jsx";
 
-const PieChart = ({ date }) => {
+const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" }) => {
   const [chartData, setChartData] = useState({ series: [], labels: [] });
   const [colors, setColors] = useState(["#555555"]); // 기본 색상
   const [selectedCategory, setSelectedCategory] = useState(null); // 클릭된 카테고리
@@ -76,7 +76,7 @@ const PieChart = ({ date }) => {
           breakpoint: 480, // 480px 이하일 때
           options: {
             chart: {
-              width: 300, // 차트의 너비 300px으로
+              // width: 300, // 차트의 너비 300px으로
             },
           },
         },
@@ -112,8 +112,15 @@ const PieChart = ({ date }) => {
   };
 
   return (
-    <S.ChartWrapper>
-      <ReactApexChart options={Daily.options} series={Daily.series} type="donut" width="300" className="chart" />
+    <S.ChartWrapper marginTop={marginTop}>
+      <ReactApexChart
+        options={Daily.options}
+        series={Daily.series}
+        type="donut"
+        width={width}
+        height={height}
+        className="chart"
+      />
       {selectedCategory && <Percentage percentage={selectedCategory.percentage} />}
     </S.ChartWrapper>
   );

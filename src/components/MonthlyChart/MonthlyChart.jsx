@@ -38,7 +38,8 @@ const MonthlyChart = () => {
   };
 
   return (
-    <>
+    <S.ChartDiv>
+      <S.Line marginTop={"2.3rem"}></S.Line>
       <S.ChartContainer>
         <S.IconWrapper>
           <img src={pieIcon} onClick={handleIconChange}></img>
@@ -46,7 +47,7 @@ const MonthlyChart = () => {
         </S.IconWrapper>
         {pieIcon === pieActive ? (
           <S.ChartWrapper>
-            <PieChart date={date} />
+            <PieChart date={date} width={"200"} height={"200"} marginTop={"0rem"} />
           </S.ChartWrapper>
         ) : (
           <S.ChartWrapper>
@@ -54,7 +55,8 @@ const MonthlyChart = () => {
           </S.ChartWrapper>
         )}
       </S.ChartContainer>
-    </>
+      <S.Line marginTop={"1.8rem"}></S.Line>
+    </S.ChartDiv>
   );
 };
 

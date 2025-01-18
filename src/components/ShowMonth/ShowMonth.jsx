@@ -1,4 +1,4 @@
-import * as S from "components/ShowDate/ShowDate.style";
+import * as S from "./ShowMonth.style";
 
 const ShowMonth = () => {
   let date = new Date();

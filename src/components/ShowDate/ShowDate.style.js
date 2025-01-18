@@ -16,7 +16,7 @@ export const DateContainer = styled.div`
   margin-top: clamp(2rem, 15vw, 6rem);
 
   box-sizing: border-box;
-  box-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 
   button {
     background: none;

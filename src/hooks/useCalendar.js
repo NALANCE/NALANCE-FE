@@ -5,7 +5,6 @@ const DATE_MONTH_FIXER = 1;
 const CALENDER_LENGTH = 35;
 const DEFAULT_TRASH_VALUE = 0;
 const DAY_OF_WEEK = 7;
-const DAY_LIST = ["일", "월", "화", "수", "목", "금", "토"];
 
 const useCalendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
