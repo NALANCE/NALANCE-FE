@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import PageTitle from 'components/common/PageTitle/PageTitle';
+import Topbar from "components/Topbar/Topbar";
 import ControlBtn from 'components/common/ControlBtn/ControlBtn';
 import CategoryInput from 'components/CategoryInput/CategoryInput';
 import * as S from './ModCategory.style';
@@ -60,7 +60,7 @@ const ModCategory = () => {
 
   return (
     <>
-      <PageTitle pageTitle="카테고리 수정" />
+      <Topbar pageTitle="비밀번호 수정" />
 
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="categories">

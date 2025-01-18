@@ -4,6 +4,7 @@ import Topbar from "components/Topbar/Topbar";
 import ChangeCompleteBtn from "components/common/ChangeCompleteBtn/ChangeCompleteBtn";
 import originalCat from "assets/icons/originalCat.svg";
 import * as S from "./ModEmail.style";
+import ControlBtn from "../../../components/common/ControlBtn/ControlBtn";
 
 const ModEmail = () => {
   const [currentEmail, setCurrentEmail] = useState("example@gmail.com");
@@ -15,7 +16,11 @@ const ModEmail = () => {
   const [errorMessage2, setErrorMessage2] = useState("");
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    const value = e.target.value;
+    setEmail(value);
+    if (!value) {
+      setErrorMessage1("");
+    }
   };
 
   const handleSendCode = () => {
@@ -43,9 +48,22 @@ const ModEmail = () => {
     // TODO: Add API call to update the email
   };
 
+  const isVerificationCodeValid = (code) => {
+    const regex = /^[A-Za-z0-9]{6}$/;
+    return regex.test(code);
+  };
+
   const handleChangeComplete = () => {
     alert("이메일 변경이 완료되었습니다.");
     // TODO: Add API call to finalize the email change
+    // 초기 상태로 되돌리기
+    setCurrentEmail(email);
+    setEmail("");
+    setVerificationCode("");
+    setIsCodeSent(false);
+    setIsVerified(false);
+    setErrorMessage1("");
+    setErrorMessage2("");
   };
 
   return (
@@ -65,27 +83,44 @@ const ModEmail = () => {
             onChange={handleEmailChange}
             placeholder="새 이메일을 입력하세요"
           />
-          <S.Button onClick={handleSendCode} disabled={!email}>
-            전송
-          </S.Button>
+          <ControlBtn
+            text={isCodeSent ? "재전송" : "전송"}
+            onClick={handleSendCode}
+            isDisabled={!email}
+            status={isCodeSent ? "InProgress" : "Idle"}
+          />
         </S.InputContainer>
-        {errorMessage1 && <S.ErrorText>{errorMessage1}</S.ErrorText>}
+        <S.ErrorTextContainer>
+          {errorMessage1 && <S.ErrorText>{errorMessage1}</S.ErrorText>}
+        </S.ErrorTextContainer>
         <S.InputContainer>
           <S.Input
             as={errorMessage2 ? S.ErrorInput : S.Input}
             type="text"
             value={verificationCode}
-            onChange={(e) => setVerificationCode(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              setVerificationCode(value);
+              if (!value) {
+                setErrorMessage2("");
+              }
+            }}
             placeholder="인증번호를 입력하세요"
           />
-          <S.Button onClick={handleVerifyCode} disabled={!isCodeSent}>
-            확인
-          </S.Button>
+          <ControlBtn
+            text="확인"
+            onClick={handleVerifyCode}
+            isDisabled={!isCodeSent || !isVerificationCodeValid(verificationCode)}
+            status={isVerified ? "Completed" : "InProgress"}
+          />
         </S.InputContainer>
-        {errorMessage2 && <S.ErrorText>{errorMessage2}</S.ErrorText>}
+        <S.ErrorTextContainer>
+          {errorMessage2 && <S.ErrorText>{errorMessage2}</S.ErrorText>}
+        </S.ErrorTextContainer>
         <ChangeCompleteBtn
           onClick={handleChangeComplete}
           disabled={!isCodeSent || !isVerified}
+          marginTop="200px"
         />
       </S.Container>
     </>
