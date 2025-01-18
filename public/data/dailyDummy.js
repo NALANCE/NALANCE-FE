@@ -1,5 +1,5 @@
 export const DAILY = {
-  date: "2025-01-17",
+  date: "2025-01-19",
   categoryRates: [
     { category: "가족", percentage: 0 },
     { category: "나", percentage: 10 },

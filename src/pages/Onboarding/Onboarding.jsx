@@ -12,9 +12,9 @@ const Onboarding = () => {
         <OnboardingLogo />
 
         <S.BtnContainer>
-          <LoginBtn text="로그인" link="/login" notAllow = "false"/>
+          <LoginBtn text="로그인" link="/login" notAllow={false} onClickConfirmButton={() => {}} />
 
-          <LoginBtn text="회원가입" width="33vw" link="/user1" notAllow = "false" />
+          <LoginBtn text="회원가입" width="33vw" link="/user1" notAllow={false} onClickConfirmButton={() => {}} />
         </S.BtnContainer>
       </S.OnboardingContainer>
     </>

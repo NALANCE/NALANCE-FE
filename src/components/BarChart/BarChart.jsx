@@ -1,10 +1,14 @@
 import { DAILY } from "../../../public/data/dailyDummy.js";
-import Warning from "components/Warning/Warning";
-import * as S from "./PieList.style.js";
-import angryCatBig from "assets/icons/angryCatBig.svg";
 import { useEffect, useState } from "react";
+import Warning from "components/Warning/Warning";
+import angryCatBig from "assets/icons/angryCatBig.svg";
 
-const PieList = ({ date }) => {
+import * as S from "./BarChart.style.js";
+import * as S1 from "components/PieList/PieList.style";
+
+export const COLORS = ["#7DA7D9", "#ADC49E", "#F8A19A"];
+
+const BarChart = ({ date }) => {
   const [categoryRates, setCategoryRates] = useState([]);
 
   // 날짜가 변경될 때마다 categoryRates를 업데이트
@@ -29,30 +33,36 @@ const PieList = ({ date }) => {
     <>
       {/* 데이터 없는 경우 */}
       {categoryRates.length === 0 ? (
-        <S.NoItemContainer>
-          <S.NoItemWrapper>
-            <S.CategoryItem>기록된 카테고리 내용이 없습니다.</S.CategoryItem>
-          </S.NoItemWrapper>
-          <S.CatWrapper>
+        <S1.NoItemContainer>
+          <S1.NoItemWrapper>
+            <S1.CategoryItem>기록된 카테고리 내용이 없습니다.</S1.CategoryItem>
+          </S1.NoItemWrapper>
+          <S1.CatWrapper>
             <img src={angryCatBig} />
-          </S.CatWrapper>
-        </S.NoItemContainer>
+          </S1.CatWrapper>
+        </S1.NoItemContainer>
       ) : (
-        <S.ItemContainer>
-          {categoryRates.map((item) => (
-            <S.ItemWrapper key={item.category}>
-              <div className="itemBar">
-                <S.CategoryItem>{item.category}</S.CategoryItem>
-                <S.CategoryItem>{item.percentage}%</S.CategoryItem>
-              </div>
+        <S.StyledItemContainer>
+          {categoryRates.map((item, index) => (
+            <S.StyledItemWrapper key={item.category}>
+              <S.StyledCategoryItem>{item.category}</S.StyledCategoryItem>
+
+              <S.BarWrapper>
+                <S.Bar
+                  width={`${item.percentage}%`}
+                  style={{ backgroundColor: COLORS[index % COLORS.length] }} // index로 COLORS 순환
+                >
+                  <S.StyledCategoryItem>{item.percentage}%</S.StyledCategoryItem>
+                </S.Bar>
+              </S.BarWrapper>
 
               {smallestCategories.some((category) => category.category === item.category) && <Warning date={date} />}
-            </S.ItemWrapper>
+            </S.StyledItemWrapper>
           ))}
-        </S.ItemContainer>
+        </S.StyledItemContainer>
       )}
     </>
   );
 };
 
-export default PieList;
+export default BarChart;

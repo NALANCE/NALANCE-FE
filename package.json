@@ -12,6 +12,7 @@
   "dependencies": {
     "apexcharts": "^4.3.0",
     "axios": "^1.7.9",
+    "date-fns": "^4.1.0",
     "email-validator": "^2.0.4",
     "framer-motion": "^11.16.1",
     "html2canvas": "^1.4.1",

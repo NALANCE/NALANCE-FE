@@ -7,7 +7,7 @@ export const WarningContainer = styled.div`
   justify-content: center;
 
   position: relative;
-  right: -50%;
+  right: ${(props) => props.right || "-10%"};
 
   div {
     cursor: pointer;
@@ -22,9 +22,9 @@ export const CatContainer = styled.div`
     position: absolute;
     top: 100%; // 이미지 아래에 뜨도록
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) !important;
     margin-top: 8px; // 이미지 ~ 말풍선 간격
 
-    z-index: 1000;
+    z-index: 999;
   }
 `;
