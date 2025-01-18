@@ -1,8 +1,10 @@
 import { DAILY } from "../../../public/data/dailyDummy.js";
 import { useEffect, useState } from "react";
 import Warning from "components/Warning/Warning";
+import angryCatBig from "assets/icons/angryCatBig.svg";
 
 import * as S from "./BarChart.style.js";
+import * as S1 from "components/PieList/PieList.style";
 
 export const COLORS = ["#7DA7D9", "#ADC49E", "#F8A19A"];
 
@@ -31,11 +33,14 @@ const BarChart = ({ date }) => {
     <>
       {/* 데이터 없는 경우 */}
       {categoryRates.length === 0 ? (
-        <div>
-          <div>
-            <p>기록된 카테고리 내용이 없습니다.</p>
-          </div>
-        </div>
+        <S1.NoItemContainer>
+          <S1.NoItemWrapper>
+            <S1.CategoryItem>기록된 카테고리 내용이 없습니다.</S1.CategoryItem>
+          </S1.NoItemWrapper>
+          <S1.CatWrapper>
+            <img src={angryCatBig} />
+          </S1.CatWrapper>
+        </S1.NoItemContainer>
       ) : (
         <S.StyledItemContainer>
           {categoryRates.map((item, index) => (
