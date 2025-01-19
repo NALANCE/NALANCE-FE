@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  position: absolute;
-  top: 170px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 11px;
+  gap: 10px;
+
+  height: clamp(520px, 100vh, 630px);
+  box-sizing: border-box;
+
+  padding-top: clamp(10px, 56px, 56px);
 `;
 
 export const Cat = styled.img`
@@ -38,16 +40,9 @@ export const Speech = styled.img`
 `;
 
 export const BtnWrapper = styled.div`
-  position: fixed;
-  bottom: clamp(50px, 10%, 318px);
-  left: 50%;
-  transform: translateX(-50%);
-
-  @media (max-width: 768px) {
-    bottom: 318px;
-  }
-
-  @media (max-width: 480px) {
-    bottom: 159px;
-  }
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: clamp(10px, 24px, 24px);
 `;

@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  position: absolute;
-  top: 246px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 15px;
+
+  height: clamp(211px, 100vh, 630px);
+  box-sizing: border-box;
+
+  padding-top: clamp(10px, 130px, 130px);
 `;
 
 export const Cat = styled.img`
