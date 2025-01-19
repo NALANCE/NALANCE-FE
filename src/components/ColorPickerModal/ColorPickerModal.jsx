@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import * as S from './ColorPickerModal.style';
 
 const colors = [
@@ -27,7 +28,7 @@ const ColorPickerModal = ({ isOpen, onColorSelect, selectedColor }) => {
     onColorSelect(color); // 부모 컴포넌트로 선택된 색상 전달
   };
 
-  return (
+  return ReactDOM.createPortal(
     <S.Overlay>
       <S.ModalContainer>
         <S.Title>색상</S.Title>
@@ -42,7 +43,8 @@ const ColorPickerModal = ({ isOpen, onColorSelect, selectedColor }) => {
           ))}
         </S.ColorGrid>
       </S.ModalContainer>
-    </S.Overlay>
+    </S.Overlay>,
+    document.getElementById('modal-root') // Portals로 렌더링
   );
 };
 
