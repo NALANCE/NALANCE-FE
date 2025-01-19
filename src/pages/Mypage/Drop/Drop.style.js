@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: center;
   gap: 10px;
 
-  height: clamp(520px, 100vh, 630px);
+  height: 630px;
   box-sizing: border-box;
 
   padding-top: clamp(10px, 56px, 56px);

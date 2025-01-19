@@ -7,7 +7,7 @@ export const Question = styled.div`
   gap: 6px;
   align-self: stretch;
   cursor: pointer;
-  border-bottom: 0.2px solid ${({ theme }) => theme.colors.black};
+  border-bottom: 0.2px solid ${({ theme }) => theme.colors.grayB6};
 
   -webkit-tap-highlight-color: transparent; /* 모바일 클릭 시 배경 하이라이트 제거 */
 `;
