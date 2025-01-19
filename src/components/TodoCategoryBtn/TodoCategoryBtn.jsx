@@ -58,7 +58,7 @@ const TodoCategoryBtn = ({
   }, [backgroundColor, defaultValue]);
 
   const handleAddIconClick = () => {
-    setShowTodoList(true); // AddIcon 클릭 시 TodoList 표시
+    onAddTodo(); // 모달 열기
   };
 
   // Todo 추가 함수
