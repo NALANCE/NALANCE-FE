@@ -10,13 +10,21 @@ const shake = keyframes`
   75% { transform: translate(-1px); }
 `;
 
+// 부모 컨테이너 (모든 요소 포함)
+export const ParentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 550px;
+  box-sizing: border-box;
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 104px;
+  margin-top: 100px;
   width: 270px;
-  padding: 20px 0px;
+
   gap: 30px;
 
   margin-left: auto;
@@ -42,7 +50,7 @@ export const WarningAndButtonWrapper = styled.div`
   justify-content: space-between;
   margin: auto; /* 전체 컨테이너를 중앙 정렬 */
   width: 270px;
-  margin-top: 14px;
+  margin-top: 22px;
 `;
 
 export const ButtonContainer = styled.div`
@@ -65,4 +73,12 @@ export const ErrorMessage = styled.div`
   &.shake {
     animation: ${shake} 0.4s ease-in-out;
   }
+`;
+
+export const TriangleBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  width: 100%;
 `;

@@ -17,10 +17,11 @@ const Drop = () => {
           <img src={bubble} alt="말풍선" />
           <S.Speech src={speech} alt="대사" />
         </S.Bubble>
+        <S.BtnWrapper>
+          <DropBtn link="/" />
+        </S.BtnWrapper>
       </S.Container>
-      <S.BtnWrapper>
-        <DropBtn link="/" />
-      </S.BtnWrapper>
+
       <BottomLogo />
     </>
   );

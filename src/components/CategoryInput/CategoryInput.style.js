@@ -15,6 +15,16 @@ const shake = keyframes`
   100% { transform: translate( 0); }
 `;
 
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -87,14 +97,8 @@ export const DisplayText = styled.span`
 export const ButtonGroup = styled.div`
   display: flex;
   gap: 2px;
-`;
-export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
+  z-index: 20;
+  pointer-events: auto; // 버튼은 클릭 가능
 `;
 
 export const ErrorMessage = styled.div`

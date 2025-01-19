@@ -3,6 +3,8 @@ import PageTitle from 'components/common/PageTitle/PageTitle';
 import ControlBtn from 'components/common/ControlBtn/ControlBtn';
 import CategoryInput from 'components/CategoryInput/CategoryInput';
 import Warning from 'components/CategoryWarning/CategoryWarning';
+import TriangleBtn from '../../../components/common/TriangleBtn/TriangleBtn';
+
 import * as S from './User2.style';
 
 const MAX_CATEGORIES = 10;
@@ -51,32 +53,40 @@ const User2 = () => {
     <>
       {/* 페이지 제목 */}
       <PageTitle pageTitle="카테고리 생성" />
+      {/* 부모 컨테이너 추가 */}
+      <S.ParentContainer>
+        {/* 입력 필드 렌더링 */}
+        <S.Container>
+          {inputFields.map((field) => (
+            <CategoryInput
+              key={field.id}
+              onSubmit={(newCategory) =>
+                handleAddCategory(newCategory, field.id)
+              } // 입력값으로 카테고리 추가
+              onDelete={() => handleDeleteInputField(field.id)} // 입력 필드 삭제
+            />
+          ))}
+        </S.Container>
 
-      {/* 입력 필드 렌더링 */}
-      <S.Container>
-        {inputFields.map((field) => (
-          <CategoryInput
-            key={field.id}
-            onSubmit={(newCategory) => handleAddCategory(newCategory, field.id)} // 입력값으로 카테고리 추가
-            onDelete={() => handleDeleteInputField(field.id)} // 입력 필드 삭제
-          />
-        ))}
-      </S.Container>
+        <S.WarningAndButtonWrapper>
+          <S.ButtonContainer>
+            {/* 카테고리 추가 버튼 */}
+            <ControlBtn text="추가" onClick={addCategory} />
+            {errorMessage && (
+              <S.ErrorMessage className={isErrorAnimating ? 'shake' : ''}>
+                {errorMessage}
+              </S.ErrorMessage>
+            )}
+          </S.ButtonContainer>
 
-      <S.WarningAndButtonWrapper>
-        <S.ButtonContainer>
-          {/* 카테고리 추가 버튼 */}
-          <ControlBtn text="추가" onClick={addCategory} />
-          {errorMessage && (
-            <S.ErrorMessage className={isErrorAnimating ? 'shake' : ''}>
-              {errorMessage}
-            </S.ErrorMessage>
-          )}
-        </S.ButtonContainer>
-
-        {/* Warning 컴포넌트 조건부 렌더링 */}
-        {totalItems === 0 && <Warning />}
-      </S.WarningAndButtonWrapper>
+          {/* Warning 컴포넌트 조건부 렌더링 */}
+          {totalItems === 0 && <Warning />}
+        </S.WarningAndButtonWrapper>
+      </S.ParentContainer>
+      {/* 가입 버튼 */}
+      <S.TriangleBtnWrapper>
+        <TriangleBtn text="가입" Allow={totalItems > 0} link="/Login" />
+      </S.TriangleBtnWrapper>
     </>
   );
 };

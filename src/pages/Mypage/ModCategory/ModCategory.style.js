@@ -14,9 +14,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 104px;
+  margin-top: 135px;
   width: 310px;
-  padding: 20px 0px;
+
   gap: 16px;
 
   margin-left: auto;
@@ -38,7 +38,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 14px;
+  margin-top: 26px;
   width: 270px;
 
   margin-left: auto;
