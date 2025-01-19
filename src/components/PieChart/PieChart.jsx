@@ -10,6 +10,11 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
   const [selectedIndex, setSelectedIndex] = useState(null); // 클릭한 인덱스를 저장
 
   useEffect(() => {
+    // 날짜 변경 시 selectedIndex 초기화
+    setSelectedIndex(null);
+  }, [date]); // date가 변경될 때마다 selectedIndex 초기화
+
+  useEffect(() => {
     // 날짜 변경시 데이터 업데이트하기
     const fetchDataForDate = () => {
       const formattedDate = date; // 문자열 ex)2025-01-17
@@ -39,7 +44,7 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
         // 데이터가 없으면 (날짜가 다르면)
         setChartData({
           series: [], // 기본 데이터
-          labels: ["기본"], // 기본 라벨
+          labels: [""], // 기본 라벨
         });
         setColors(["#555555"]);
       }
@@ -82,7 +87,7 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
           },
         },
         animations: {
-          enabled: false, // 애니메이션 비활성화
+          enabled: true, // 애니메이션 비활성화
         },
       },
       legend: {
@@ -102,6 +107,7 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
       plotOptions: {
         // 차트 데이터 시각화 관련
         pie: {
+          expandOnClick: false,
           donut: {
             size: "15%", // 차트 가운데 크기
             labels: {
@@ -111,20 +117,20 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
         },
       },
       dataLabels: {
-        enabled: true, // 그래프 위에 값 숨기기
+        enabled: true, // 그래프 위에 값 나타나도록
 
         // 클릭된 것만 label뜨도록
-        formatter: (value, { seriesIndex, w }) => {
-          if (seriesIndex === selectedIndex) {
+        formatter: (value, { seriesIndex }) => {
+          if (seriesIndex === selectedIndex && chartData.series.length > 0) {
             console.log("selectedIndex", selectedIndex);
             const labelName = chartData.labels[seriesIndex]; // 선택된 label 이름
-            return `${labelName}${value}%`;
+            return `${value}%`;
           }
           return "";
         },
 
         style: {
-          colors: ["black"], // 글자 색상
+          colors: ["white"], // 글자 색상
           fontSize: "1.6rem", // 글자 크기
           fontWeight: 600, // 글자 굵기
         },
@@ -138,6 +144,7 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
         width: chartData.series.length > 0 ? 5 : 0,
       },
     },
+
     labels: DAILY && DAILY.graphData && DAILY.graphData.data ? DAILY.graphData.labels : [""], // series 배열의 각 값과 연결
     title: {
       text: "하루 통계",
@@ -148,6 +155,7 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
   return (
     <S.ChartWrapper marginTop={marginTop}>
       <ReactApexChart
+        key={JSON.stringify(Daily.series)}
         options={Daily.options}
         series={Daily.series}
         type="donut"
