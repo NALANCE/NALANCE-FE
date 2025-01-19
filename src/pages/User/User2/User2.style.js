@@ -14,7 +14,7 @@ const shake = keyframes`
 export const ParentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 550px;
+  height: 560px;
   box-sizing: border-box;
 `;
 
