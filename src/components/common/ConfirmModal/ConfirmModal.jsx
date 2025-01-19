@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import * as S from './ConfirmModal.style';
 import ControlBtn from 'components/common/ControlBtn/ControlBtn';
 import confirm_modal from 'assets/icons/confirm_modal.svg';
@@ -27,7 +28,7 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, confirmLink, message }) => {
   const confirmText = isDeleteMessage ? '삭제' : '네';
   const cancelText = isDeleteMessage ? '취소' : '아니요';
 
-  return (
+  return ReactDOM.createPortal(
     <S.ModalOverlay>
       <S.ModalContainer>
         <S.SvgWrapper>
@@ -41,7 +42,8 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, confirmLink, message }) => {
           </S.ModalContent>
         </S.SvgWrapper>
       </S.ModalContainer>
-    </S.ModalOverlay>
+    </S.ModalOverlay>,
+    document.getElementById('modal-root')
   );
 };
 
