@@ -1,7 +1,8 @@
 import ShowDate from "components/ShowDate/ShowDate";
 import ImgSave from "components/ImgSave/ImgSave";
+import TodoCategoryBtn from "components/TodoCategoryBtn/TodoCategoryBtn"; // TodoCategoryBtn 임포트
 
-import * as S from "pages/Daily/Daily.style.js";
+import * as S from "./Todo.style";
 
 import { useState } from "react";
 
@@ -16,7 +17,7 @@ const formatDate = (date) => {
 
 const Todo = () => {
   const [date, setDate] = useState(formatDate(new Date()));
-  //console.log(date); 2025-01-17
+  const [todos, setTodos] = useState([]); // Todo 리스트 상태 추가
 
   // 날짜 변경시
   const handleDateChange = (newDate) => {
@@ -28,6 +29,11 @@ const Todo = () => {
     <>
       <S.DailyContainer className="ImgContainer">
         <ShowDate date={date} onDateChange={handleDateChange} />
+        <S.TodoCategoryContainer>
+          <TodoCategoryBtn defaultValue="가족"  />
+          <TodoCategoryBtn defaultValue="친구"  />
+          <TodoCategoryBtn defaultValue="학업"  />
+        </S.TodoCategoryContainer>
         <ImgSave />
       </S.DailyContainer>
     </>
