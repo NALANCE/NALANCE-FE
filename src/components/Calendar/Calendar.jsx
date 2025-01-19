@@ -15,23 +15,23 @@ const Calendar = ({ date, onDateChange }) => {
     onDateChange(today);
   }, []);
 
-  const handleDayClick = (day) => {
-    if (day !== 0) {
-      setSelectedDate(day);
-      const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+  const handleDayClick = ($day) => {
+    if ($day !== 0) {
+      setSelectedDate($day);
+      const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), $day);
       onDateChange(newDate); // 클릭된 날짜를 부모 컴포넌트로 전송
     }
   };
 
-  const isSelectedDay = (day) => {
-    return day === selectedDate;
+  const $isSelectedDay = ($day) => {
+    return $day === selectedDate;
   };
 
-  const isToday = (day) => {
+  const $isToday = ($day) => {
     const today = new Date();
 
     return (
-      day === today.getDate() &&
+      $day === today.getDate() &&
       today.getMonth() === currentDate.getMonth() &&
       today.getFullYear() === currentDate.getFullYear()
     );
@@ -40,29 +40,29 @@ const Calendar = ({ date, onDateChange }) => {
   return (
     <S.CalendarContainer>
       <S.DayContainer>
-        {DAY_LIST.map((day) => (
-          <S.DayWrapper>{day}</S.DayWrapper> // 요일 표시
+        {DAY_LIST.map(($day, idx) => (
+          <S.DayWrapper key={idx}>{$day}</S.DayWrapper> // 요일 표시
         ))}
       </S.DayContainer>
 
       {weekCalendarList.map((week, idx) => (
         <S.DateContainer key={idx}>
-          {week.map((day, i) => (
-            <S.DateWrapper>
+          {week.map(($day, i) => (
+            <S.DateWrapper key={i}>
               <S.DateBtn
-                onClick={() => handleDayClick(day)}
+                onClick={() => handleDayClick($day)}
                 key={i}
-                isToday={isToday(day)}
-                day={day}
-                isSelected={isSelectedDay(day)}
+                $isToday={$isToday($day)}
+                $day={$day}
+                $isSelected={$isSelectedDay($day)}
               >
-                <S.DateTxt isToday={isToday(day)} day={day}>
-                  {day !== 0 ? day : ""}
+                <S.DateTxt $isToday={$isToday($day)} $day={$day}>
+                  {$day !== 0 ? $day : ""}
                 </S.DateTxt>
               </S.DateBtn>
 
-              {day !== 0 && isToday(day) && <S.TodayRed>TODAY</S.TodayRed>}
-              {day !== 0 && !isToday(day) && <S.CategoryCircle color={"#F8A19A"}></S.CategoryCircle>}
+              {$day !== 0 && $isToday($day) && <S.TodayRed>TODAY</S.TodayRed>}
+              {$day !== 0 && !$isToday($day) && <S.CategoryCircle color={"#F8A19A"}></S.CategoryCircle>}
             </S.DateWrapper>
           ))}
         </S.DateContainer>

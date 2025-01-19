@@ -4,7 +4,7 @@ import * as S from "./PieChart.style.js";
 import { useEffect, useState } from "react";
 import Percentage from "../Percentage/Percentage.jsx";
 
-const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" }) => {
+const PieChart = ({ date, width = "300", height = "300", $marginTop = "0.4rem" }) => {
   const [chartData, setChartData] = useState({ series: [], labels: [] });
   const [colors, setColors] = useState(["#555555"]); // 기본 색상
   const [selectedIndex, setSelectedIndex] = useState(null); // 클릭한 인덱스를 저장
@@ -29,15 +29,15 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
         const filteredSeries = filteredData.map((item) => item.value);
         const filteredLabels = filteredData.map((item) => item.label);
 
-        console.log("filteredSeries", filteredSeries);
-        console.log("filteredLabels", filteredLabels);
+        // console.log("filteredSeries", filteredSeries);
+        // console.log("filteredLabels", filteredLabels);
 
         setChartData({
           series: filteredSeries, // 데이터 부분
           labels: filteredLabels, // 라벨 부분
         });
 
-        console.log("chartData", chartData);
+        // console.log("chartData", chartData);
 
         setColors(["#7DA7D9", "#ADC49E", "#F8A19A"]);
       } else {
@@ -72,7 +72,7 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
         type: "donut",
         events: {
           dataPointSelection: (event, chartContext, config) => {
-            console.log("config", config);
+            // console.log("config", config);
 
             // 클릭 시 filter 제거
             setTimeout(() => {
@@ -122,7 +122,7 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
         // 클릭된 것만 label뜨도록
         formatter: (value, { seriesIndex }) => {
           if (seriesIndex === selectedIndex && chartData.series.length > 0) {
-            console.log("selectedIndex", selectedIndex);
+            // console.log("selectedIndex", selectedIndex);
             const labelName = chartData.labels[seriesIndex]; // 선택된 label 이름
             return `${value}%`;
           }
@@ -153,7 +153,7 @@ const PieChart = ({ date, width = "300", height = "300", marginTop = "0.4rem" })
   };
 
   return (
-    <S.ChartWrapper marginTop={marginTop}>
+    <S.ChartWrapper $marginTop={$marginTop}>
       <ReactApexChart
         key={JSON.stringify(Daily.series)}
         options={Daily.options}

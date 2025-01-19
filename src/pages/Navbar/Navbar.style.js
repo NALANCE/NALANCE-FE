@@ -27,7 +27,7 @@ export const SidebarContainer = styled.div`
   border-radius: 0px 50px 50px 0px;
 
   overflow-x: hidden;
-  transform: ${(props) => (props.isOpen ? "translateX(0)" : "translateX(-100%)")};
+  transform: ${(props) => (props.$isOpen ? "translateX(0)" : "translateX(-100%)")};
   transition: transform 0.3s ease;
 
   z-index: 1000; // Overlay 위로
@@ -35,7 +35,7 @@ export const SidebarContainer = styled.div`
 
 export const SidebarContent = styled.nav`
   padding: 20px;
-  display: ${(props) => (props.isOpen ? "block" : "none")};
+  display: ${(props) => (props.$isOpen ? "block" : "none")};
 `;
 
 export const FishIcon = styled.h1`
@@ -73,7 +73,9 @@ export const MenuItem = styled.li`
 
   margin-top: 5rem;
 
-  text-shadow: ${(props) => (props.isActive ? "0.2px 0.2px 1px #2f2f2f" : "none")};
+  text-shadow: ${(props) => (props.$isActive ? "0.2px 0.2px 1px #2f2f2f" : "none")};
+
+  cursor: pointer;
 `;
 
 export const FooterLogo = styled.div`
