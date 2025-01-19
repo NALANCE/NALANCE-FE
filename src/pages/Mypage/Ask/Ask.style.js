@@ -7,7 +7,7 @@ export const Container = styled.div`
   align-items: center;
   gap: 15px;
 
-  height: clamp(211px, 100vh, 630px);
+  height: 630px;
   box-sizing: border-box;
 
   padding-top: clamp(10px, 130px, 130px);

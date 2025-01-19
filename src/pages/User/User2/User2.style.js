@@ -31,7 +31,7 @@ export const Container = styled.div`
   margin-right: auto;
 
   /* 스크롤바 설정 */
-  max-height: 320px; /* 카테고리 목록의 최대 높이 */
+  max-height: 350px; /* 카테고리 목록의 최대 높이 */
   overflow-y: auto; /* 스크롤 활성화 */
 
   /* 스크롤바 숨기기 */

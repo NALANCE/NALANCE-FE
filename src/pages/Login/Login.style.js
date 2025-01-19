@@ -1,12 +1,17 @@
+import styled from 'styled-components';
 
-import styled from "styled-components";
+// 최상위 컴포넌트 ( 타이틀 + 로고 제외 )
+export const Container = styled.div`
+  height: 630px;
+  box-sizing: border-box;
+`;
 
 export const ContentWrap = styled.div`
-  margin-top: 85px;
-  display: flex;               
-  flex-direction: column;     
-  justify-content: center; 
-  align-items: center;     
+  padding-top: 85px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const InputTitle = styled.div`
@@ -33,7 +38,7 @@ export const InputWrap = styled.div`
   height: 44px;
   padding: 2px 13px;
   align-items: center;
-  
+
   border-radius: 8px;
   background: white;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
@@ -42,7 +47,7 @@ export const InputWrap = styled.div`
 
 export const InputGap = styled.div`
   margin-bottom: 20px;
-`
+`;
 
 export const Input = styled.input`
   width: 100%;
@@ -53,22 +58,20 @@ export const Input = styled.input`
   font-weight: 400;
 
   &::placeholder {
-    color: #B6B6B6;
+    color: #b6b6b6;
   }
 `;
 
 export const ErrorMessageWrap = styled.div`
-
   color: #b3261e;
-  font-family: "Freesentation", sans-serif;
+  font-family: 'Freesentation', sans-serif;
   font-size: 20px;
   font-weight: 300;
   letter-spacing: 0.04em;
   margin-top: 3px;
-  
+
   transform: translateX(-35px);
 `;
-
 
 export const BtnContainer = styled.div`
   display: flex;
@@ -80,20 +83,3 @@ export const BtnContainer = styled.div`
     margin-top: 8px;
   }
 `;
-
-export const LogoWrapper = styled.div`
-  position: fixed;
-  bottom: 59px;    
-  left: 50%;       
-  transform: translateX(-50%); 
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  img {
-    width: 266px;
-  }
-
-`

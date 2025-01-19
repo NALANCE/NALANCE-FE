@@ -22,14 +22,15 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   z-index: 10;
-  pointer-events: none;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
-  width: 100%; /* 부모의 전체 너비 */
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  padding-bottom: 10px;
 `;
 
 export const InputWrapper = styled.div`
@@ -97,8 +98,6 @@ export const DisplayText = styled.span`
 export const ButtonGroup = styled.div`
   display: flex;
   gap: 2px;
-  z-index: 20;
-  pointer-events: auto; // 버튼은 클릭 가능
 `;
 
 export const ErrorMessage = styled.div`
