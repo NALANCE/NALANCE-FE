@@ -1,8 +1,9 @@
 import ShowDate from "components/ShowDate/ShowDate";
 import ImgSave from "components/ImgSave/ImgSave";
-
-import * as S from "pages/Daily/Daily.style.js";
-
+import TodoCategoryBtn from "components/TodoCategoryBtn/TodoCategoryBtn";
+import TodoModal from "components/TodoModal/TodoModal";
+import TodoLists from "components/TodoLists/TodoLists";
+import * as S from "./Todo.style";
 import { useState } from "react";
 
 // 날짜 포맷팅 함수
@@ -16,20 +17,43 @@ const formatDate = (date) => {
 
 const Todo = () => {
   const [date, setDate] = useState(formatDate(new Date()));
-  //console.log(date); 2025-01-17
+  const [todos, setTodos] = useState({ 가족: [], 친구: [], 학업: [] }); // Todo 리스트 상태를 카테고리별로 관리
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState(""); // 현재 카테고리 상태 추가
 
-  // 날짜 변경시
   const handleDateChange = (newDate) => {
-    const formattedDate = typeof newDate === "object" && newDate instanceof Date ? formatDate(newDate) : newDate; // 포맷 (문자열로)
-    setDate(formattedDate); // 새로운 날짜 상태 업데이트
+    const formattedDate = typeof newDate === "object" && newDate instanceof Date ? formatDate(newDate) : newDate;
+    setDate(formattedDate);
+  };
+
+  const handleAddTodo = (newTodo) => {
+    setTodos({
+      ...todos,
+      [currentCategory]: [...todos[currentCategory], newTodo],
+    });
+    setIsModalOpen(false);
+  };
+
+  const openModal = (category) => {
+    setCurrentCategory(category);
+    setIsModalOpen(true);
   };
 
   return (
     <>
       <S.DailyContainer className="ImgContainer">
         <ShowDate date={date} onDateChange={handleDateChange} />
+        <S.TodoCategoryContainer>
+          <TodoCategoryBtn defaultValue="가족" onAddTodo={() => openModal("가족")} />
+          <TodoLists todos={todos["가족"]} />
+          <TodoCategoryBtn defaultValue="친구" onAddTodo={() => openModal("친구")} />
+          <TodoLists todos={todos["친구"]} />
+          <TodoCategoryBtn defaultValue="학업" onAddTodo={() => openModal("학업")} />
+          <TodoLists todos={todos["학업"]} />
+        </S.TodoCategoryContainer>
         <ImgSave />
       </S.DailyContainer>
+      {isModalOpen && <TodoModal onAddTodo={handleAddTodo} />}
     </>
   );
 };

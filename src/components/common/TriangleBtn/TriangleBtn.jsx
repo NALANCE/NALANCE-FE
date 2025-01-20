@@ -11,7 +11,6 @@ const TriangleBtn = ({text, link, Allow}) => {
   const [currentBtn, setCurrentBtn] = useState(triangleBtn); // 초기값 설정
 
   const onClick = () => {
-
     if (Allow) {
       setClicked(true);
       setCurrentBtn(triangleBtnClick); // 클릭 시 이미지 변경

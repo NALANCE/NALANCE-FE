@@ -1,14 +1,23 @@
 import styled from "styled-components";
-import RoundBtn from "../../../components/common/RoundBtn/RoundBtn";
+import checkbox_check from 'assets/icons/checkbox_check.svg';
+import checkbox_uncheck from 'assets/icons/checkbox_uncheck.svg';
 
 
 export const ContentWrap = styled.div`
-  margin-top: 104px;
   display: flex;               
   flex-direction: column;     
   justify-content: center; 
   align-items: center;     
 `;
+
+export const CenterWrap = styled.div`
+  margin-top: 80px;
+  height: 480px;
+  display: flex;               
+  flex-direction: column;     
+  justify-content: center; 
+  align-items: center;  
+`
 
 export const LineWrap = styled.div`
   display: flex; /* 가로 정렬 활성화 */
@@ -32,7 +41,14 @@ export const InputWrap = styled.div`
   margin-bottom: 5px;
 
   &:focus-within{
-    outline: 0.5px solid #000000
+    border: 1px solid #000000
+  }
+  border: ${({ hasError }) => (hasError ? "1px solid  #B3261E" : "1px solid transparent")};
+
+  input[type="password"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 `;
 
@@ -56,58 +72,37 @@ export const NoRoundBtn =  styled.div`
   height: 40px;
 `
 
+export const ErrorMessegeDiv = styled.div`
+  display: flex;
+  width: 314px;
+  height: 27px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+`
 
-export const ErrorMessageWrap1 = styled.div`
+export const ErrorMessageWrap = styled.div`
 
-  color: #00000;
+  color: ${({ hasError }) => (hasError ? "#B3261E" : "#000000")};
   font-family: "Freesentation", sans-serif;
   font-size: 11px;
   font-weight: 300;
   letter-spacing: 0.04em;
-  margin-top: 6px;
-  margin-bottom: 7px;
-  margin-left: 10px;
-  transform: translateX(-35px);
-`;
-
-export const ErrorMessageWrap2 = styled.div`
-
-  color: #00000;
-  font-family: "Freesentation", sans-serif;
-  font-size: 11px;
-  font-weight: 300;
-  letter-spacing: 0.04em;
-  margin-top: 6px;
-  margin-bottom: 7px;
-  margin-right: 80px;
-  transform: translateX(-35px);
-`;
-
-export const ErrorMessageWrap3 = styled.div`
-
-  color: #B3261E;
-  font-family: "Freesentation", sans-serif;
-  font-size: 11px;
-  font-weight: 300;
-  letter-spacing: 0.04em;
-  margin-top: 6px;
-  margin-bottom: 7px;
-  margin-right: 30px;
-  transform: translateX(-35px);
+  margin-top: 7px;
 `;
 
 export const InputGap = styled.div`
-  margin-bottom: 31px;
+  margin-bottom: 10px;
 `
 export const CheckboxWrap = styled.div`
   display: flex;
   flex-direction: column;
   width: 314px;
   height: 88px;
-  margin-top: 23px;
+  margin-top: 15px;
   gap: 10px;
   padding: 2px 13px;
-  
+
   border-radius: 8px;
   background: white;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
@@ -117,7 +112,6 @@ export const CheckboxWrap = styled.div`
 export const Checkbox = styled.input`
   margin-top: 10px;
   margin-right: 7px; /* Checkbox와 텍스트 사이의 간격 조정 */
-  
 `;
 
 export const Option = styled.div`

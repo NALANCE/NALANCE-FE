@@ -8,7 +8,7 @@ const Mypage = () => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const handleLogout = () => {
-    // 로그아웃 로직 추가
+    // TODO: 로그아웃 로직 추가
     console.log("로그아웃 완료");
     navigate("/"); // 로그아웃 후 로그인 페이지로 이동
   };
