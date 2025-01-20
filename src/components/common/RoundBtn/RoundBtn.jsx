@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import * as S from "./RoundBtn.style";
 
-const RoundBtn = ({ text, width }) => {
+const RoundBtn = ({ text, width, onClickConfirmButton }) => {
   const [clicked, setClicked] = useState(false);
 
   const onClick = () => {
-    setClicked(true);
+    onClickConfirmButton();
+
+      setClicked(true);
+    
   };
 
   return (
