@@ -39,24 +39,24 @@ const Navbar = () => {
         </S.TopContainer>
 
         {/* navbar(sidebar) */}
-        <S.SidebarContainer isOpen={isSidebarOpen}>
-          <S.SidebarContent isOpen={isSidebarOpen}>
+        <S.SidebarContainer $isOpen={isSidebarOpen}>
+          <S.SidebarContent $isOpen={isSidebarOpen}>
             <S.FishNavIcon onClick={toggleSidebar}>
               <img src={navIcon}></img>
             </S.FishNavIcon>
 
             {/* 메뉴 */}
             <S.MenuList>
-              <S.MenuItem onClick={() => handleMenuClick("/todo", "todo")} isActive={activeMenu === "todo"}>
+              <S.MenuItem onClick={() => handleMenuClick("/todo", "todo")} $isActive={activeMenu === "todo"}>
                 하루 기록
               </S.MenuItem>
-              <S.MenuItem onClick={() => handleMenuClick("/daily", "daily")} isActive={activeMenu === "daily"}>
+              <S.MenuItem onClick={() => handleMenuClick("/daily", "daily")} $isActive={activeMenu === "daily"}>
                 하루 비율
               </S.MenuItem>
-              <S.MenuItem onClick={() => handleMenuClick("/monthly", "monthly")} isActive={activeMenu === "monthly"}>
+              <S.MenuItem onClick={() => handleMenuClick("/monthly", "monthly")} $isActive={activeMenu === "monthly"}>
                 한달 비율
               </S.MenuItem>
-              <S.MenuItem onClick={() => handleMenuClick("/mypage", "mypage")} isActive={activeMenu === "mypage"}>
+              <S.MenuItem onClick={() => handleMenuClick("/mypage", "mypage")} $isActive={activeMenu === "mypage"}>
                 마이페이지
               </S.MenuItem>
             </S.MenuList>

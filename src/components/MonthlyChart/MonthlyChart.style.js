@@ -20,7 +20,7 @@ export const Line = styled.div`
   width: 32.5rem;
   height: 0.03rem;
 
-  margin-top: ${(props) => props.marginTop};
+  margin-top: ${(props) => props.$marginTop};
 `;
 
 export const IconWrapper = styled.div`
