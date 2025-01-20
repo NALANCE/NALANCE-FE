@@ -93,7 +93,7 @@ const Login = () => {
           />
         </S.BtnContainer>
       </S.Container>
-      <BottomLogo />
+      <BottomLogo/>
     </>
   );
 };
