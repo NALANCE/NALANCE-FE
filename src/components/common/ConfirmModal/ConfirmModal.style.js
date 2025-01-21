@@ -18,6 +18,7 @@ export const ModalContainer = styled.div`
   width: 320px;
   height: 150.272px;
   text-align: center;
+  
 `;
 
 export const SvgWrapper = styled.div`
