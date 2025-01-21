@@ -7,6 +7,7 @@ const colors = {
   black: "#000000",
   grayB6: "#B6B6B6",
   gray86: "#868686",
+  grayD6: "#D6D6D6",
 };
 
 export const theme = {
