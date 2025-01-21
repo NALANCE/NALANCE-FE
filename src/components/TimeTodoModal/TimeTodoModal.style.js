@@ -95,6 +95,9 @@ export const Input = styled.input`
   background: none; 
   font-size: 30px; 
   text-align: center; 
+  &:focus {
+    outline: none; /* 기본 outline 제거 */
+  }
 `;
 
 export const ErrorText = styled.p`
