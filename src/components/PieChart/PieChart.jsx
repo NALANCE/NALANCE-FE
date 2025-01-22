@@ -3,6 +3,7 @@ import ReactApexChart from "react-apexcharts";
 import * as S from "./PieChart.style.js";
 import { useEffect, useState } from "react";
 import Percentage from "../Percentage/Percentage.jsx";
+import { path } from "framer-motion/client";
 
 const PieChart = ({ date, width = "300", height = "300", $marginTop = "0.4rem" }) => {
   const [chartData, setChartData] = useState({ series: [], labels: [] });
@@ -73,21 +74,37 @@ const PieChart = ({ date, width = "300", height = "300", $marginTop = "0.4rem" }
         events: {
           dataPointSelection: (event, chartContext, config) => {
             // console.log("config", config);
-
-            // 클릭 시 filter 제거
-            setTimeout(() => {
-              const paths = document.querySelectorAll("path[filter]");
-              paths.forEach((path) => {
-                path.removeAttribute("filter");
-              });
-            }, 0); // ApexCharts 렌더링 직후 실행
-
             const clickedIndex = config.dataPointIndex;
             setSelectedIndex(clickedIndex);
+            //console.log("clickedIndex", clickedIndex);
+
+            // 클릭된 부분에만 그림자 효과 적용
+            const seriesGroups = document.querySelectorAll("g.apexcharts-series");
+            seriesGroups.forEach((group, index) => {
+              const path = group.querySelector("path"); // 각 데이터 포인트에 해당하는 path
+              if (!path) return; // path가 없는 경우 건너뜀
+
+              // 클릭 시 filter 제거
+              setTimeout(() => {
+                const seriesGroups = document.querySelectorAll("g.apexcharts-series");
+
+                seriesGroups.forEach((group, index) => {
+                  const path = group.querySelector("path"); // 그룹 내부의 path 요소 선택
+                  if (!path) return; // path가 없는 경우 건너뜀
+
+                  if (index === clickedIndex) {
+                    path.setAttribute("filter", "url(#selectedShadow)");
+                    //path.setAttribute("stroke", "none"); // Stroke 유지
+                  } else {
+                    path.removeAttribute("filter");
+                  }
+                });
+              });
+            }, 0); // ApexCharts 렌더링 직후 실행
           },
         },
         animations: {
-          enabled: true, // 애니메이션 비활성화
+          enabled: false, // 애니메이션 비활성화
         },
       },
       legend: {
@@ -154,6 +171,14 @@ const PieChart = ({ date, width = "300", height = "300", $marginTop = "0.4rem" }
 
   return (
     <S.ChartWrapper $marginTop={$marginTop}>
+      <svg width="0" height="0">
+        <defs>
+          <filter id="selectedShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#000" floodOpacity="0.5" />
+          </filter>
+        </defs>
+      </svg>
+
       <ReactApexChart
         key={JSON.stringify(Daily.series)}
         options={Daily.options}
