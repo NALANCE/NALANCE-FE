@@ -49,17 +49,25 @@ axiosInstance.interceptors.response.use(
           const newAccessToken = response.data.result.accessToken;
           localStorage.setItem("accessToken", newAccessToken);
 
+          // 새로운 refreshToken 저장
+          const newRefreshToken = response.data.result.refreshToken;
+          localStorage.setItem("refreshToken", newRefreshToken);
+
           // 요청 다시 시도
           error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
 
           // 요청 보내기
           return axiosInstance(error.config);
         } catch (refreshTokenError) {
-          console.log("💥 refreshToken으로 토큰 갱신 실패: ", refreshTokenError);
+          console.log("💥refreshToken으로 토큰 갱신 실패: ", refreshTokenError);
+
+          // refreshToken도 만료된 경우, 사용자에게 재로그인 요청
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
         }
       }
     }
-    console.log("💥 응답 오류: ", error.message);
+    console.log("💥응답 오류: ", error.message);
 
     return Promise.reject(error);
   }
