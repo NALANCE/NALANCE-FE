@@ -1381,6 +1381,20 @@ html2canvas@^1.4.1:
     css-line-break "^2.1.0"
     text-segmentation "^1.0.3"
 
+igniteui-react-charts@^18.7.6:
+  version "18.7.6"
+  resolved "https://registry.yarnpkg.com/igniteui-react-charts/-/igniteui-react-charts-18.7.6.tgz#1c18eb5b4cc1c44bc83ef3c50898cd6d8957cbfb"
+  integrity sha512-Y4cGpi/zfrJv+Pa4qAX0bMFbG1p9o+qB6j7bVfDzZ2Kiqlr0rXjLrB57pJYMEGBZuOTmUqXQDQhE+pPpGMdv5Q==
+  dependencies:
+    tslib "^2.3.1"
+
+igniteui-react-core@^18.7.6:
+  version "18.7.6"
+  resolved "https://registry.yarnpkg.com/igniteui-react-core/-/igniteui-react-core-18.7.6.tgz#83e8e3315bdde995c76f300988842fc49e0fc4fa"
+  integrity sha512-eNTh/u8cY11TlgdH2tJgGM98iRoHOzLaALa0r5wV5GYWgeNrr1yWHUdVxCas/EI8qD7X0GLVQTn0JX2ghaSZaA==
+  dependencies:
+    tslib "^2.3.1"
+
 ignore@^5.2.0:
   version "5.3.2"
   resolved "https://registry.npmjs.org/ignore/-/ignore-5.3.2.tgz"
@@ -2291,7 +2305,7 @@ tslib@2.6.2:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
 
-tslib@^2.4.0:
+tslib@^2.3.1, tslib@^2.4.0:
   version "2.8.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz"
   integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
