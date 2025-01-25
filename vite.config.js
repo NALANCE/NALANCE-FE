@@ -18,4 +18,13 @@ export default defineConfig({
       { find: "utils", replacement: "/src/utils" },
     ],
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://54.180.228.18:8080", // 백엔드 서버 주소
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 });
