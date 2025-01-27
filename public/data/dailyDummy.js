@@ -55,6 +55,26 @@ export const DAILY = {
         ratio: 0,
         color: "#FFE292",
       },
+      {
+        category: "가족",
+        ratio: 0,
+        color: "#7BCBBE",
+      },
+      {
+        category: "나",
+        ratio: 0,
+        color: "#7DA7D9",
+      },
+      {
+        category: "친구",
+        ratio: 0,
+        color: "#ADC49E",
+      },
+      {
+        category: "학업123",
+        ratio: 0,
+        color: "#F8A19A",
+      },
     ],
   },
 };

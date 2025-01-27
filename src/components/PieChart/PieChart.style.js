@@ -18,6 +18,10 @@ export const ChartWrapper = styled.div`
 export const LegendContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  gap: 10px 0.3rem;
+
+  overflow: scroll;
+  height: 42px;
 `;
 
 export const LegendWrapper = styled.div`
