@@ -23,7 +23,6 @@ export const LegendContainer = styled.div`
 export const LegendWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
 `;
 

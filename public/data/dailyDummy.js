@@ -36,22 +36,22 @@ export const DAILY = {
         color: "#FFE292",
       },
       {
-        category: "코딩1111",
+        category: "코딩코딩딩",
         ratio: 0,
         color: "#FFE292",
       },
       {
-        category: "코딩2222",
+        category: "다섯글자넘을때",
         ratio: 0,
         color: "#FFE292",
       },
       {
-        category: "코딩3",
+        category: "세글자",
         ratio: 0,
         color: "#FFE292",
       },
       {
-        category: "코딩4",
+        category: "코딩",
         ratio: 0,
         color: "#FFE292",
       },

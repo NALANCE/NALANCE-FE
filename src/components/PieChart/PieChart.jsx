@@ -74,7 +74,9 @@ const PieChart = ({ date }) => {
           return (
             <S.LegendWrapper key={item.category}>
               <S.CircleDiv color={item.color} />
-              <S.CategoryItem>{item.category}</S.CategoryItem>
+              <S.CategoryItem>
+                {item.category.length > 2 ? `${item.category.slice(0, 2)}...` : item.category}
+              </S.CategoryItem>
             </S.LegendWrapper>
           );
         })}
