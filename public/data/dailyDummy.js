@@ -8,7 +8,7 @@ export const DAILY = {
       {
         category: "가족",
         ratio: 0,
-        color: "#7DA700",
+        color: "#7BCBBE",
       },
       {
         category: "나",
@@ -21,14 +21,39 @@ export const DAILY = {
         color: "#ADC49E",
       },
       {
-        category: "학업",
+        category: "학업123",
         ratio: 73.6,
         color: "#F8A19A",
       },
       {
         category: "학업2",
         ratio: 0,
-        color: "#3357FF",
+        color: "#CFB7F2",
+      },
+      {
+        category: "코딩",
+        ratio: 0,
+        color: "#FFE292",
+      },
+      {
+        category: "코딩1111",
+        ratio: 0,
+        color: "#FFE292",
+      },
+      {
+        category: "코딩2222",
+        ratio: 0,
+        color: "#FFE292",
+      },
+      {
+        category: "코딩3",
+        ratio: 0,
+        color: "#FFE292",
+      },
+      {
+        category: "코딩4",
+        ratio: 0,
+        color: "#FFE292",
       },
     ],
   },

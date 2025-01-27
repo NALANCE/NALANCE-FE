@@ -19,9 +19,7 @@ const PieChart = ({ date }) => {
   const [data, setData] = useState(DAILY.result.data);
 
   // 비율이 0 이상인 데이터
-  const filteredData = DAILY.result.data
-    .filter((item) => item.ratio > 0)
-    .map((item) => ({ ...item, label: `${item.ratio}%` }));
+  const filteredData = data.filter((item) => item.ratio > 0).map((item) => ({ ...item, label: `${item.ratio}%` }));
 
   // 비율이 0 이상인 데이터의 색상 추출
   const brushes = filteredData.map((item) => item.color);
@@ -66,13 +64,21 @@ const PieChart = ({ date }) => {
             explodedRadius={0.1} // 폭발된 조각의 중심에서 떨어진 거리
             explodedSlices="1" // 초기에 폭발 상태인 조각
             allowSliceExplosion="true" // 클릭 이벤트로 조각 폭발 가능
-            labelFormat="{value}%"
           />
         </IgrDoughnutChart>
       </S.ChartWrapper>
-      <div className="options vertical">
-        <IgrItemLegend ref={legendRef} orientation="Horizontal" />
-      </div>
+
+      {/* 범례 */}
+      <S.LegendContainer>
+        {data.map((item) => {
+          return (
+            <S.LegendWrapper key={item.category}>
+              <S.CircleDiv color={item.color} />
+              <S.CategoryItem>{item.category}</S.CategoryItem>
+            </S.LegendWrapper>
+          );
+        })}
+      </S.LegendContainer>
     </S.ChartContainer>
   );
 };
