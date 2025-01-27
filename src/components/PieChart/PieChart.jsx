@@ -19,7 +19,9 @@ const PieChart = ({ date }) => {
   const [data, setData] = useState(DAILY.result.data);
 
   // 비율이 0 이상인 데이터
-  const filteredData = DAILY.result.data.filter((item) => item.ratio > 0);
+  const filteredData = DAILY.result.data
+    .filter((item) => item.ratio > 0)
+    .map((item) => ({ ...item, label: `${item.ratio}%` }));
 
   // 비율이 0 이상인 데이터의 색상 추출
   const brushes = filteredData.map((item) => item.color);
@@ -55,7 +57,7 @@ const PieChart = ({ date }) => {
             name="ring1"
             dataSource={filteredData}
             valueMemberPath="ratio" // 표시할 값
-            labelMemberPath="ratio" // 라벨
+            labelMemberPath="label" // 라벨
             legendLabelMemberPath="category" // 범례
             brushes={brushes} // 데이터에서 추출한 색상 이용
             labelsPosition="OutsideEnd" // 라벨을 조각 외부 끝에 위치하도록
@@ -64,6 +66,7 @@ const PieChart = ({ date }) => {
             explodedRadius={0.1} // 폭발된 조각의 중심에서 떨어진 거리
             explodedSlices="1" // 초기에 폭발 상태인 조각
             allowSliceExplosion="true" // 클릭 이벤트로 조각 폭발 가능
+            labelFormat="{value}%"
           />
         </IgrDoughnutChart>
       </S.ChartWrapper>
