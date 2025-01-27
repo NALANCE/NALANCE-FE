@@ -27,4 +27,8 @@ export const CatContainer = styled.div`
 
     z-index: 999;
   }
+
+  img {
+    width: 4.2rem;
+  }
 `;

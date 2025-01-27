@@ -26,27 +26,10 @@ const Warning = ({ right, date }) => {
     }
   }, [date]);
 
-  const handleCatClicked = () => {
-    setIsClicked((prev) => !prev);
-  };
-
-  // 4초 후 닫히도록
-  useEffect(() => {
-    let timer;
-    if (isClicked) {
-      timer = setTimeout(() => {
-        setIsClicked(false); // 4초 후 변경되도록
-      }, 4000);
-    }
-    return () => clearTimeout(timer); // 타이머 정리
-  }, [isClicked]);
-
   return (
     <S.WarningContainer right={right}>
-      <S.CatContainer onClick={handleCatClicked}>
+      <S.CatContainer>
         <img src={sadCat} alt="Sad Cat Icon" />
-
-        {isClicked && <Notification img={isToday ? warningToday : warningPrev} isClicked={isClicked} />}
       </S.CatContainer>
     </S.WarningContainer>
   );

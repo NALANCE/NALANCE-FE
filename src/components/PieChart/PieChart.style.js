@@ -8,6 +8,8 @@ export const ChartContainer = styled.div`
   align-items: center;
 
   box-sizing: border-box;
+
+  margin-top: 0.5rem;
 `;
 
 export const ChartWrapper = styled.div`
@@ -16,12 +18,20 @@ export const ChartWrapper = styled.div`
 `;
 
 export const LegendContainer = styled.div`
-  display: grid;
+  display: ${(props) => (props.itemCount < 5 ? "flex" : "grid")};
   grid-template-columns: repeat(5, 1fr);
   gap: 10px 0.3rem;
 
   overflow: scroll;
-  height: 42px;
+  width: 30.2rem;
+  height: 4.2rem;
+
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: ${(props) => (props.itemCount < 5 ? "0.3rem" : "0")};
+
+  margin-top: 5rem;
 `;
 
 export const LegendWrapper = styled.div`

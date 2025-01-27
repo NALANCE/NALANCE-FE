@@ -14,6 +14,7 @@ const Dailly = () => {
     <S.DailyContainer className="ImgContainer">
       <ShowDate date={date} onDateChange={handleDateChange} />
       <PieChart date={date} />
+      <PieList date={date} />
       <ImgSave />
     </S.DailyContainer>
   );

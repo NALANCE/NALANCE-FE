@@ -1,29 +1,10 @@
 import styled from "styled-components";
 
 export const ItemContainer = styled.div`
-  overflow-y: scroll;
-
-  width: 85%;
-  height: 16rem; // 4개까지 표시되도록
-
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-
-  margin-top: 4rem;
-
-  &::-webkit-scrollbar {
-    width: 0.2rem;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #868686;
-    border-radius: 20px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: white;
-  }
 `;
 
 export const ItemWrapper = styled.div`

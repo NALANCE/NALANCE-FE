@@ -47,7 +47,7 @@ const PieChart = ({ date }) => {
           width="100%"
           height="100%"
           allowSliceSelection="true" // 차트 조각 선택할 수 있도록
-          innerExtent={0.2} // 도넛 차트의 중앙 원 크기
+          innerExtent={0.15} // 도넛 차트의 중앙 원 크기
           sliceClick={onSliceClick} // 클릭 이벤트
           startAngle={-60} // 시작 각도
         >
@@ -69,7 +69,7 @@ const PieChart = ({ date }) => {
       </S.ChartWrapper>
 
       {/* 범례 */}
-      <S.LegendContainer>
+      <S.LegendContainer itemCount={data.length}>
         {data.map((item) => {
           return (
             <S.LegendWrapper key={item.category}>
