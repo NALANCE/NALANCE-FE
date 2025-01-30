@@ -1,23 +1,16 @@
 import React, { useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
 
 import PageTitle from "components/common/PageTitle/PageTitle";
 import ControlBtn from "components/common/ControlBtn/ControlBtn";
 import TriangleBtn from "../../../components/common/TriangleBtn/TriangleBtn";
 import eva_eye_off from 'assets/icons/eva_eye_off.svg';
 import eva_eye_on from 'assets/icons/eva_eye_on.svg';
-import checkbox_check from 'assets/icons/checkbox_check.svg';
-import checkbox_uncheck from 'assets/icons/checkbox_uncheck.svg';
 
 import * as S from "./User1.style";
-
-const User = {
-  email: 'abc@naver.com',
-  pw: 'Nalance123!!'
-}
+import axiosInstance from "apis/defaultAxios";
 
 const User1 = () => {
-      const [email, setEmail] = useState('');
+      
       const [emailValid, setEmailValid] =useState(false);
       const [codesentValid, setCodeSentValid] = useState(false);
       const [pwValid, setPwValid] =useState(false);
@@ -25,6 +18,7 @@ const User1 = () => {
       const [checkpwValid, setcheckpwValid] = useState(false);
       const [checkboxValid, setCheckboxValid] = useState(false);
 
+      const [email, setEmail] = useState('');
       const [OTP, setOTP] = useState('');
       const [pw, setPw] = useState('');
       const [checkpw, setCheckpw] = useState('');
@@ -48,6 +42,41 @@ const User1 = () => {
       const [OTPClicked, setOTPClicked] = useState(false);
       const [showPassword, setShowPassword] = useState(false);
       const [checked, setChecked] = useState(false);
+      const [loading, setLoading] = useState(false);
+
+      const handleSubmit = async (e) => {
+        console.log("handleSubmit 실행");
+        console.log("setLoading 호출 전");
+        setLoading(true);
+        console.log("setLoading 호출 후"); 
+        const userData = {
+          email: email,
+          password: pw,
+          terms: [
+            { termsId: 1},
+            { termsId: 2},
+            ...(marketingCheck? [{termsId: 3}]:[]),
+          ],
+        };
+      
+        console.log(userData);
+        if(Allow){
+          try{
+            const data = await axiosInstance.post("/api/v0/members/signup",userData);
+            console.log('Registration success', data);
+            alert('회원가입 성공!');
+          }
+          catch(error){
+            console.error('Registration failed', error);
+            alert('회원가입 실패!');
+          }
+          finally{
+            setLoading(false);
+          }
+        }
+      }
+      
+
 
       const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -339,9 +368,10 @@ const User1 = () => {
                   id="check-age"
                   name="check-age"
                   checked={ageCheck}
-                  onChange={ageBtnEvent}/>
+                  onChange={ageBtnEvent}
+                  />
                   <S.Option> 필수 </S.Option>
-                  <S.Label for="check-age">'만 14세 이상입니다.'</S.Label>
+                  <S.Label htmlFor="check-age">'만 14세 이상입니다.'</S.Label>
             </S.CheckboxInputRow>
 
             <S.CheckboxInputRow>
@@ -352,7 +382,7 @@ const User1 = () => {
                   checked={useCheck}
                   onChange={useBtnEvent}/>
                   <S.Option> 필수 </S.Option>
-                  <S.Label for="opt-in-personal-info">'본 서비스의 이용약관과 개인정보 정책에 동의합니다.'</S.Label>
+                  <S.Label htmlFor="opt-in-personal-info">'본 서비스의 이용약관과 개인정보 정책에 동의합니다.'</S.Label>
             </S.CheckboxInputRow>
 
             <S.CheckboxInputRow>
@@ -363,7 +393,7 @@ const User1 = () => {
                   checked={marketingCheck}
                   onChange={marketingBtnEvent}/>
                   <S.Option> 선택 </S.Option>
-                  <S.Label for="opt-in-marketing">'마케팅 정보 수신에 동의합니다.'</S.Label>
+                  <S.Label htmlFor="opt-in-marketing">'마케팅 정보 수신에 동의합니다.'</S.Label>
             </S.CheckboxInputRow>
 
           </S.CheckboxInputWrap>
@@ -379,11 +409,8 @@ const User1 = () => {
           <S.InputGap/>
         </S.CenterWrap>
 
-          <TriangleBtn text="다음" link="/User2" Allow={Allow} />
+          <TriangleBtn text="다음" link="/User2" Allow={Allow} onClick={handleSubmit}/>
       </S.ContentWrap>
-
-      
-
       
     </>
   );

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import checkbox_check from 'assets/icons/checkbox_check.svg';
 import checkbox_uncheck from 'assets/icons/checkbox_uncheck.svg';
-
+import check from 'assets/icons/check.svg';
 
 export const ContentWrap = styled.div`
   display: flex;               
@@ -102,18 +102,30 @@ export const CheckboxWrap = styled.div`
   margin-top: 15px;
   gap: 10px;
   padding: 2px 13px;
-
   border-radius: 8px;
-  background: white;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   margin-bottom: 5px;
 `
 
 export const Checkbox = styled.input`
-  margin-top: 10px;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #545454;
+  border-radius: 8px;
+  margin-top: 9px;
   margin-right: 7px; /* Checkbox와 텍스트 사이의 간격 조정 */
-`;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 
+   &:checked {
+    border-color: #545454;;
+    background-image: ${check};
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+  }
+`
+  
 export const Option = styled.div`
   margin-top: 10px;
   margin-right: 11px;
