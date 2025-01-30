@@ -45,10 +45,8 @@ const User1 = () => {
       const [loading, setLoading] = useState(false);
 
       const handleSubmit = async (e) => {
-        console.log("handleSubmit 실행");
-        console.log("setLoading 호출 전");
         setLoading(true);
-        console.log("setLoading 호출 후"); 
+     
         const userData = {
           email: email,
           password: pw,
@@ -99,15 +97,35 @@ const User1 = () => {
         }
       }
 
-    const handleSendCode = (e) => {
-      if(emailValid){
-        setCodeSentValid(true);
-        setErrorEmailMessage("인증번호가 전송되었습니다.");
-      }
-      else{
-        setCodeSentValid(false);
-        setErrorEmailMessage("잘못된 형식의 이메일입니다.");    
-      }
+    const handleSendCode = async (e) => {
+      setLoading(true);
+        const userEmail = {
+          email: email
+        };
+      
+        console.log(userEmail);
+        if(emailValid){
+          try{
+            const response = await axiosInstance.post("/api/v0/emails/send-verification",userEmail);
+            console.log('send-verification success', response);
+            setCodeSentValid(true);
+            if(response.data.isSuccess){
+              setErrorEmailMessage("인증번호가 전송되었습니다.");
+            }
+            else{
+              setErrorEmailMessage("잘못된 형식의 이메일입니다.");    
+            }
+            alert('인증번호 전송 성공!');
+          }
+          catch(error){
+            console.error('send-verification failed', error);
+            setCodeSentValid(false);
+            alert('인증번호 전송 실패!');
+          }
+          finally{
+            setLoading(false);
+          }
+        }
     }
       const handleOTP = (e) => {
         setOTP(e.target.value);
@@ -147,14 +165,45 @@ const User1 = () => {
       setPwCheckTouched(true);
     }
 
-    const handleOTPClick = () => {
+    const handleOTPClick = async (e) => {
+
       setOTPClicked(true);
-      if(OTPTouched && OPTValid){
-        setErrorOTPMessage("인증번호가 확인되었습니다.");
-      }
-      else{
-        setErrorOTPMessage("인증번호가 틀렸습니다.    ");
-      }
+
+      setLoading(true);
+        const userOTP = {
+          email: email,
+          code: OTP
+        };
+      
+        console.log(userOTP);
+        if(OTPTouched){
+          try{
+            const response = await axiosInstance.post("/api/v0/emails/verification",userOTP);
+            console.log('verification success', response);
+            if(response.data.isSuccess){
+              setOTPValid(true);
+              setErrorOTPMessage("인증번호가 확인되었습니다.");
+              alert('인증번호 인증 성공!');
+            }
+            else{
+              setOTPValid(false);
+              setErrorOTPMessage("인증번호가 틀렸습니다.    ");
+              alert('인증번호 인증 실패!');
+            }
+    
+          }
+          catch(error){
+            console.error('verification failed', error);
+            setOTPValid(false);
+            setErrorOTPMessage("인증번호가 틀렸습니다.    ");
+            alert('인증번호 인증 실패!');
+          }
+          finally{
+            setLoading(false);
+          }
+        }
+
+     
     }
 
     const ageBtnEvent=()=>{
@@ -194,15 +243,7 @@ const User1 = () => {
 
     }, [email])
 
-    useEffect (()=> {
-      if(OTP == 'abc'){
-        setOTPValid(true);
-      }
-      else{
-        setOTPValid(false);
-      }
-    }
-  );
+
       useEffect( ()=> {
         if (pwTouched&& !pwValid){
           setErrorPwMessage("비밀번호는 영문자, 숫자, 특수문자를 포함하여야 합니다.");
