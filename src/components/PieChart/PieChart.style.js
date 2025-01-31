@@ -24,7 +24,7 @@ export const LegendContainer = styled.div`
 
   overflow: scroll;
   width: 30.2rem;
-  height: 4.2rem;
+  height: 6.2rem;
 
   flex-direction: row;
   justify-content: space-evenly;
