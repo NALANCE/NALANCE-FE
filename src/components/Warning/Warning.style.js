@@ -18,6 +18,8 @@ export const CatContainer = styled.div`
   position: relative;
   display: inline-block;
 
+  margin-top: 1rem;
+
   div {
     position: absolute;
     top: 100%; // 이미지 아래에 뜨도록

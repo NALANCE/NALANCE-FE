@@ -7,12 +7,12 @@ export const DAILY = {
     data: [
       {
         category: "가족",
-        ratio: 0,
+        ratio: 5,
         color: "#7BCBBE",
       },
       {
         category: "나",
-        ratio: 10,
+        ratio: 5,
         color: "#7DA7D9",
       },
       {

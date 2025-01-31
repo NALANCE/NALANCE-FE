@@ -14,7 +14,7 @@ export const ChartContainer = styled.div`
 
 export const ChartWrapper = styled.div`
   width: 100%;
-  height: 22.8rem;
+  height: 33rem;
 `;
 
 export const LegendContainer = styled.div`
@@ -31,7 +31,20 @@ export const LegendContainer = styled.div`
   align-items: center;
   margin-right: ${(props) => (props.itemCount < 5 ? "0.3rem" : "0")};
 
-  margin-top: 5rem;
+  margin-top: 3rem;
+
+  &::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #868686;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: white;
+  }
 `;
 
 export const LegendWrapper = styled.div`

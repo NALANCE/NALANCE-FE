@@ -6,11 +6,30 @@ export const StyledItemWrapper = styled(S.ItemWrapper)`
   width: 20rem;
 `;
 
-export const StyledItemContainer = styled(S.ItemContainer)`
+export const StyledItemContainer = styled.div`
   width: 100%;
   height: 15rem;
 
   margin-top: 3rem;
+
+  overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #868686;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: white;
+  }
 `;
 
 export const BarWrapper = styled.div`
