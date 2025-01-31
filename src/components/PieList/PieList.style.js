@@ -41,11 +41,14 @@ export const NoItemContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  margin-top: 4rem;
+  margin-top: 3.5rem;
 `;
 
 export const CategoryItem = styled.span`
+  font-family: "Freesentation", sans-serif;
   font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 30px;
 
   margin-right: 0.5rem;
 `;

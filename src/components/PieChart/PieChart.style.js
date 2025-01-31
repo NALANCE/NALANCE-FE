@@ -10,7 +10,7 @@ export const ChartContainer = styled.div`
   box-sizing: border-box;
 
   margin-top: 5.9rem;
-  margin-bottom: 6.2rem;
+  margin-bottom: ${(props) => (props.hasData ? "6.2rem" : "0rem")};
 `;
 
 export const ChartWrapper = styled.div`
@@ -62,5 +62,6 @@ export const CircleDiv = styled.div`
 `;
 
 export const CategoryItem = styled.p`
+  font-family: "Freesentation", sans-serif;
   font-size: 1.6rem;
 `;
