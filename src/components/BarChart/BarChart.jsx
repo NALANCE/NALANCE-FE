@@ -14,8 +14,8 @@ const BarChart = ({ date }) => {
   // 날짜가 변경될 때마다 categoryRates를 업데이트
   useEffect(() => {
     // 같은 날짜의 데이터가 있는지
-    if (DAILY.date === date) {
-      setCategoryRates(DAILY.categoryRates); // 일치하면 categoryRates를 업데이트
+    if (DAILY.result.date === date) {
+      setCategoryRates(DAILY.result.data); // 일치하면 categoryRates를 업데이트
     } else {
       setCategoryRates([]); // 해당 날짜가 없으면 빈 배열
     }
@@ -24,10 +24,10 @@ const BarChart = ({ date }) => {
   // 가장 적은 비율의 항목 찾기 (categoryRates가 비어있지 않을 때만)
   const smallestCategories =
     categoryRates.length > 0
-      ? categoryRates.filter((item) => item.percentage === Math.min(...categoryRates.map((item) => item.percentage)))
+      ? categoryRates.filter((item) => item.ratio === Math.min(...categoryRates.map((item) => item.ratio)))
       : []; // 비어 있으면 빈 배열 처리
 
-  // console.log(smallestCategories);
+  // console.log("smallestCategories", smallestCategories);
 
   return (
     <>
@@ -45,18 +45,19 @@ const BarChart = ({ date }) => {
         <S.StyledItemContainer>
           {categoryRates.map((item, index) => (
             <S.StyledItemWrapper key={item.category}>
-              <S.StyledCategoryItem>{item.category}</S.StyledCategoryItem>
+              <S.StyledCategoryItem>
+                {item.category.length > 2 ? `${item.category.slice(0, 2)}...` : item.category}
+              </S.StyledCategoryItem>
 
               <S.BarWrapper>
-                <S.Bar
-                  width={`${item.percentage}%`}
-                  style={{ backgroundColor: COLORS[index % COLORS.length] }} // index로 COLORS 순환
-                >
-                  <S.StyledCategoryItem>{item.percentage}%</S.StyledCategoryItem>
+                <S.Bar width={`${item.ratio}%`} style={{ backgroundColor: item.color }}>
+                  <S.StyledCategoryItem>{item.ratio}%</S.StyledCategoryItem>
                 </S.Bar>
               </S.BarWrapper>
 
-              {smallestCategories.some((category) => category.category === item.category) && <Warning date={date} />}
+              {smallestCategories.some((category) => category.category === item.category) && (
+                <Warning date={date} $isWarning={true} />
+              )}
             </S.StyledItemWrapper>
           ))}
         </S.StyledItemContainer>

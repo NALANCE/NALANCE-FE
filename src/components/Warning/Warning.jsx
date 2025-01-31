@@ -3,10 +3,13 @@ import Notification from "components/common/Notification/Notification";
 import * as S from "./Warning.style";
 import { useEffect, useState } from "react";
 
+import warningBalance from "assets/icons/warningBalance.svg";
+import warningImbalance from "assets/icons/warningImbalance.svg";
+
 import warningToday from "assets/icons/warningToday.svg";
 import warningPrev from "assets/icons/warningPrev.svg";
 
-const Warning = ({ right, date }) => {
+const Warning = ({ date, $isWarning = false }) => {
   const [isClicked, setIsClicked] = useState(false); // 말풍선
   const [isToday, setIsToday] = useState(false);
 
@@ -42,13 +45,24 @@ const Warning = ({ right, date }) => {
   }, [isClicked]);
 
   return (
-    <S.WarningContainer right={right}>
-      <S.CatContainer onClick={handleCatClicked}>
-        <img src={sadCat} alt="Sad Cat Icon" />
+    <>
+      {/* isWarning true->경고창 false->잘 맞아요, 잘 맞지 않아요 */}
+      <S.WarningContainer right={$isWarning ? "-10%" : "0px"} $isWarning={$isWarning}>
+        {/* 비율이 잘 맞아요 / 잘 맞지 않아요 */}
+        {$isWarning || (
+          <div>
+            <img src={warningBalance} />
+          </div>
+        )}
 
-        {isClicked && <Notification img={isToday ? warningToday : warningPrev} isClicked={isClicked} />}
-      </S.CatContainer>
-    </S.WarningContainer>
+        <S.CatContainer onClick={handleCatClicked}>
+          {/* 고양이 얼굴 */}
+          <img src={sadCat} alt="Sad Cat Icon" />
+
+          {$isWarning && isClicked && <Notification img={isToday ? warningToday : warningPrev} isClicked={isClicked} />}
+        </S.CatContainer>
+      </S.WarningContainer>
+    </>
   );
 };
 

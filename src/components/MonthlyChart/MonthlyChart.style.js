@@ -40,4 +40,8 @@ export const ChartWrapper = styled.div`
   align-content: center;
   flex: 1;
   text-align: -webkit-center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
