@@ -6,8 +6,11 @@ import ImgSave from "components/ImgSave/ImgSave";
 import useDate from "hooks/useDate";
 
 import * as S from "./Daily.style";
+import { useEffect } from "react";
+import { getDailyData } from "apis/daily/getDailyData";
 
 const Dailly = () => {
+  console.log("test");
   const [date, handleDateChange] = useDate();
 
   return (
