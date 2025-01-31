@@ -46,7 +46,8 @@ const BarChart = ({ date }) => {
           {categoryRates.map((item, index) => (
             <S.StyledItemWrapper key={item.category}>
               <S.StyledCategoryItem>
-                {item.category.length > 2 ? `${item.category.slice(0, 2)}...` : item.category}
+                {/* 두글자까지 표시되도록*/}
+                {item.category.length > 2 ? `${item.category.slice(0, 2)}...` : item.category}{" "}
               </S.StyledCategoryItem>
 
               <S.BarWrapper>

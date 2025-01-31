@@ -21,7 +21,7 @@ export const DAILY = {
         color: "#ADC49E",
       },
       {
-        category: "학업123",
+        category: "학업",
         ratio: 73.6,
         color: "#F8A19A",
       },
@@ -56,17 +56,17 @@ export const DAILY = {
         color: "#FFE292",
       },
       {
-        category: "가족",
+        category: "가족!",
         ratio: 0,
         color: "#7BCBBE",
       },
       {
-        category: "나",
+        category: "나!",
         ratio: 0,
         color: "#7DA7D9",
       },
       {
-        category: "친구",
+        category: "친구!",
         ratio: 0,
         color: "#ADC49E",
       },
