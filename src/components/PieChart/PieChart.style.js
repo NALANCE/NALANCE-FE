@@ -9,12 +9,13 @@ export const ChartContainer = styled.div`
 
   box-sizing: border-box;
 
-  margin-top: 0.5rem;
+  margin-top: 5.9rem;
+  margin-bottom: 6.2rem;
 `;
 
 export const ChartWrapper = styled.div`
   width: 100%;
-  height: ${(props) => (props.height ? `${parseInt(props.height) + 50}px` : "33rem")};
+  height: ${(props) => (props.height ? `${parseInt(props.height) + 50}px` : "22.7rem")};
 `;
 
 export const LegendContainer = styled.div`
@@ -30,8 +31,6 @@ export const LegendContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   margin-right: ${(props) => (props.itemCount < 5 ? "0.3rem" : "0")};
-
-  margin-top: 3rem;
 
   &::-webkit-scrollbar {
     width: 0.2rem;

@@ -8,7 +8,6 @@ import useDate from "hooks/useDate";
 import * as S from "./Daily.style";
 
 const Dailly = () => {
-  console.log("test");
   const [date, handleDateChange] = useDate();
 
   return (
