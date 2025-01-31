@@ -9,6 +9,7 @@ export const WarningContainer = styled.div`
   position: relative;
   right: ${(props) => props.right || "-10%"};
 
+  margin-top: ${(props) => (props.$isWarning ? "0px" : "3rem")};
   div {
     cursor: pointer;
   }
@@ -30,7 +31,7 @@ export const CatContainer = styled.div`
     z-index: 999;
   }
 
-  img {
+  > img {
     width: 4.2rem;
   }
 `;

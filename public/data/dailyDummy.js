@@ -3,7 +3,7 @@ export const DAILY = {
   code: "200",
   message: "Request successful",
   result: {
-    date: "2025-01-25",
+    date: "2025-01-31",
     data: [
       {
         category: "가족",

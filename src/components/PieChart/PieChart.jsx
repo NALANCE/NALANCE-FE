@@ -59,7 +59,7 @@ const Daily = {
   labels: [""], // series 배열의 각 값과 연결
 };
 
-const PieChart = ({ date, width, height, marginTop }) => {
+const PieChart = ({ date, width, height, marginTop, label = true }) => {
   const [data, setData] = useState(DAILY.result.data);
 
   // 비율이 0 이상인 데이터
@@ -94,7 +94,7 @@ const PieChart = ({ date, width, height, marginTop }) => {
     <>
       {data.length > 0 ? (
         <S.ChartContainer>
-          <S.ChartWrapper>
+          <S.ChartWrapper height={height}>
             <IgrDoughnutChart
               dataSource={filteredData} // 필터링된 데이터
               ref={chartRef}
@@ -108,10 +108,10 @@ const PieChart = ({ date, width, height, marginTop }) => {
                 name="ring1"
                 dataSource={filteredData}
                 valueMemberPath="ratio" // 표시할 값
-                labelMemberPath="label" // 라벨
+                labelMemberPath="label" // 라벨/
                 legendLabelMemberPath="category" // 범례
                 brushes={brushes} // 데이터에서 추출한 색상 이용
-                labelsPosition="OutsideEnd" // 라벨을 조각 외부 끝에 위치하도록
+                labelsPosition={label ? "OutsideEnd" : "None"} // 라벨을 조각 외부 끝에 위치하도록
                 labelExtent={30} // 라벨과 차트 중심 사이의 거리
                 radiusFactor={0.7} // 도넛 차트의 크기 비율
                 explodedRadius={0.1} // 폭발된 조각의 중심에서 떨어진 거리

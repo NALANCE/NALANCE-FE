@@ -27,7 +27,7 @@ const BarChart = ({ date }) => {
       ? categoryRates.filter((item) => item.ratio === Math.min(...categoryRates.map((item) => item.ratio)))
       : []; // 비어 있으면 빈 배열 처리
 
-  console.log("smallestCategories", smallestCategories);
+  // console.log("smallestCategories", smallestCategories);
 
   return (
     <>
@@ -45,7 +45,9 @@ const BarChart = ({ date }) => {
         <S.StyledItemContainer>
           {categoryRates.map((item, index) => (
             <S.StyledItemWrapper key={item.category}>
-              <S.StyledCategoryItem>{item.category}</S.StyledCategoryItem>
+              <S.StyledCategoryItem>
+                {item.category.length > 2 ? `${item.category.slice(0, 2)}...` : item.category}
+              </S.StyledCategoryItem>
 
               <S.BarWrapper>
                 <S.Bar width={`${item.ratio}%`} style={{ backgroundColor: item.color }}>

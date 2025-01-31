@@ -14,7 +14,7 @@ export const ChartContainer = styled.div`
 
 export const ChartWrapper = styled.div`
   width: 100%;
-  height: 33rem;
+  height: ${(props) => (props.height ? `${parseInt(props.height) + 50}px` : "33rem")};
 `;
 
 export const LegendContainer = styled.div`

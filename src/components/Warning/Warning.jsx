@@ -46,7 +46,8 @@ const Warning = ({ date, $isWarning = false }) => {
 
   return (
     <>
-      <S.WarningContainer right={$isWarning ? "-10%" : "0px"} style={{ marginTop: "2rem" }}>
+      {/* isWarning true->경고창 false->잘 맞아요, 잘 맞지 않아요 */}
+      <S.WarningContainer right={$isWarning ? "-10%" : "0px"} $isWarning={$isWarning}>
         {/* 비율이 잘 맞아요 / 잘 맞지 않아요 */}
         {$isWarning || (
           <div>
