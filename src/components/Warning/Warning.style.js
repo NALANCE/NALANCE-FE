@@ -9,6 +9,7 @@ export const WarningContainer = styled.div`
   position: relative;
   right: ${(props) => props.right || "-10%"};
 
+  margin-top: ${(props) => (props.$isWarning ? "0px" : "3rem")};
   div {
     cursor: pointer;
   }
@@ -18,6 +19,8 @@ export const CatContainer = styled.div`
   position: relative;
   display: inline-block;
 
+  margin-top: 1rem;
+
   div {
     position: absolute;
     top: 100%; // 이미지 아래에 뜨도록
@@ -26,5 +29,9 @@ export const CatContainer = styled.div`
     margin-top: 8px; // 이미지 ~ 말풍선 간격
 
     z-index: 999;
+  }
+
+  > img {
+    width: 4.2rem;
   }
 `;
