@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import emailValidator from "email-validator";
+import axios from "axios";
 import Topbar from "components/Topbar/Topbar";
 import ChangeCompleteBtn from "components/common/ChangeCompleteBtn/ChangeCompleteBtn";
 import originalCat from "assets/icons/originalCat.svg";
@@ -7,13 +8,36 @@ import * as S from "./ModEmail.style";
 import ControlBtn from "../../../components/common/ControlBtn/ControlBtn";
 
 const ModEmail = () => {
-  const [currentEmail, setCurrentEmail] = useState("example@gmail.com");
+  const [currentEmail, setCurrentEmail] = useState("");
   const [email, setEmail] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
   const [isCodeSent, setIsCodeSent] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [errorMessage1, setErrorMessage1] = useState("");
   const [errorMessage2, setErrorMessage2] = useState("");
+
+  useEffect(() => {
+    // 토큰을 localStorage에 저장
+    localStorage.setItem("accessToken", "your-access-token");
+    localStorage.setItem("refreshToken", "your-refresh-token");
+
+    const fetchCurrentEmail = async () => {
+      try {
+        const accessToken = localStorage.getItem("accessToken");
+        const response = await axios.get("/api/v0/members/me", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+        console.log("이메일 가져오기 성공:", response.data.result.email);
+        setCurrentEmail(response.data.result.email);
+      } catch (error) {
+        console.error("이메일 가져오기 실패:", error);
+      }
+    };
+
+    fetchCurrentEmail();
+  }, []);
 
   const handleEmailChange = (e) => {
     const value = e.target.value;
@@ -23,7 +47,7 @@ const ModEmail = () => {
     }
   };
 
-  const handleSendCode = () => {
+  const handleSendCode = async () => {
     if (email === currentEmail) {
       setErrorMessage1("기존의 이메일과 동일합니다.");
       return;
@@ -32,20 +56,44 @@ const ModEmail = () => {
       setErrorMessage1("잘못된 형식의 이메일입니다.");
       return;
     }
-    setErrorMessage1("");
-    setIsCodeSent(true);
-    // TODO: Add API call to send verification code
-    console.log("인증번호 전송됨:", email);
+    try {
+      const response = await axios.post("/api/v0/emails/send-verification", {
+        email,
+      });
+      if (response.data.isSuccess) {
+        setErrorMessage1("");
+        setIsCodeSent(true);
+        console.log("인증번호 전송 성공:", response.data.message);
+      } else {
+        setErrorMessage1("인증번호 전송 실패: " + response.data.message);
+      }
+    } catch (error) {
+      console.error("인증번호 전송 에러:", error);
+      setErrorMessage1("인증번호 전송에 실패했습니다.");
+    }
   };
 
-  const handleVerifyCode = () => {
-    if (verificationCode !== "123456") {
-      setErrorMessage2("인증번호가 일치하지 않습니다.");
+  const handleVerifyCode = async () => {
+    if (!verificationCode) {
+      setErrorMessage2("인증번호를 입력하세요.");
       return;
     }
-    setErrorMessage2("");
-    setIsVerified(true);
-    // TODO: Add API call to update the email
+    try {
+      const response = await axios.post("/api/v0/emails/verification", {
+        email,
+        code: verificationCode,
+      });
+      if (response.data.isSuccess) {
+        setErrorMessage2("");
+        setIsVerified(true);
+        console.log("인증 성공:", response.data.message);
+      } else {
+        setErrorMessage2("인증 실패: " + response.data.message);
+      }
+    } catch (error) {
+      console.error("인증 실패 에러:", error);
+      setErrorMessage2("인증에 실패했습니다.");
+    }
   };
 
   const isVerificationCodeValid = (code) => {
@@ -53,17 +101,39 @@ const ModEmail = () => {
     return regex.test(code);
   };
 
-  const handleChangeComplete = () => {
-    alert("이메일 변경이 완료되었습니다.");
-    // TODO: Add API call to finalize the email change
-    // 초기 상태로 되돌리기
-    setCurrentEmail(email);
-    setEmail("");
-    setVerificationCode("");
-    setIsCodeSent(false);
-    setIsVerified(false);
-    setErrorMessage1("");
-    setErrorMessage2("");
+  const handleChangeComplete = async () => {
+    if (!isVerified) {
+      alert("인증이 완료되지 않았습니다.");
+      return;
+    }
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const response = await axios.patch(
+        "/api/v0/members/email",
+        { email },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      if (response.data.isSuccess) {
+        alert("이메일 변경이 완료되었습니다.");
+        setCurrentEmail(email);
+        setEmail("");
+        setVerificationCode("");
+        setIsCodeSent(false);
+        setIsVerified(false);
+        setErrorMessage1("");
+        setErrorMessage2("");
+        console.log("이메일 변경 성공:", response.data.message);
+      } else {
+        alert("이메일 변경 실패: " + response.data.message);
+      }
+    } catch (error) {
+      console.error("이메일 변경 실패 에러:", error);
+      alert("이메일 변경 중 문제가 발생했습니다.");
+    }
   };
 
   return (
