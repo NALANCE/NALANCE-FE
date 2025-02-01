@@ -9,8 +9,8 @@ export const ChartContainer = styled.div`
 
   box-sizing: border-box;
 
-  margin-top: ${(props) => (props.marginTop && !props.hasData ? props.marginTop : "5.9rem")};
-  margin-bottom: ${(props) => (props.hasData ? "6.2rem" : "0rem")};
+  margin-top: ${(props) => (props.marginTop && !props.$hasData ? props.marginTop : "5.9rem")};
+  margin-bottom: ${(props) => (props.$hasData ? "6.2rem" : "0rem")};
 `;
 
 export const ChartWrapper = styled.div`
@@ -19,7 +19,7 @@ export const ChartWrapper = styled.div`
 `;
 
 export const LegendContainer = styled.div`
-  display: ${(props) => (props.itemCount < 5 ? "flex" : "grid")};
+  display: ${(props) => (props.$itemCount < 5 ? "flex" : "grid")};
   grid-template-columns: repeat(5, 1fr);
   gap: 10px 0.3rem;
 
@@ -30,7 +30,7 @@ export const LegendContainer = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  margin-right: ${(props) => (props.itemCount < 5 ? "0.3rem" : "0")};
+  margin-right: ${(props) => (props.$itemCount < 5 ? "0.3rem" : "0")};
 
   &::-webkit-scrollbar {
     width: 0.2rem;

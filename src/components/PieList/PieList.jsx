@@ -39,10 +39,10 @@ const PieList = ({ date }) => {
       ) : (
         <S.ItemContainer>
           {/* 범례 */}
-          <S_.LegendContainer itemCount={data.length}>
-            {data.map((item) => {
+          <S_.LegendContainer $itemCount={data.length}>
+            {data.map((item, index) => {
               return (
-                <S_.LegendWrapper key={item}>
+                <S_.LegendWrapper key={`${item.category}-${Math.random()}`}>
                   <S_.CircleDiv color={item.color} />
                   <S_.CategoryItem>
                     {item.category.length > 2 ? `${item.category.slice(0, 2)}...` : item.category}

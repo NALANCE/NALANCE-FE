@@ -1,18 +1,13 @@
 import ReactApexChart from "react-apexcharts";
+import * as S from "./ChartSkeleton.style";
 
 const ChartSkeleton = () => {
   return (
-    <>
-      <div
-        style={{
-          width: "184px",
-          height: "184px",
-          marginTop: "32px",
-          background: "rgba(85,85,85,90%)",
-          borderRadius: "50%",
-        }}
-      />
-    </>
+    <S.SkeletonContainer>
+      <S.SkeletonCircle />
+      <S.SkeletonBox />
+      <S.SkeletonCat />
+    </S.SkeletonContainer>
   );
 };
 
