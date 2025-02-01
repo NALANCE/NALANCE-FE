@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import ReactApexChart from "react-apexcharts";
-
 import { IgrItemLegendModule } from "igniteui-react-charts";
 import { IgrDoughnutChart } from "igniteui-react-charts";
 import { IgrDoughnutChartModule } from "igniteui-react-charts";
@@ -12,17 +10,16 @@ import { DAILY } from "../../../public/data/dailyDummy.js";
 
 import * as S from "./PieChart.style";
 
-import axiosInstance from "../../apis/axiosConfig.js";
-import ChartSkeleton from "../Skeleton/ChartSkeleton.jsx";
-
 // 모듈 사용할 수 있도록 가져옴
 IgrDoughnutChartModule.register();
 IgrRingSeriesModule.register();
 IgrItemLegendModule.register();
 
-const PieChart = ({ date, width, height, marginTop, label = true }) => {
+const PieChart = ({ date, width, height, marginTop, label = true, data }) => {
   // 데이터를 담기 위해
-  const [data, setData] = useState(DAILY.result.data);
+  //const [data, setData] = useState(DAILY.result.data);
+
+  if (!data) console.log("데이터가 없음");
 
   // 비율이 0 이상인 데이터
   const filteredData = data.filter((item) => item.ratio > 0).map((item) => ({ ...item, label: `${item.ratio}%` }));
@@ -37,24 +34,10 @@ const PieChart = ({ date, width, height, marginTop, label = true }) => {
   const legendRef = useRef(null); // 범례 컴포넌트를 참조
 
   useEffect(() => {
-    // 같은 날짜에 대해
-    if (DAILY?.result?.date === date) {
-      setData(DAILY.result.data);
-    } else {
-      setData([]); // 없으면 빈 배열
-    }
-  }, [date]);
-
-  useEffect(() => {
     if (chartRef.current && legendRef.current) {
       chartRef.current.actualSeries[0].legend = legendRef.current;
     }
   }, []);
-
-  // 클릭하면 폭발 이벤트
-  // const onSliceClick = (s, e) => {
-  //   e.isExploded = !e.isExploded;
-  // };
 
   return (
     <>
