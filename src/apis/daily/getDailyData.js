@@ -4,7 +4,7 @@ if (!localStorage.getItem("accessToken")) {
   // 로그인 연동 전 직접 토큰 저장
   localStorage.setItem(
     "accessToken",
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTczODQyOTAxM30.FvrxOE-nTH6npvFsFzWRrP9eBClqvx41wGszl0unNxE"
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3Mzg0MzAzMTR9.3DESzLo_JrkE5Q67j5VrxrnoeGqk_-7kjBuCSy1huR4"
   );
 }
 

@@ -6,23 +6,21 @@ import { useEffect, useState } from "react";
 
 import * as S_ from "../PieChart/PieChart.style.js";
 
-const PieList = ({ date }) => {
+const PieList = ({ date, data }) => {
   const [categoryRates, setCategoryRates] = useState([]);
 
-  const [data, setData] = useState(DAILY.result.data);
+  // const [data, setData] = useState(DAILY.result.data);
 
   // 비율이 0 이상인 데이터
   const filteredData = data.filter((item) => item.ratio > 0).map((item) => ({ ...item, label: `${item.ratio}%` }));
 
   // 날짜가 변경될 때마다 categoryRates를 업데이트
   useEffect(() => {
-    // 같은 날짜의 데이터가 있는지
-    if (DAILY.result.date === date) {
-      setCategoryRates(DAILY.result.data); // 일치하면 categoryRates를 업데이트
-    } else {
-      setCategoryRates([]); // 해당 날짜가 없으면 빈 배열
+    if (data) {
+      setCategoryRates(data); // 데이터를 받아오면 categoryRates를 업데이트
     }
-  }, [date]); // date가 변경될 때마다 실행
+    //console.log(1);
+  }, [data]); // data가 변경될 때마다 실행
 
   return (
     <>
