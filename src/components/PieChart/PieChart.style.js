@@ -9,13 +9,13 @@ export const ChartContainer = styled.div`
 
   box-sizing: border-box;
 
-  margin-top: ${(props) => (props.marginTop && !props.$hasData ? props.marginTop : "5.9rem")};
-  margin-bottom: ${(props) => (props.$hasData ? "6.2rem" : "0rem")};
+  margin-top: ${(props) => (props.marginTop && !props.$hasData ? props.marginTop : "5rem")};
+  margin-bottom: ${(props) => (props.$hasData ? "5rem" : "0rem")};
 `;
 
 export const ChartWrapper = styled.div`
   width: 100%;
-  height: ${(props) => (props.height ? props.height : "22.7rem")};
+  height: ${(props) => (props.height ? props.height : "27.24rem")};
 `;
 
 export const LegendContainer = styled.div`

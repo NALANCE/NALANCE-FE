@@ -29,10 +29,10 @@ axiosInstance.interceptors.response.use(
       console.log("💥accessToken 만료, refreshToken으로 갱신 시도");
 
       const refreshToken = localStorage.getItem("refreshToken");
-      //console.log("refreshToken", refreshToken);
+      console.log("refreshToken", refreshToken);
 
       const accessToken = localStorage.getItem("accessToken");
-      //console.log("accessToken", accessToken);
+      console.log("accessToken", accessToken);
 
       if (refreshToken && accessToken) {
         try {

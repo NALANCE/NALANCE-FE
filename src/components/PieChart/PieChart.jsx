@@ -22,7 +22,9 @@ const PieChart = ({ date, width, height, marginTop, label = true, data }) => {
   if (!data) console.log("데이터가 없음");
 
   // 비율이 0 이상인 데이터
-  const filteredData = data.filter((item) => item.ratio > 0).map((item) => ({ ...item, label: `${item.ratio}%` }));
+  const filteredData = data
+    .filter((item) => item.ratio > 0)
+    .map((item) => ({ ...item, label: `${item.ratio.toFixed(1)}%` }));
 
   // 데이터 없을 경우 빈 그래프 나타내기 위한 더미 데이터
   const displayData = filteredData.length > 0 ? filteredData : [{ ratio: 100, color: "#555555", label: "" }];
@@ -61,7 +63,7 @@ const PieChart = ({ date, width, height, marginTop, label = true, data }) => {
               brushes={brushes} // 데이터에서 추출한 색상 이용
               labelsPosition={filteredData.length > 0 && label ? "OutsideEnd" : "None"} // 라벨을 조각 외부 끝에 위치하도록
               labelExtent={30} // 라벨과 차트 중심 사이의 거리
-              radiusFactor={1} // 도넛 차트의 크기 비율
+              radiusFactor={0.8} // 도넛 차트의 크기 비율
               explodedRadius={0.1} // 폭발된 조각의 중심에서 떨어진 거리
               explodedSlices="1" // 초기에 폭발 상태인 조각
               allowSliceExplosion="false" // 클릭 이벤트로 조각 폭발 가능

@@ -4,7 +4,12 @@ if (!localStorage.getItem("accessToken")) {
   // 로그인 연동 전 직접 토큰 저장
   localStorage.setItem(
     "accessToken",
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3Mzg0MzAzMTR9.3DESzLo_JrkE5Q67j5VrxrnoeGqk_-7kjBuCSy1huR4"
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3Mzg0NDIwODd9.94iA3A_lADiecZv4tJFKvNxRCWuJicaSzOuX0c9vJ9Y"
+  );
+
+  localStorage.setItem(
+    "refreshToken",
+    "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MzkwNDUwODd9.EBmpdMXdvspX2yRXrVbPPOun0Vy2TLsvYyi72oixJOs"
   );
 }
 
