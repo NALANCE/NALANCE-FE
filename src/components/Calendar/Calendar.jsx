@@ -4,7 +4,7 @@ import * as S from "./Calendar.style";
 
 const DAY_LIST = ["S", "M", "T", "W", "T", "F", "S"];
 
-const Calendar = ({ date, onDateChange }) => {
+const Calendar = ({ date, onDateChange, data }) => {
   const { weekCalendarList, currentDate } = useCalendar();
   const [selectedDate, setSelectedDate] = useState(null);
 

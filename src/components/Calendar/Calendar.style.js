@@ -53,7 +53,7 @@ export const DateBtn = styled.button`
 
   cursor: ${(props) => (props.day === 0 ? "default" : "pointer")};
   opacity: ${(props) => (props.day === 0 ? "0" : "1")};
-  color: ${(props) => (props.isSelected ? "red" : "black")};
+  color: ${(props) => (props.$isSelected ? "red" : "black")};
 
   background: none;
   border: none;

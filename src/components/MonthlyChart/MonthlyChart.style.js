@@ -31,6 +31,8 @@ export const IconWrapper = styled.div`
   height: 3.6rem;
 
   margin-top: 2rem;
+
+  cursor: pointer;
 `;
 
 export const ChartWrapper = styled.div`
