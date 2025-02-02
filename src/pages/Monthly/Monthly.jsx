@@ -31,7 +31,7 @@ const Monthly = () => {
 
       try {
         const result = await getDailyData(date);
-        console.log(result);
+        // console.log(result);
         setData(result);
       } catch (error) {
         setError(error);

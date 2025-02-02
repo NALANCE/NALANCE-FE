@@ -9,7 +9,7 @@ export const ChartContainer = styled.div`
 
   box-sizing: border-box;
 
-  margin-top: ${(props) => (props.marginTop && !props.$hasData ? props.marginTop : "5rem")};
+  margin-top: ${(props) => (props.$marginTop && !props.$hasData ? props.$marginTop : "5rem")};
   margin-bottom: ${(props) => (props.$hasData ? "5rem" : "0rem")};
 `;
 

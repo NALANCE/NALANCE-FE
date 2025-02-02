@@ -15,7 +15,7 @@ IgrDoughnutChartModule.register();
 IgrRingSeriesModule.register();
 IgrItemLegendModule.register();
 
-const PieChart = ({ date, width, height, marginTop, label = true, data }) => {
+const PieChart = ({ date, width, height, $marginTop, label = true, data }) => {
   // 데이터를 담기 위해
   //const [data, setData] = useState(DAILY.result.data);
 
@@ -43,7 +43,7 @@ const PieChart = ({ date, width, height, marginTop, label = true, data }) => {
 
   return (
     <>
-      <S.ChartContainer $hasData={filteredData.length > 0} marginTop={marginTop}>
+      <S.ChartContainer $hasData={filteredData.length > 0} $marginTop={$marginTop}>
         <S.ChartWrapper height={height}>
           <IgrDoughnutChart
             dataSource={displayData} // 필터링된 데이터
