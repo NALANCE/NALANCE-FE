@@ -43,20 +43,20 @@ const Login = () => {
             console.log('login success', response);
             if(response.data.isSuccess){
                 setErrorMessage('');
-                alert('로그인 성공!');
+
+                localStorage.setItem("accessToken", accessToken);
+                localStorage.setItem("refreshToken", refreshToken);
 
                 navigate("/Todo");
             }
             else{
                 console.log('login failed', response);
                 setErrorMessage('이메일 또는 비밀번호가 일치하지 않습니다.');
-                alert('로그인 실패!');
             }
       }
       catch(error){
                 console.error('login failed', error);
                 setErrorMessage('이메일 또는 비밀번호가 일치하지 않습니다.');
-                alert('로그인 실패!');
       }
       finally{
                 setLoading(false);

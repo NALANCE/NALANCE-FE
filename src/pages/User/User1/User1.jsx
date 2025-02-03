@@ -59,18 +59,8 @@ const User1 = () => {
       
         console.log(userData);
         if(Allow){
-          try{
-            const data = await axiosInstance.post("/api/v0/members/signup",userData);
-            console.log('Registration success', data);
-            alert('회원가입 성공!');
-          }
-          catch(error){
-            console.error('Registration failed', error);
-            alert('회원가입 실패!');
-          }
-          finally{
-            setLoading(false);
-          }
+          localStorage.setItem('signupUserData', JSON.stringify(userData));
+          window.location.href = "/User2";
         }
       }
       
@@ -115,12 +105,10 @@ const User1 = () => {
             else{
               setErrorEmailMessage("잘못된 형식의 이메일입니다.");    
             }
-            alert('인증번호 전송 성공!');
           }
           catch(error){
             console.error('send-verification failed', error);
             setCodeSentValid(false);
-            alert('인증번호 전송 실패!');
           }
           finally{
             setLoading(false);
@@ -183,12 +171,10 @@ const User1 = () => {
             if(response.data.isSuccess){
               setOTPValid(true);
               setErrorOTPMessage("인증번호가 확인되었습니다.");
-              alert('인증번호 인증 성공!');
             }
             else{
               setOTPValid(false);
               setErrorOTPMessage("인증번호가 틀렸습니다.    ");
-              alert('인증번호 인증 실패!');
             }
     
           }
@@ -196,7 +182,6 @@ const User1 = () => {
             console.error('verification failed', error);
             setOTPValid(false);
             setErrorOTPMessage("인증번호가 틀렸습니다.    ");
-            alert('인증번호 인증 실패!');
           }
           finally{
             setLoading(false);
