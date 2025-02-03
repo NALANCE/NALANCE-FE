@@ -44,8 +44,8 @@ const Login = () => {
       if (response.data.isSuccess) {
         setErrorMessage("");
 
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("accessToken", response.data.result.accessToken);
+        localStorage.setItem("refreshToken", response.data.result.refreshToken);
 
         navigate("/Todo");
       } else {
