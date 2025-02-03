@@ -6,17 +6,18 @@ import PageTitle from 'components/common/PageTitle/PageTitle';
 import LoginBtn from 'components/common/LoginBtn/LoginBtn';
 import * as S from './Login.style';
 
-const User = {
-  email: 'abc@naver.com',
-  pw: 'Nalance123!!',
-};
+import axiosInstance from "apis/defaultAxios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
 
   const [notAllow, setNotAllow] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -26,29 +27,41 @@ const Login = () => {
     setPw(e.target.value);
   };
 
-  const handleLoginClick = () => {
-    if (notAllow) {
-      setErrorMessage('이메일 또는 비밀번호가 일치하지 않습니다.');
-    } else {
-      setErrorMessage('');
-    }
-  };
+  const handleLoginClick = async(e) => {
+    console.log("로그인 클릭!");
 
-  const onClickConfirmButton = () => {
-    if (email === User.email && pw === User.pw) {
-      alert('로그인에 성공했습니다.');
-    } else {
-      alert('등록되지 않은 회원이거나 입력한 값이 일치하지 않습니다.');
-    }
-  };
+     setLoading(true);
+     console.log("setLoading 이후");
+     const userLogin = {
+          email: email,
+          password: pw
+    };
+          
+     console.log(userLogin);
+      try{
+            const response = await axiosInstance.post("/api/v0/members/login",userLogin);
+            console.log('login success', response);
+            if(response.data.isSuccess){
+                setErrorMessage('');
+                alert('로그인 성공!');
 
-  useEffect(() => {
-    if (email === User.email && pw === User.pw) {
-      setNotAllow(false);
-      return;
-    }
-    setNotAllow(true);
-  }, [email, pw]);
+                navigate("/Todo");
+            }
+            else{
+                console.log('login failed', response);
+                setErrorMessage('이메일 또는 비밀번호가 일치하지 않습니다.');
+                alert('로그인 실패!');
+            }
+      }
+      catch(error){
+                console.error('login failed', error);
+                setErrorMessage('이메일 또는 비밀번호가 일치하지 않습니다.');
+                alert('로그인 실패!');
+      }
+      finally{
+                setLoading(false);
+      }
+  };
 
   return (
     <>
@@ -80,7 +93,7 @@ const Login = () => {
           </S.InputWrap>
 
           <S.ErrorMessageWrap>
-            {notAllow && <div>{errorMessage}</div>}
+            {<div>{errorMessage}</div>}
           </S.ErrorMessageWrap>
         </S.ContentWrap>
 
@@ -88,7 +101,7 @@ const Login = () => {
           <LoginBtn
             text="로그인"
             link="/Todo"
-            notAllow={notAllow}
+            notAllow={true}
             onClickConfirmButton={handleLoginClick}
           />
         </S.BtnContainer>
