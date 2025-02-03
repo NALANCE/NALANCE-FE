@@ -1,23 +1,16 @@
 import React, { useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
 
 import PageTitle from "components/common/PageTitle/PageTitle";
 import ControlBtn from "components/common/ControlBtn/ControlBtn";
 import TriangleBtn from "../../../components/common/TriangleBtn/TriangleBtn";
 import eva_eye_off from 'assets/icons/eva_eye_off.svg';
 import eva_eye_on from 'assets/icons/eva_eye_on.svg';
-import checkbox_check from 'assets/icons/checkbox_check.svg';
-import checkbox_uncheck from 'assets/icons/checkbox_uncheck.svg';
 
 import * as S from "./User1.style";
-
-const User = {
-  email: 'abc@naver.com',
-  pw: 'Nalance123!!'
-}
+import axiosInstance from "apis/defaultAxios";
 
 const User1 = () => {
-      const [email, setEmail] = useState('');
+      
       const [emailValid, setEmailValid] =useState(false);
       const [codesentValid, setCodeSentValid] = useState(false);
       const [pwValid, setPwValid] =useState(false);
@@ -25,6 +18,7 @@ const User1 = () => {
       const [checkpwValid, setcheckpwValid] = useState(false);
       const [checkboxValid, setCheckboxValid] = useState(false);
 
+      const [email, setEmail] = useState('');
       const [OTP, setOTP] = useState('');
       const [pw, setPw] = useState('');
       const [checkpw, setCheckpw] = useState('');
@@ -48,6 +42,39 @@ const User1 = () => {
       const [OTPClicked, setOTPClicked] = useState(false);
       const [showPassword, setShowPassword] = useState(false);
       const [checked, setChecked] = useState(false);
+      const [loading, setLoading] = useState(false);
+
+      const handleSubmit = async (e) => {
+        setLoading(true);
+     
+        const userData = {
+          email: email,
+          password: pw,
+          terms: [
+            { termsId: 1},
+            { termsId: 2},
+            ...(marketingCheck? [{termsId: 3}]:[]),
+          ],
+        };
+      
+        console.log(userData);
+        if(Allow){
+          try{
+            const data = await axiosInstance.post("/api/v0/members/signup",userData);
+            console.log('Registration success', data);
+            alert('회원가입 성공!');
+          }
+          catch(error){
+            console.error('Registration failed', error);
+            alert('회원가입 실패!');
+          }
+          finally{
+            setLoading(false);
+          }
+        }
+      }
+      
+
 
       const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -70,15 +97,35 @@ const User1 = () => {
         }
       }
 
-    const handleSendCode = (e) => {
-      if(emailValid){
-        setCodeSentValid(true);
-        setErrorEmailMessage("인증번호가 전송되었습니다.");
-      }
-      else{
-        setCodeSentValid(false);
-        setErrorEmailMessage("잘못된 형식의 이메일입니다.");    
-      }
+    const handleSendCode = async (e) => {
+      setLoading(true);
+        const userEmail = {
+          email: email
+        };
+      
+        console.log(userEmail);
+        if(emailValid){
+          try{
+            const response = await axiosInstance.post("/api/v0/emails/send-verification",userEmail);
+            console.log('send-verification success', response);
+            setCodeSentValid(true);
+            if(response.data.isSuccess){
+              setErrorEmailMessage("인증번호가 전송되었습니다.");
+            }
+            else{
+              setErrorEmailMessage("잘못된 형식의 이메일입니다.");    
+            }
+            alert('인증번호 전송 성공!');
+          }
+          catch(error){
+            console.error('send-verification failed', error);
+            setCodeSentValid(false);
+            alert('인증번호 전송 실패!');
+          }
+          finally{
+            setLoading(false);
+          }
+        }
     }
       const handleOTP = (e) => {
         setOTP(e.target.value);
@@ -118,14 +165,45 @@ const User1 = () => {
       setPwCheckTouched(true);
     }
 
-    const handleOTPClick = () => {
+    const handleOTPClick = async (e) => {
+
       setOTPClicked(true);
-      if(OTPTouched && OPTValid){
-        setErrorOTPMessage("인증번호가 확인되었습니다.");
-      }
-      else{
-        setErrorOTPMessage("인증번호가 틀렸습니다.    ");
-      }
+
+      setLoading(true);
+        const userOTP = {
+          email: email,
+          code: OTP
+        };
+      
+        console.log(userOTP);
+        if(OTPTouched){
+          try{
+            const response = await axiosInstance.post("/api/v0/emails/verification",userOTP);
+            console.log('verification success', response);
+            if(response.data.isSuccess){
+              setOTPValid(true);
+              setErrorOTPMessage("인증번호가 확인되었습니다.");
+              alert('인증번호 인증 성공!');
+            }
+            else{
+              setOTPValid(false);
+              setErrorOTPMessage("인증번호가 틀렸습니다.    ");
+              alert('인증번호 인증 실패!');
+            }
+    
+          }
+          catch(error){
+            console.error('verification failed', error);
+            setOTPValid(false);
+            setErrorOTPMessage("인증번호가 틀렸습니다.    ");
+            alert('인증번호 인증 실패!');
+          }
+          finally{
+            setLoading(false);
+          }
+        }
+
+     
     }
 
     const ageBtnEvent=()=>{
@@ -165,15 +243,7 @@ const User1 = () => {
 
     }, [email])
 
-    useEffect (()=> {
-      if(OTP == 'abc'){
-        setOTPValid(true);
-      }
-      else{
-        setOTPValid(false);
-      }
-    }
-  );
+
       useEffect( ()=> {
         if (pwTouched&& !pwValid){
           setErrorPwMessage("비밀번호는 영문자, 숫자, 특수문자를 포함하여야 합니다.");
@@ -339,9 +409,10 @@ const User1 = () => {
                   id="check-age"
                   name="check-age"
                   checked={ageCheck}
-                  onChange={ageBtnEvent}/>
+                  onChange={ageBtnEvent}
+                  />
                   <S.Option> 필수 </S.Option>
-                  <S.Label for="check-age">'만 14세 이상입니다.'</S.Label>
+                  <S.Label htmlFor="check-age">'만 14세 이상입니다.'</S.Label>
             </S.CheckboxInputRow>
 
             <S.CheckboxInputRow>
@@ -352,7 +423,7 @@ const User1 = () => {
                   checked={useCheck}
                   onChange={useBtnEvent}/>
                   <S.Option> 필수 </S.Option>
-                  <S.Label for="opt-in-personal-info">'본 서비스의 이용약관과 개인정보 정책에 동의합니다.'</S.Label>
+                  <S.Label htmlFor="opt-in-personal-info">'본 서비스의 이용약관과 개인정보 정책에 동의합니다.'</S.Label>
             </S.CheckboxInputRow>
 
             <S.CheckboxInputRow>
@@ -363,7 +434,7 @@ const User1 = () => {
                   checked={marketingCheck}
                   onChange={marketingBtnEvent}/>
                   <S.Option> 선택 </S.Option>
-                  <S.Label for="opt-in-marketing">'마케팅 정보 수신에 동의합니다.'</S.Label>
+                  <S.Label htmlFor="opt-in-marketing">'마케팅 정보 수신에 동의합니다.'</S.Label>
             </S.CheckboxInputRow>
 
           </S.CheckboxInputWrap>
@@ -379,11 +450,8 @@ const User1 = () => {
           <S.InputGap/>
         </S.CenterWrap>
 
-          <TriangleBtn text="다음" link="/User2" Allow={Allow} />
+          <TriangleBtn text="다음" link="/User2" Allow={Allow} onClick={handleSubmit}/>
       </S.ContentWrap>
-
-      
-
       
     </>
   );

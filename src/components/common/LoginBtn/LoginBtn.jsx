@@ -6,9 +6,9 @@ const LoginBtn = ({ text, width, link, notAllow, onClickConfirmButton}) => {
   const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
 
-  const onClick = () => {
-    onClickConfirmButton();
-
+  const handleClick = () => {
+    if(onClickConfirmButton) onClickConfirmButton();
+    
     if(!notAllow){
       setClicked(true);
       setTimeout(() => {
@@ -19,7 +19,7 @@ const LoginBtn = ({ text, width, link, notAllow, onClickConfirmButton}) => {
 
   return (
     <>
-      <S.LBtn width={width} data-clicked={clicked} onClick={onClick}>
+      <S.LBtn width={width} data-clicked={clicked} onClick={handleClick}>
         {text}
       </S.LBtn>
     </>
