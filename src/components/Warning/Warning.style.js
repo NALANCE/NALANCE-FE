@@ -7,9 +7,9 @@ export const WarningContainer = styled.div`
   justify-content: center;
 
   position: relative;
-  right: ${(props) => props.right || "-10%"};
+  right: ${(props) => props.$right || "-10%"};
 
-  margin-top: ${(props) => (props.$isWarning ? "0px" : "3rem")};
+  margin-top: ${(props) => (props.$isWarning ? "0px" : "2rem")};
   div {
     cursor: pointer;
   }

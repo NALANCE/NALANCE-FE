@@ -10,7 +10,7 @@ import * as S from "./MonthlyChart.style";
 
 import { useState } from "react";
 
-const MonthlyChart = ({ date }) => {
+const MonthlyChart = ({ date, data }) => {
   const [pieIcon, setPieIcon] = useState(pieActive); // 원형 그래프
   const [barIcon, setBarIcon] = useState(barUnactive); // 막대 그래프
 
@@ -29,11 +29,11 @@ const MonthlyChart = ({ date }) => {
         </S.IconWrapper>
         {pieIcon === pieActive ? (
           <S.ChartWrapper>
-            <PieChart date={date} width={"184px"} height={"184px"} marginTop={"0"} label={false} />
+            <PieChart date={date} width={"184px"} height={"184px"} $marginTop={"0"} label={false} data={data} />
           </S.ChartWrapper>
         ) : (
           <S.ChartWrapper>
-            <BarChart date={date} />
+            <BarChart date={date} data={data} />
           </S.ChartWrapper>
         )}
       </S.ChartContainer>
