@@ -1,17 +1,17 @@
 import axiosInstance from "../defaultAxios";
 
-if (!localStorage.getItem("accessToken")) {
-  // 로그인 연동 전 직접 토큰 저장
-  localStorage.setItem(
-    "accessToken",
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3Mzg0NDcwOTZ9.vGnW0GVPTGnSBwgc7OCJTmGTb9GcjwtM9TgD6oUuXXg"
-  );
+// if (!localStorage.getItem("accessToken")) {
+//   // 로그인 연동 전 직접 토큰 저장
+//   localStorage.setItem(
+//     "accessToken",
+//     "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3Mzg0NDcwOTZ9.vGnW0GVPTGnSBwgc7OCJTmGTb9GcjwtM9TgD6oUuXXg"
+//   );
 
-  localStorage.setItem(
-    "refreshToken",
-    "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MzkwNTAwOTZ9.0z4jiLH-ds4DozEkfdhBrTUoGSvkrOiF38P0tREZZOs"
-  );
-}
+//   localStorage.setItem(
+//     "refreshToken",
+//     "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MzkwNTAwOTZ9.0z4jiLH-ds4DozEkfdhBrTUoGSvkrOiF38P0tREZZOs"
+//   );
+// }
 
 export const getDailyData = async (date) => {
   // 로컬 스토리지에서 accessToken 가져오기
