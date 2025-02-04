@@ -18,15 +18,15 @@ const ModCategory = () => {
 
   // 📌 서버에서 카테고리 조회 (GET 요청)
   useEffect(() => {
-    //  AccessToken 및 RefreshToken 저장 (임시 테스트용)
-    localStorage.setItem(
-      'accessToken',
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNCIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3Mzg0OTIyNjZ9.pO0jWFJSp-NjUyJUjifmgado5hpi4SwjmOEtfhEPXVM'
-    );
-    localStorage.setItem(
-      'refreshToken',
-      'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MzkwOTUyNjZ9.f_srFv-EXzZZ6TnLtQZVnTj-QqoPYux_UcRS3B5oZX4'
-    );
+    // //  AccessToken 및 RefreshToken 저장 (임시 테스트용)
+    // localStorage.setItem(
+    //   'accessToken',
+    //   'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNCIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3Mzg0OTIyNjZ9.pO0jWFJSp-NjUyJUjifmgado5hpi4SwjmOEtfhEPXVM'
+    // );
+    // localStorage.setItem(
+    //   'refreshToken',
+    //   'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MzkwOTUyNjZ9.f_srFv-EXzZZ6TnLtQZVnTj-QqoPYux_UcRS3B5oZX4'
+    // );
     const fetchCategories = async () => {
       try {
         const response = await axiosInstance.get('/api/v0/categories');
