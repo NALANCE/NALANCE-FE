@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const LBtn = styled.button`
-  border: 0.5px solid ${({ theme }) => theme.colors.black};
+  box-sizing: content-box;
 
+  border: 0.3px solid ${({ theme }) => theme.colors.black};
   border-radius: 26px;
+
+  outline: none;
 
   background: ${({ "data-clicked": clicked, theme }) => (clicked ? theme.colors.btnDark : theme.colors.white)};
   color: ${({ "data-clicked": clicked, theme }) => (clicked ? theme.colors.white : theme.colors.black)};
