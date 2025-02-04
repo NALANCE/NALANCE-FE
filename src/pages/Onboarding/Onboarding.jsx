@@ -5,6 +5,8 @@ import * as S from "./Onboarding.style";
 import { Link } from "react-router-dom";
 import RoundBtn from "../../components/common/RoundBtn/RoundBtn";
 
+import loginPrev from "assets/icons/onboarding_login1.svg";
+
 const Onboarding = () => {
   return (
     <>

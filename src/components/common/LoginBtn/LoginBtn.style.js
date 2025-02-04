@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const LBtn = styled.button`
-  border: 0.3px solid ${({ theme }) => theme.colors.black};
+  border: 0.5px solid ${({ theme }) => theme.colors.black};
+
   border-radius: 26px;
 
   background: ${({ "data-clicked": clicked, theme }) => (clicked ? theme.colors.btnDark : theme.colors.white)};
   color: ${({ "data-clicked": clicked, theme }) => (clicked ? theme.colors.white : theme.colors.black)};
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25) inset;
 
   font-family: "Freesentation", sans-serif;
   font-weight: 600;
