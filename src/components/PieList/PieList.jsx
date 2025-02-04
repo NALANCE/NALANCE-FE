@@ -12,7 +12,8 @@ const PieList = ({ date, data }) => {
   // const [data, setData] = useState(DAILY.result.data);
 
   // 비율이 0 이상인 데이터
-  const filteredData = data.filter((item) => item.ratio > 0).map((item) => ({ ...item, label: `${item.ratio}%` }));
+  const filteredData =
+    data && data.filter((item) => item.ratio > 0).map((item) => ({ ...item, label: `${item.ratio}%` }));
 
   // 날짜가 변경될 때마다 categoryRates를 업데이트
   useEffect(() => {

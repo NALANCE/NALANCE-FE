@@ -15,7 +15,7 @@ IgrDoughnutChartModule.register();
 IgrRingSeriesModule.register();
 IgrItemLegendModule.register();
 
-const PieChart = ({ date, width, height, $marginTop, label = true, data }) => {
+const PieChart = ({ date, width, height, $marginTop, label = true, data = [] }) => {
   // 데이터를 담기 위해
   //const [data, setData] = useState(DAILY.result.data);
 
