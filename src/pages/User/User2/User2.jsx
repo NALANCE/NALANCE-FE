@@ -19,17 +19,17 @@ const User2 = () => {
 
   const totalItems = categories.length + inputFields.length; // 총 개수 계산
 
-  useEffect(() => {
-    // ✅ 회원가입 정보를 localStorage에 저장 (임시 테스트용)
-    localStorage.setItem(
-      'signupUserData',
-      JSON.stringify({
-        email: 'testuser3@example.com',
-        password: 'Test1234!',
-        terms: [{ termsId: 1 }, { termsId: 2 }, { termsId: 3 }],
-      })
-    );
-  }, []);
+  // useEffect(() => {
+  //   // ✅ 회원가입 정보를 localStorage에 저장 (임시 테스트용)
+  //   localStorage.setItem(
+  //     'signupUserData',
+  //     JSON.stringify({
+  //       email: 'testuser3@example.com',
+  //       password: 'Test1234!',
+  //       terms: [{ termsId: 1 }, { termsId: 2 }, { termsId: 3 }],
+  //     })
+  //   );
+  // }, []);
 
   // ✅ User1에서 저장된 회원가입 데이터 불러오기
   const [signupData, setSignupData] = useState(null);
