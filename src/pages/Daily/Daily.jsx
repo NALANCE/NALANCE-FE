@@ -8,11 +8,14 @@ import useDate from "hooks/useDate";
 import * as S from "./Daily.style";
 import { useState, useEffect } from "react";
 import ChartSkeleton from "../../components/Skeleton/ChartSkeleton";
-import { getDailyData } from "../../apis/daily/getDailyData";
+import { getDailyData, getDailyBalanced } from "../../apis/daily/getDailyData";
 
 const Dailly = () => {
   // api 데이터 상태
   const [data, setData] = useState(null);
+
+  // balance 관련
+  const [balance, setBalance] = useState(null);
 
   // 에러 상태
   const [error, setError] = useState(null);
@@ -32,6 +35,9 @@ const Dailly = () => {
       try {
         const result = await getDailyData(date);
         setData(result);
+
+        const balanced = await getDailyBalanced(date);
+        setBalance(balanced);
       } catch (error) {
         setError(error);
       } finally {
@@ -53,7 +59,7 @@ const Dailly = () => {
       ) : (
         <>
           <PieChart date={date} data={data} />
-          <PieList date={date} data={data} />
+          <PieList date={date} data={data} balance={balance} />
         </>
       )}
 
