@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import * as S_ from "../PieChart/PieChart.style.js";
 
-const PieList = ({ date, data }) => {
+const PieList = ({ date, data, balance }) => {
   const [categoryRates, setCategoryRates] = useState([]);
 
   // const [data, setData] = useState(DAILY.result.data);
@@ -50,7 +50,7 @@ const PieList = ({ date, data }) => {
               );
             })}
           </S_.LegendContainer>
-          <Warning date={date} />
+          <Warning date={date} balance={balance} />
         </S.ItemContainer>
       )}
     </>

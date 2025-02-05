@@ -9,7 +9,7 @@ import warningImbalance from "assets/icons/warningImbalance.svg";
 import warningToday from "assets/icons/warningToday.svg";
 import warningPrev from "assets/icons/warningPrev.svg";
 
-const Warning = ({ date, $isWarning = false }) => {
+const Warning = ({ date, $isWarning = false, balance }) => {
   const [isClicked, setIsClicked] = useState(false); // 말풍선
   const [isToday, setIsToday] = useState(false);
 
@@ -51,7 +51,7 @@ const Warning = ({ date, $isWarning = false }) => {
         {/* 비율이 잘 맞아요 / 잘 맞지 않아요 */}
         {$isWarning || (
           <div>
-            <img src={warningBalance} />
+            <img src={balance ? warningBalance : warningImbalance} />
           </div>
         )}
 
