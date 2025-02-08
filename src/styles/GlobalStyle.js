@@ -186,8 +186,7 @@ const GlobalStyle = createGlobalStyle`
   html,body {
     font-family: 'Freesentation', sans-serif;
     font-weight: 500;
-  }
-  
+  }  
 `;
 
 export default GlobalStyle;

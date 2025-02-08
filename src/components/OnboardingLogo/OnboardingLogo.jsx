@@ -13,11 +13,13 @@ const OnboardingLogo = () => {
     <S.LogoContainer>
       {/* 말풍선 */}
       <S.ChatContainer>
-        <div>
+        <S.ChatImgWrapperLeft>
           <img src={onboarding1} />
-        </div>
+        </S.ChatImgWrapperLeft>
         <S.ChatWrapper>
-          <img src={onboarding2} />
+          <S.ChatImgWrapperRight>
+            <img src={onboarding2} />
+          </S.ChatImgWrapperRight>
         </S.ChatWrapper>
       </S.ChatContainer>
 
@@ -35,7 +37,9 @@ const OnboardingLogo = () => {
           <img src={onboarding_fish} />
         </S.FishWrapper>
 
-        <img src={onboarding_cat} />
+        <S.CatImgWrapper>
+          <img src={onboarding_cat} />
+        </S.CatImgWrapper>
       </S.CatWrapper>
     </S.LogoContainer>
   );
