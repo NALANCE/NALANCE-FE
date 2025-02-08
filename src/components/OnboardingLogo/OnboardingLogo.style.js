@@ -25,6 +25,18 @@ export const ChatImgWrapper = styled.div`
   }
 `;
 
+export const ChatImgWrapperLeft = styled(ChatImgWrapper)`
+  width: clamp(8.1rem, 28.24vw, 17rem);
+`;
+
+export const ChatImgWrapperRight = styled(ChatImgWrapper)`
+  width: clamp(8rem, 28.24vw, 19rem);
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    margin-top: -1.8rem;
+  }
+`;
+
 export const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -66,6 +78,7 @@ export const FishWrapper = styled(motion.div)`
 
 export const CatImgWrapper = styled.div`
   width: clamp(20rem, 60.81vw, 24rem);
+  height: auto;
 
   > img {
     width: 100%;
