@@ -51,7 +51,7 @@ export const FishNavIcon = styled.div`
 `;
 
 export const TopContainer = styled.div`
-  margin-top: clamp(2rem, 18.83vw, 6rem);
+  margin-top: clamp(4rem, 18.83vw, 4.3rem);
 
   display: flex;
   flex-direction: row;
