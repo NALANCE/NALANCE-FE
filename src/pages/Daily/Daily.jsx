@@ -12,6 +12,7 @@ import { getDailyData, getDailyBalanced } from "../../apis/daily/getDailyData";
 
 import dailyChat from "assets/icons/dailyChat.svg";
 import originalCat from "assets/icons/originalCat.svg";
+import PCBgr from "components/PCBgr/PCBgr";
 
 const Dailly = () => {
   // api 데이터 상태
@@ -61,16 +62,17 @@ const Dailly = () => {
         ) : error ? (
           <p>🥲데이터를 가져오는 중 오류 발생</p>
         ) : (
-          <>
+          <div>
             <PieChart date={date} data={data} />
             <PieList date={date} data={data} balance={balance} />
-          </>
+          </div>
         )}
 
         <ImgSave />
       </S.DailyContainer>
 
-      {/* 컴퓨터 비율에서만  */}
+      {/* 컴퓨터 비율  */}
+      <PCBgr $top={"1.3"} />
       <S.WarningContainer>
         <S.ChatWrapper>
           <img src={dailyChat} />

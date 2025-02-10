@@ -8,6 +8,8 @@ export const DailyContainer = styled.div`
 
   position: relative;
 
+  height: calc(100dvh - 90.2px);
+
   @media all and (min-width: 769px) and (orientation: landscape) {
     display: none;
   }
@@ -26,7 +28,7 @@ export const WarningContainer = styled.div`
 `;
 
 export const ChatWrapper = styled.div`
-  width: min(29.3rem, 74.5vw);
+  width: min(31.5rem, 24.6vw);
 
   > img {
     width: 100%;
@@ -36,7 +38,7 @@ export const ChatWrapper = styled.div`
 `;
 
 export const CatWrapper = styled.div`
-  width: min(9.2rem, 23.4vw);
+  width: min(19.2rem, 15vw);
 
   > img {
     width: 100%;
