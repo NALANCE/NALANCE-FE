@@ -8,7 +8,7 @@ export const DailyContainer = styled.div`
 
   position: relative;
 
-  height: calc(100dvh - 90.2px);
+  height: calc(100dvh - 190px);
 
   @media all and (min-width: 769px) and (orientation: landscape) {
     display: none;
@@ -17,7 +17,7 @@ export const DailyContainer = styled.div`
 
 export const WarningContainer = styled.div`
   display: none;
-  height: calc(100vh - 90.2px);
+  height: calc(100dvh - 190px);
 
   @media all and (min-width: 769px) and (orientation: landscape) {
     display: flex;

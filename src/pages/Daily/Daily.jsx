@@ -67,9 +67,9 @@ const Dailly = () => {
             <PieList date={date} data={data} balance={balance} />
           </div>
         )}
-
-        <ImgSave />
       </S.DailyContainer>
+
+      <ImgSave />
 
       {/* 컴퓨터 비율  */}
       <PCBgr $top={"1.3"} />
