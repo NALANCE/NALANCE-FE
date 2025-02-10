@@ -14,18 +14,24 @@ const OnboardingLogo = () => {
       {/* 말풍선 */}
       <S.ChatContainer>
         <S.ChatImgWrapperLeft>
-          <img src={onboarding1} />
+          <object data={onboarding1} type="image/svg+xml">
+            <img src={onboarding1} />
+          </object>
         </S.ChatImgWrapperLeft>
         <S.ChatWrapper>
           <S.ChatImgWrapperRight>
-            <img src={onboarding2} />
+            <object data={onboarding2} type="image/svg+xml">
+              <img src={onboarding2} />
+            </object>
           </S.ChatImgWrapperRight>
         </S.ChatWrapper>
       </S.ChatContainer>
 
       {/* 로고 */}
       <S.LogoWrapper>
-        <img src={onboarding_logo} />
+        <object data={onboarding_logo} type="image/svg+xml">
+          <img src={onboarding_logo} />
+        </object>
       </S.LogoWrapper>
 
       <S.CatWrapper>
@@ -34,11 +40,15 @@ const OnboardingLogo = () => {
           animate={{ scale: 1, rotateZ: 360 }}
           transition={{ delay: 0.5, duration: 1, type: "spring", stiffness: 100, damping: 20 }}
         >
-          <img src={onboarding_fish} />
+          <object data={onboarding_fish} type="image/svg+xml">
+            <img src={onboarding_fish} />
+          </object>
         </S.FishWrapper>
 
         <S.CatImgWrapper>
-          <img src={onboarding_cat} />
+          <object data={onboarding_cat} type="image/svg+xml">
+            <img src={onboarding_cat} />
+          </object>
         </S.CatImgWrapper>
       </S.CatWrapper>
     </S.LogoContainer>
