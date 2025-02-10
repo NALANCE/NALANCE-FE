@@ -16,26 +16,21 @@ export const ChatWrapper = styled.div`
 `;
 
 export const ChatImgWrapper = styled.div`
-  /* width: clamp(8.1rem, 28vw, 17rem); */
-  height: 3.7rem;
+  width: clamp(8.1rem, 28.24vw, 17rem);
 
-  > object {
+  > img {
     width: 100%;
     height: auto;
     object-fit: contain;
-    display: block;
   }
 `;
 
 export const ChatImgWrapperLeft = styled(ChatImgWrapper)`
-  /* width: clamp(8.1rem, 28vw, 17rem); */
-  > object svg {
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25) inset;
-  }
+  width: clamp(8.1rem, 28.24vw, 17rem);
 `;
 
 export const ChatImgWrapperRight = styled(ChatImgWrapper)`
-  /* width: clamp(8rem, 28vw, 19rem); */
+  width: clamp(8rem, 28.24vw, 19rem);
 
   @media all and (min-width: 769px) and (orientation: landscape) {
     margin-top: -1.8rem;
@@ -49,15 +44,15 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoWrapper = styled.div`
-  /* width: clamp(20rem, 60.81vw, 31rem); */
+  width: clamp(20rem, 60.81vw, 31rem);
 
   margin-top: 3vh;
 
-  > object {
+  > img {
     width: 100%;
     height: auto;
     object-fit: contain;
-    display: block;
+
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
 `;
@@ -76,21 +71,20 @@ export const FishWrapper = styled(motion.div)`
 
   width: clamp(10.3rem, 36.38vw, 14.3rem);
 
-  > object {
+  > img {
     width: 100%;
     height: auto;
     object-fit: contain;
-    display: block;
   }
 `;
 
 export const CatImgWrapper = styled.div`
-  /* width: clamp(20rem, 60.81vw, 24rem); */
+  width: clamp(20rem, 60.81vw, 24rem);
+  height: auto;
 
-  > object {
+  > img {
     width: 100%;
     height: auto;
     object-fit: contain;
-    display: block;
   }
 `;
