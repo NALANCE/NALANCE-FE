@@ -10,14 +10,13 @@ export const ChartContainer = styled.div`
 
   box-sizing: border-box;
 
-  margin-top: ${(props) => (props.$marginTop && !props.$hasData ? props.$marginTop : `min(1.8rem, 2vh)`)};
-  margin-bottom: ${(props) => (props.$hasData ? "5rem" : "0rem")};
+  margin-top: ${(props) => (props.$marginTop && !props.$hasData ? props.$marginTop : "1rem")};
+  margin-bottom: ${(props) => (props.$hasData ? "1rem" : "0rem")};
 `;
 
 export const ChartWrapper = styled.div`
-  width: clamp(25.7rem, 65vw, 35rem);
-  /* width: 65vw; */
-  height: ${(props) => (props.height ? props.height : `clamp(25.7rem, 65vw, 35rem)`)};
+  width: clamp(32.4rem, 82vw, 40rem);
+  height: ${(props) => (props.height ? props.height : `clamp(32.4rem, 82vw, 40rem)`)};
 
   margin: 0px;
   padding: 0px;
