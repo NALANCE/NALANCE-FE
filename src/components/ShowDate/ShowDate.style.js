@@ -13,7 +13,7 @@ export const DateContainer = styled.div`
   border-radius: 10px;
   padding: 1rem;
 
-  margin-top: clamp(7.1rem, 8vh, 9.7rem);
+  margin-top: clamp(4.1rem, 8vh, 9.7rem);
 
   box-sizing: border-box;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);

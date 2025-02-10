@@ -41,7 +41,7 @@ export const NoItemContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  margin-top: 0.5vh;
+  margin-top: 1.2vh;
 `;
 
 export const CategoryItem = styled.span`
@@ -56,7 +56,7 @@ export const CategoryItem = styled.span`
 export const CatWrapper = styled.div`
   margin-top: 2.1rem;
 
-  width: clamp(8.5rem, 21vw, 9.2rem);
+  width: clamp(5.5rem, 21vw, 9.2rem);
 
   > img {
     width: 100%;
