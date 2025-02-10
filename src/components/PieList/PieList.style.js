@@ -41,7 +41,7 @@ export const NoItemContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  margin-top: 3.5rem;
+  margin-top: 0.5vh;
 `;
 
 export const CategoryItem = styled.span`
@@ -50,9 +50,17 @@ export const CategoryItem = styled.span`
   font-weight: 500;
   line-height: 30px;
 
-  margin-right: 0.5rem;
+  color: #2f2f2f;
 `;
 
 export const CatWrapper = styled.div`
-  margin-top: 2rem;
+  margin-top: 2.1rem;
+
+  width: clamp(8.5rem, 21vw, 9.2rem);
+
+  > img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
 `;

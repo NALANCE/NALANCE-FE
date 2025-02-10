@@ -4,7 +4,7 @@ export const BtnWrapper = styled.div`
   position: fixed;
   bottom: 5%;
   /* left: clamp(2rem, 80%, 100%); */
-  right: 4%;
+  right: 9%;
 
   cursor: pointer;
 

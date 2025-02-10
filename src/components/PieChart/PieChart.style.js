@@ -1,3 +1,4 @@
+import { clamp } from "date-fns";
 import styled from "styled-components";
 
 export const ChartContainer = styled.div`
@@ -9,13 +10,17 @@ export const ChartContainer = styled.div`
 
   box-sizing: border-box;
 
-  margin-top: ${(props) => (props.$marginTop && !props.$hasData ? props.$marginTop : "5rem")};
+  margin-top: ${(props) => (props.$marginTop && !props.$hasData ? props.$marginTop : `min(1.8rem, 2vh)`)};
   margin-bottom: ${(props) => (props.$hasData ? "5rem" : "0rem")};
 `;
 
 export const ChartWrapper = styled.div`
-  width: 100%;
-  height: ${(props) => (props.height ? props.height : "27.24rem")};
+  width: clamp(25.7rem, 65vw, 35rem);
+  /* width: 65vw; */
+  height: ${(props) => (props.height ? props.height : `clamp(25.7rem, 65vw, 35rem)`)};
+
+  margin: 0px;
+  padding: 0px;
 `;
 
 export const LegendContainer = styled.div`

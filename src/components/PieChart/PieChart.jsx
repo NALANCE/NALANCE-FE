@@ -51,7 +51,7 @@ const PieChart = ({ date, width, height, $marginTop, label = true, data = [] }) 
             width="100%"
             height="100%"
             allowSliceSelection="false" // 차트 조각 선택할 수 있도록
-            innerExtent={0.15} // 도넛 차트의 중앙 원 크기
+            innerExtent={filteredData.length > 0 ? 0.15 : 0.25} // 도넛 차트의 중앙 원 크기
             startAngle={-60} // 시작 각도
           >
             <IgrRingSeries
