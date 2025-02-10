@@ -51,7 +51,7 @@ const PieChart = ({ date, width, height, $marginTop, label = true, data = [] }) 
             width="100%"
             height="100%"
             allowSliceSelection="false" // 차트 조각 선택할 수 있도록
-            innerExtent={0.15} // 도넛 차트의 중앙 원 크기
+            innerExtent={filteredData.length > 0 ? 0.15 : 0.25} // 도넛 차트의 중앙 원 크기
             startAngle={-60} // 시작 각도
           >
             <IgrRingSeries
@@ -62,10 +62,8 @@ const PieChart = ({ date, width, height, $marginTop, label = true, data = [] }) 
               legendLabelMemberPath="category" // 범례
               brushes={brushes} // 데이터에서 추출한 색상 이용
               labelsPosition={filteredData.length > 0 && label ? "OutsideEnd" : "None"} // 라벨을 조각 외부 끝에 위치하도록
-              labelExtent={30} // 라벨과 차트 중심 사이의 거리
-              radiusFactor={0.8} // 도넛 차트의 크기 비율
-              explodedRadius={0.1} // 폭발된 조각의 중심에서 떨어진 거리
-              explodedSlices="1" // 초기에 폭발 상태인 조각
+              labelExtent={20} // 라벨과 차트 중심 사이의 거리
+              radiusFactor={0.7} // 도넛 차트의 크기 비율
               allowSliceExplosion="false" // 클릭 이벤트로 조각 폭발 가능
             />
           </IgrDoughnutChart>

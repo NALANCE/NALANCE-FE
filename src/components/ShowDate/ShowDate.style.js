@@ -13,23 +13,34 @@ export const DateContainer = styled.div`
   border-radius: 10px;
   padding: 1rem;
 
-  margin-top: clamp(2rem, 15vw, 6rem);
+  margin-top: clamp(4.1rem, 8vh, 9.7rem);
 
   box-sizing: border-box;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 
   button {
+    box-sizing: border-box;
+
     background: none;
+    outline: none;
     border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     cursor: pointer;
   }
 
   p {
     font-family: "Freesentation", sans-serif;
-    font-weight: 800;
     font-size: 3rem;
-    margin-left: 2.1rem;
-    margin-right: 2.1rem;
+    color: #2f2f2f;
+    font-style: normal;
+    font-weight: 770;
+    line-height: 40px;
+    letter-spacing: 1.2px;
+
+    margin: 0 1.1rem;
   }
 `;

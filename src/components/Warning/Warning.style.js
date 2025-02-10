@@ -29,9 +29,13 @@ export const CatContainer = styled.div`
     margin-top: 8px; // 이미지 ~ 말풍선 간격
 
     z-index: 999;
+
+    width: clamp(1.2rem, 10vw, 4.2rem);
   }
 
   > img {
-    width: 4.2rem;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 `;
