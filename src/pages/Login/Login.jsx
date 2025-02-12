@@ -16,8 +16,10 @@ const Login = () => {
   const [pw, setPw] = useState("");
 
   const [notAllow, setNotAllow] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("nothing");
   const [loading, setLoading] = useState(false);
+  const [haserror, sethaserror] = useState(false);
+  const [buttonClick, setbuttonClick]=useState(false);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -29,6 +31,7 @@ const Login = () => {
 
   const handleLoginClick = async (e) => {
     console.log("로그인 클릭!");
+    setbuttonClick(true);
 
     setLoading(true);
     console.log("setLoading 이후");
@@ -50,10 +53,12 @@ const Login = () => {
         navigate("/Todo");
       } else {
         console.log("login failed", response);
+        sethaserror(true);
         setErrorMessage("이메일 또는 비밀번호가 일치하지 않습니다.");
       }
     } catch (error) {
       console.error("login failed", error);
+      sethaserror(true);
       setErrorMessage("이메일 또는 비밀번호가 일치하지 않습니다.");
     } finally {
       setLoading(false);
@@ -77,14 +82,15 @@ const Login = () => {
             <S.Input type="password" className="input" placeholder="비밀번호" value={pw} onChange={handlePw} />
           </S.InputWrap>
 
-          <S.ErrorMessageWrap>{<div>{errorMessage}</div>}</S.ErrorMessageWrap>
+          <S.ErrorMessageWrap hasError={haserror&&buttonClick}>{errorMessage}</S.ErrorMessageWrap>
         </S.ContentWrap>
 
         <S.BtnContainer>
           <LoginBtn text="로그인" link="/Todo" notAllow={true} onClickConfirmButton={handleLoginClick} />
         </S.BtnContainer>
+        <S.BottomGap/>
+        <BottomLogo />
       </S.Container>
-      <BottomLogo />
     </>
   );
 };
