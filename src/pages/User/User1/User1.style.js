@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import check from 'assets/icons/check.svg';
 
+export const TopGap = styled.div`
+
+@media all and (min-width: 769px) and (orientation: landscape) {
+  height: 26px;
+}
+
+`
+
 export const ContentWrap = styled.div`
   display: flex;               
   flex-direction: column;     
@@ -15,6 +23,15 @@ export const CenterWrap = styled.div`
   flex-direction: column;     
   justify-content: center; 
   align-items: center;  
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+  margin-top: 54px;
+  height: 480px;
+  display: flex;               
+  flex-direction: column;     
+  justify-content: center; 
+  align-items: center; 
+}
 `
 
 export const LineWrap = styled.div`

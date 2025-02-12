@@ -286,6 +286,7 @@ const User1 = () => {
 
   return (
     <>
+      <S.TopGap/>
       <PageTitle pageTitle="회원가입" />
 
       <S.ContentWrap>
