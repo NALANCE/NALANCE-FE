@@ -12,6 +12,10 @@ export const ChartContainer = styled.div`
   justify-content: center;
 
   width: 100%;
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    flex-direction: column;
+  }
 `;
 
 export const Line = styled.div`
