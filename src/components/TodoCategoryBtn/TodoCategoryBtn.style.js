@@ -14,13 +14,14 @@ export const CategoryWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 15px;
-  width: auto;
 `;
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
+  flex-basis: 80px;
   height: 40px;
+  width: 100px;
   min-width: 2px;
   padding: 0px 13px;
   gap: 6px;
@@ -32,7 +33,7 @@ export const Container = styled.div`
   box-sizing: border-box;
 
   overflow: hidden; /* 내용 초과 방지 */
-  white-space: nowrap;
+  white-space: nowrap; /* 공백 처리 */
 `;
 
 export const ArrowIcon = styled.div`
