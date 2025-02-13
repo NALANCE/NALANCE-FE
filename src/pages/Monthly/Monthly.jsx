@@ -43,12 +43,20 @@ const Monthly = () => {
 
   return (
     <S.DailyContainer className="ImgContainer">
-      <ShowMonth className="ShowMonth" />
+      <S.ItemContainer>
+        <S.ShowMonthWrapper>
+          <ShowMonth className="ShowMonth" />
+        </S.ShowMonthWrapper>
 
-      {/* data가 null이 아니고 존재할 때만 MonthlyChart 렌더링 */}
-      {data ? <MonthlyChart date={date} data={data} className="MonthlyChart" /> : <SkeletonCircle />}
+        <S.CalendarWrapper>
+          <Calendar date={date} onDateChange={handleDateChange} data={data} className="Calendar" />
+        </S.CalendarWrapper>
+      </S.ItemContainer>
 
-      <Calendar date={date} onDateChange={handleDateChange} data={data} className="Calendar" />
+      <S.MonthlyChartWrapper>
+        {/* data가 null이 아니고 존재할 때만 MonthlyChart 렌더링 */}
+        {data ? <MonthlyChart date={date} data={data} className="MonthlyChart" /> : <SkeletonCircle />}
+      </S.MonthlyChartWrapper>
 
       <ImgSave />
     </S.DailyContainer>

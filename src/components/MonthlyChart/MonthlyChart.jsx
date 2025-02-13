@@ -63,7 +63,7 @@ const MonthlyChart = ({ date, data }) => {
       {isPCScreen && (
         <S.ChartContainer>
           <S.ChartWrapper>
-            <PieChart date={date} width={"184px"} height={"184px"} $marginTop={"0"} label={true} data={data} />
+            <PieChart date={date} width={"198px"} height={"258px"} $marginTop={"0"} label={true} data={data} />
           </S.ChartWrapper>
           <S.ChartWrapper>
             <BarChart date={date} data={data} />
