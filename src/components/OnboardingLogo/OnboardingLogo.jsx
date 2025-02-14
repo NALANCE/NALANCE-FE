@@ -7,8 +7,19 @@ import onboarding_fish from "assets/icons/onboarding_fish.svg";
 import * as S from "./OnboardingLogo.style";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const OnboardingLogo = () => {
+  useEffect(() => {
+    setTimeout(() => {
+      const element = document.querySelector(".element");
+      if (element) {
+        element.style.background = "none";
+        element.offsetHeight; // 강제 리렌더링
+      }
+    }, 0);
+  }, []);
+
   return (
     <S.LogoContainer>
       {/* 말풍선 */}
@@ -30,6 +41,7 @@ const OnboardingLogo = () => {
 
       <S.CatWrapper>
         <S.FishWrapper
+          className="element"
           initial={{ scale: 0 }}
           animate={{ scale: 1, rotateZ: 360 }}
           transition={{ delay: 0.5, duration: 1, type: "spring", stiffness: 100, damping: 20 }}
