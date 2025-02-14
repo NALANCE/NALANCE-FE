@@ -38,7 +38,7 @@ const OnboardingLogo = () => {
         </S.FishWrapper>
 
         <S.CatImgWrapper>
-          <img src={onboarding_cat} />
+          <object data={onboarding_cat} />
         </S.CatImgWrapper>
       </S.CatWrapper>
     </S.LogoContainer>
