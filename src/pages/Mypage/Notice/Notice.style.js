@@ -22,4 +22,6 @@ export const BottomLogoWrapper = styled.div`
   @media all and (min-width: 769px) and (orientation: landscape) {
     display: none; /* 태블릿 가로 모드에서는 숨김 */
   }
+
+  padding-bottom: 30px;
 `;

@@ -33,7 +33,7 @@ const Drop = () => {
         // 로컬 스토리지의 토큰 삭제
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        //navigate('/'); // 홈으로 이동
+        navigate('/'); // 홈으로 이동
       } else {
         alert(response.data.message || '회원 탈퇴에 실패했습니다.');
       }
@@ -56,7 +56,9 @@ const Drop = () => {
           <DropBtn text="회원 탈퇴" onClick={handleDropUser} />
         </S.BtnWrapper>
       </S.Container>
-      <BottomLogo />
+      <S.BottomLogoWrapper>
+        <BottomLogo />
+      </S.BottomLogoWrapper>
     </>
   );
 };
