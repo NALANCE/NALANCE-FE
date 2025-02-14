@@ -241,7 +241,7 @@ const User1 = () => {
       useEffect( ()=> {
         if(pwcheckTouched){
           setErrorPwCheckMessage("비밀번호가 일치하지 않습니다.");
-          if (pwValid && pw === checkpw){
+          if (pw === checkpw){
           setErrorPwCheckMessage("비밀번호가 일치합니다.");
           setcheckpwValid(true);
           }
