@@ -5,13 +5,23 @@ import TodoLists from "components/TodoLists/TodoLists";
 import * as S from "./Todo.style";
 import { useState, useEffect, useRef } from "react";
 import axiosInstance from "apis/defaultAxios";
-import { param } from "framer-motion/client";
+
+import useDailyData from "hooks/useDailyData";
+import PieChart from "components/PieChart/PieChart";
+import PieList from "components/PieList/PieList";
+import ChartSkeleton from "components/Skeleton/ChartSkeleton";
 
 const Todo = () => {
   const [categories, setCategories] = useState([]);
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [todos, setTodos] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
+  const { date: dailyDate, handleDateChange, data, balance, error, isLoading: isDailyLoading } = useDailyData(); // 하루비율
+
+  useEffect(() => {
+    setDate(dailyDate);
+  }, [dailyDate]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -240,37 +250,53 @@ const Todo = () => {
 
   return (
     <S.DailyContainer className="ImgContainer">
-      <ShowDate date={date} onDateChange={setDate} />
-      {isLoading && <p>Loading...</p>}
-      <S.TodoCategoryContainer>
-        {categories.map((category) => (
-          <div key={category.categoryId}>
-            <TodoCategoryBtn
-              defaultValue={category.categoryName}
-              color={category.color}
-              onAddTodo={() => handleAddTodoDirectly(category.categoryName)}
-            />
-            <TodoLists
-              todos={todos[category.categoryName]}
-              onTodoTextChange={(index, newText, status) =>
-                handleTodoTextChange(
-                  category.categoryName,
-                  index,
-                  newText,
-                  status,
-                  todos[category.categoryName][index]?.todoId
-                )
-              }
-              onDeleteTodo={deleteTodo}
-              category={category}
-              date={date}
-              onTimeUpdate={handleTimeUpdate}
-              fetchTodos={fetchTodos}
-            />
-          </div>
-        ))}
-      </S.TodoCategoryContainer>
-      <ImgSave />
+      <ShowDate date={date} onDateChange={handleDateChange} />
+      <S.DataContainer>
+        {isLoading && <p>Loading...</p>}
+        <S.TodoCategoryContainer>
+          {categories.map((category) => (
+            <div key={category.categoryId}>
+              <TodoCategoryBtn
+                defaultValue={category.categoryName}
+                color={category.color}
+                onAddTodo={() => handleAddTodoDirectly(category.categoryName)}
+              />
+              <TodoLists
+                todos={todos[category.categoryName]}
+                onTodoTextChange={(index, newText, status) =>
+                  handleTodoTextChange(
+                    category.categoryName,
+                    index,
+                    newText,
+                    status,
+                    todos[category.categoryName][index]?.todoId
+                  )
+                }
+                onDeleteTodo={deleteTodo}
+                category={category}
+                date={date}
+                onTimeUpdate={handleTimeUpdate}
+                fetchTodos={fetchTodos}
+              />
+            </div>
+          ))}
+        </S.TodoCategoryContainer>
+
+        <div>
+          {isDailyLoading ? (
+            <ChartSkeleton />
+          ) : error ? (
+            <p>🥲데이터를 가져오는 중 오류 발생</p>
+          ) : (
+            <div>
+              <PieChart date={dailyDate} data={data} />
+              <PieList date={dailyDate} data={data} balance={balance} />
+            </div>
+          )}
+        </div>
+
+        <ImgSave />
+      </S.DataContainer>
     </S.DailyContainer>
   );
 };

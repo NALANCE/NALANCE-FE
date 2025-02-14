@@ -8,7 +8,6 @@ export const DailyContainer = styled.div`
   position: relative;
 `;
 
-
 export const TodoCategoryContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,6 +15,11 @@ export const TodoCategoryContainer = styled.div`
   width: 80%;
   gap: 15px;
   margin-top: 20px;
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    width: 25vw;
+    max-width: 32rem;
+  }
 `;
 
 export const ModalOverlay = styled.div`
@@ -38,4 +42,11 @@ export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+`;
+
+export const DataContainer = styled.div`
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    display: flex;
+    flex-direction: row;
+  }
 `;
