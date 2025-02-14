@@ -18,7 +18,6 @@ export const ModalContainer = styled.div`
   width: 320px;
   height: 150.272px;
   text-align: center;
-  
 `;
 
 export const SvgWrapper = styled.div`
@@ -46,10 +45,11 @@ export const ModalContent = styled.div`
 
 export const ModalText = styled.div`
   display: flex;
-  width: 229px;
+  width: 290px;
   height: 44px;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   color: ${({ theme }) => theme.colors.black};
 
   font-size: 20px;
@@ -57,7 +57,9 @@ export const ModalText = styled.div`
   font-weight: 500;
   line-height: 24px; /* 120% */
   letter-spacing: 1.2px;
-  padding: 10px 20px;
+  padding: 10px 10px;
+
+  white-space: nowrap; /* 줄바꿈 방지 */
 `;
 
 export const ButtonContainer = styled.div`
