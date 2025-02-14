@@ -350,7 +350,8 @@ const User1 = () => {
                   iconUrl={showPassword? {eva_eye_on}:{eva_eye_off}}
                   value = {pw}
                   onChange = {handlePw}
-                  onBlur = {handlePwBlur}/>
+                  onBlur = {handlePwBlur}
+                  />
             <img
                   src={showPassword ? eva_eye_on : eva_eye_off}
                   alt="eye icon"
@@ -375,7 +376,15 @@ const User1 = () => {
                   placeholder = '비밀번호 확인'
                   value = {checkpw}
                   onChange = {handleCheckpw}
-                  onBlur = {handleCheckPwBlur}/>
+                  onBlur = {handleCheckPwBlur}
+                  onCopy={(e) => e.preventDefault()} // 복사 차단
+                  onPaste={(e) => e.preventDefault()} // 붙여넣기 차단
+                  onCut={(e) => e.preventDefault()} // 잘라내기 차단
+                  onKeyDown={(e) => {
+                    if (e.ctrlKey && (e.key === "c" || e.key === "v" || e.key === "x")) {
+                      e.preventDefault();
+                    }
+                  }}/>
           </S.InputWrap>
           <S.NoRoundBtn/>
         </S.LineWrap>
