@@ -21,9 +21,13 @@ const ShowMonth = () => {
 
   return (
     <>
-      <S.DateContainer>
-        <p>{monthNames[month].toUpperCase()}</p>
-      </S.DateContainer>
+      <S.ItemWrapper>
+        <S.DateContainer>
+          <p>{monthNames[month].toUpperCase()}</p>
+        </S.DateContainer>
+
+        <S.Line />
+      </S.ItemWrapper>
     </>
   );
 };

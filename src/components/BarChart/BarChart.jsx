@@ -57,7 +57,7 @@ const BarChart = ({ date, data }) => {
               </S.BarWrapper>
 
               {smallestCategories.some((category) => category.category === item.category) && (
-                <Warning date={date} $isWarning={true} />
+                <Warning date={date} $isWarning={true} $monthly={true} />
               )}
             </S.StyledItemWrapper>
           ))}
