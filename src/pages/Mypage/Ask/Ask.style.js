@@ -23,3 +23,11 @@ export const Speech = styled.img`
   width: 269px;
   height: 122.951px;
 `;
+
+export const BottomLogoWrapper = styled.div`
+  display: block; /* 기본적으로 보이게 설정 */
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    display: none; /* 태블릿 가로 모드에서는 숨김 */
+  }
+`;

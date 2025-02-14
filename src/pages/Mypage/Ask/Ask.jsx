@@ -12,7 +12,9 @@ const Ask = () => {
         <S.Cat src={cat} alt="고양이" />
         <S.Speech src={speech} alt="말풍선" />
       </S.Container>
-      <BottomLogo />
+      <S.BottomLogoWrapper>
+        <BottomLogo />
+      </S.BottomLogoWrapper>
     </>
   );
 };
