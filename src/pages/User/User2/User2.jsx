@@ -116,7 +116,9 @@ const User2 = () => {
 
     setCategories((prevCategories) => {
       // 1️⃣ 기존에 동일한 ID를 가진 카테고리 찾기
-      const existingCategory = prevCategories.find((c) => c.id === fieldId);
+      const existingCategory = prevCategories.find(
+        (c) => c.categoryId === fieldId
+      );
 
       // 2️⃣ 동일한 카테고리명으로 변경하려 할 경우 -> 변경 X
       if (
@@ -129,7 +131,7 @@ const User2 = () => {
       // 3️⃣ 같은 이름이 이미 있는지 확인 (자기 자신 제외)
       const isDuplicate = prevCategories.some(
         (category) =>
-          category.id !== fieldId &&
+          category.categoryId !== fieldId &&
           category.categoryName.trim().toLowerCase() ===
             newCategory.categoryName.trim().toLowerCase()
       );
@@ -143,12 +145,14 @@ const User2 = () => {
       // 4️⃣ 기존 카테고리 수정
       if (existingCategory) {
         return prevCategories.map((category) =>
-          category.id === fieldId ? { ...category, ...newCategory } : category
+          category.categoryId === fieldId
+            ? { ...category, ...newCategory }
+            : category
         );
       }
 
       // 5️⃣ 새로운 카테고리 추가
-      return [...prevCategories, { id: fieldId, ...newCategory }];
+      return [...prevCategories, { categoryId: fieldId, ...newCategory }];
     });
   };
 
