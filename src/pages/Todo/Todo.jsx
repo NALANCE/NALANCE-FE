@@ -264,7 +264,7 @@ const Todo = () => {
                 onAddTodo={() => handleAddTodoDirectly(category.categoryName)}
               />
               <TodoLists
-                todos={todos[category.categoryName]}
+                todos={todos[category.categoryName] || []}
                 onTodoTextChange={(index, newText, status) =>
                   handleTodoTextChange(
                     category.categoryName,
