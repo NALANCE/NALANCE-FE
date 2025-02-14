@@ -17,7 +17,7 @@ const User2 = () => {
   const [isErrorAnimating, setIsErrorAnimating] = useState(false); // 에러 애니메이션 상태
   const [isSubmitting, setIsSubmitting] = useState(false); // API 요청 상태
 
-  const totalItems = categories.length + inputFields.length; // 총 개수 계산
+  const totalItems = categories.length; // 총 개수 계산
 
   // useEffect(() => {
   //   // ✅ 회원가입 정보를 localStorage에 저장 (임시 테스트용)
@@ -30,6 +30,10 @@ const User2 = () => {
   //     })
   //   );
   // }, []);
+
+  useEffect(() => {
+    console.log('📋 현재 카테고리 목록:', categories);
+  }, [categories]);
 
   // ✅ User1에서 저장된 회원가입 데이터 불러오기
   const [signupData, setSignupData] = useState(null);
@@ -101,23 +105,49 @@ const User2 = () => {
       triggerErrorAnimation();
       return;
     }
-    setInputFields([...inputFields, { id: Date.now() }]); // 고유 ID로 입력 필드 추가
+    setInputFields([...inputFields, { id: Date.now(), name: '' }]);
     setErrorMessage('');
   };
 
   // 카테고리 추가 처리
   const handleAddCategory = (newCategory, fieldId) => {
+    // 만약 입력값이 없으면 추가 X
+    if (!newCategory.categoryName.trim()) return;
+
     setCategories((prevCategories) => {
-      const categoryExists = prevCategories.some(
-        (category) => category.id === fieldId
+      // 1️⃣ 기존에 동일한 ID를 가진 카테고리 찾기
+      const existingCategory = prevCategories.find((c) => c.id === fieldId);
+
+      // 2️⃣ 동일한 카테고리명으로 변경하려 할 경우 -> 변경 X
+      if (
+        existingCategory &&
+        existingCategory.categoryName === newCategory.categoryName
+      ) {
+        return prevCategories;
+      }
+
+      // 3️⃣ 같은 이름이 이미 있는지 확인 (자기 자신 제외)
+      const isDuplicate = prevCategories.some(
+        (category) =>
+          category.id !== fieldId &&
+          category.categoryName.trim().toLowerCase() ===
+            newCategory.categoryName.trim().toLowerCase()
       );
 
-      if (categoryExists) {
+      if (isDuplicate) {
+        setErrorMessage('이미 존재하는 카테고리명입니다.');
+        triggerErrorAnimation();
+        return prevCategories;
+      }
+
+      // 4️⃣ 기존 카테고리 수정
+      if (existingCategory) {
         return prevCategories.map((category) =>
           category.id === fieldId ? { ...category, ...newCategory } : category
         );
       }
 
+      // 5️⃣ 새로운 카테고리 추가
       return [...prevCategories, { id: fieldId, ...newCategory }];
     });
   };
