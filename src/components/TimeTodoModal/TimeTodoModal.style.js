@@ -1,25 +1,40 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+// 아래에서 위로 슬라이드 애니메이션
+const slideUp = keyframes`
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+`;
 
 export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   z-index: 999;
 `;
 
 export const ModalContainer = styled.div`
   position: relative;
-  width: 320px;
-  height: 150.272px;
+  width: 80%;
+  max-width: 400px;
+  min-height: 00px; /* 최소 높이를 더 높게 설정 */
   text-align: center;
   display: flex;
   flex-direction: column;
+  background: white;
+  border-radius: 20px 20px 0px 0px;
+  padding: 22px 48px 90px;
+  animation: ${slideUp} 0.3s ease-in-out;
 `;
 
 export const SvgWrapper = styled.div`
@@ -38,14 +53,14 @@ export const SvgWrapper = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  position: absolute;
-  top: 0;
-  width: 290px;
-  height: 136.383px;
+   position: relative; /* absolute 대신 relative로 변경 */
+  width: 100%;
+  min-height: 200px; /* 최소 높이를 확보 */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px; /* 패딩 추가 */
 `;
 
 export const Title = styled.h1`

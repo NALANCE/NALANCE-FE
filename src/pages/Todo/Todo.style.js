@@ -16,6 +16,17 @@ export const TodoCategoryContainer = styled.div`
   gap: 15px;
   margin-top: 20px;
 
+
+  /* 스크롤바 설정 */
+  max-height: 450px;
+  overflow-y: auto;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
   @media all and (min-width: 769px) and (orientation: landscape) {
     width: 32rem;
   }
