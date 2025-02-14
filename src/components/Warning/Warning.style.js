@@ -15,6 +15,18 @@ export const WarningContainer = styled.div`
   }
 `;
 
+export const ChatCatContainer = styled.div`
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    width: 18.1rem;
+  }
+
+  > img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+`;
+
 export const CatContainer = styled.div`
   position: relative;
   display: inline-block;
@@ -31,6 +43,10 @@ export const CatContainer = styled.div`
     z-index: 999;
 
     width: clamp(1.2rem, 10vw, 4.2rem);
+  }
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    width: ${(props) => (props.$monthly == false ? "9.2rem" : `clamp(1.2rem,10vw,4.2rem)`)};
   }
 
   > img {

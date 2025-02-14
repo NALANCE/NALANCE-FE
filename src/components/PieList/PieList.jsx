@@ -1,5 +1,6 @@
 import { DAILY } from "../../../public/data/dailyDummy.js";
 import Warning from "components/Warning/Warning";
+import PieChart from "components/PieChart/PieChart";
 import * as S from "./PieList.style.js";
 import angryCatBig from "assets/icons/angryCatBig.svg";
 import { useEffect, useState } from "react";
@@ -31,14 +32,19 @@ const PieList = ({ date, data, balance }) => {
           <S.NoItemWrapper>
             <S.CategoryItem>기록된 카테고리 내용이 없습니다.</S.CategoryItem>
           </S.NoItemWrapper>
+
           <S.CatWrapper>
             <img src={angryCatBig} />
           </S.CatWrapper>
+
+          <S.PieChartWrapper>
+            <PieChart date={date} width={"198px"} height={"265px"} $marginTop={"0"} label={true} data={data} />
+          </S.PieChartWrapper>
         </S.NoItemContainer>
       ) : (
         <S.ItemContainer>
           {/* 범례 */}
-          <S_.LegendContainer $itemCount={data.length}>
+          <S.LegendContainer $itemCount={data.length}>
             {data.map((item, index) => {
               return (
                 <S_.LegendWrapper key={`${item.category}-${Math.random()}`}>
@@ -49,8 +55,15 @@ const PieList = ({ date, data, balance }) => {
                 </S_.LegendWrapper>
               );
             })}
-          </S_.LegendContainer>
-          <Warning date={date} balance={balance} />
+          </S.LegendContainer>
+
+          <S.PieChartWrapper>
+            <PieChart date={date} width={"198px"} height={"265px"} $marginTop={"0"} label={true} data={data} />
+          </S.PieChartWrapper>
+
+          <S.WarningWrapper>
+            <Warning date={date} balance={balance} />
+          </S.WarningWrapper>
         </S.ItemContainer>
       )}
     </>

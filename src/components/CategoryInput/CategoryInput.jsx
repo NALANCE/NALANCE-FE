@@ -274,7 +274,13 @@ const CategoryInput = ({
           isOpen={isModalOpen}
           onClose={closeModal}
           onConfirm={confirmDelete}
-          message={`${text ? `'${text}'` : '항목'}을 삭제하시겠습니까?`}
+          message={`${
+            text
+              ? `'${
+                  text.length > 5 ? text.slice(0, 3) + '...' : text
+                }' 카테고리를`
+              : '이 항목을'
+          } 삭제할까요?`}
         />
 
         <ColorPickerModal

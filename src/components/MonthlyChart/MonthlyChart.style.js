@@ -12,6 +12,10 @@ export const ChartContainer = styled.div`
   justify-content: center;
 
   width: 100%;
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    flex-direction: column;
+  }
 `;
 
 export const Line = styled.div`
@@ -46,4 +50,10 @@ export const ChartWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    width: 17vw;
+    height: 17vw;
+    min-width: 30rem;
+  }
 `;
