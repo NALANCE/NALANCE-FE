@@ -64,3 +64,54 @@ export const CatWrapper = styled.div`
     object-fit: contain;
   }
 `;
+
+export const LegendContainer = styled.div`
+  display: ${(props) => (props.$itemCount < 5 ? "flex" : "grid")};
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px 0.3rem;
+
+  overflow: scroll;
+  width: 30.2rem;
+  height: 6.2rem;
+
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: ${(props) => (props.$itemCount < 5 ? "0.3rem" : "0")};
+
+  &::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #868686;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: white;
+  }
+
+  order: 1;
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    order: 3;
+  }
+`;
+
+export const PieChartWrapper = styled.div`
+  display: none;
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    display: block;
+    order: 2;
+  }
+`;
+
+export const WarningWrapper = styled.div`
+  order: 3;
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    order: 1;
+  }
+`;

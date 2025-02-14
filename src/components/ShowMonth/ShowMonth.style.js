@@ -22,6 +22,6 @@ export const ItemWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 2.3rem;
-    margin-bottom: 4.6rem;
+    margin-bottom: 2.6rem;
   }
 `;

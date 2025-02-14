@@ -76,6 +76,10 @@ export const TopContainer = styled.div`
   align-items: center;
 
   padding: 0 4vw;
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    margin-top: clamp(1rem, 2vh, 3rem);
+  }
 `;
 
 export const MenuList = styled.ul`

@@ -17,8 +17,7 @@ export const TodoCategoryContainer = styled.div`
   margin-top: 20px;
 
   @media all and (min-width: 769px) and (orientation: landscape) {
-    width: 25vw;
-    max-width: 32rem;
+    width: 32rem;
   }
 `;
 
@@ -39,14 +38,53 @@ export const ModalContent = styled.div`
   padding: 20px;
   border-radius: 10px;
   width: 300px;
+
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
 
 export const DataContainer = styled.div`
+  display: contents;
+
   @media all and (min-width: 769px) and (orientation: landscape) {
+    width: 100%;
+
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+
+    margin-top: 4.3rem;
+    gap: 10rem;
+  }
+`;
+
+export const Line = styled.div`
+  display: none;
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    display: block;
+    width: 0.2px;
+    height: min(52vh, 43.6rem);
+    background: #000;
+
+    margin-left: 8rem;
+  }
+`;
+
+export const ChartContainer = styled.div`
+  display: none;
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    display: block;
+    margin-top: -4rem;
+  }
+`;
+
+export const DateWrapper = styled.div`
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    display: block;
+    > div {
+      margin-top: 0px;
+    }
   }
 `;

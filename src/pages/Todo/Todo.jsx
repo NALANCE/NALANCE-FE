@@ -250,7 +250,9 @@ const Todo = () => {
 
   return (
     <S.DailyContainer className="ImgContainer">
-      <ShowDate date={date} onDateChange={handleDateChange} />
+      <S.DateWrapper>
+        <ShowDate date={date} onDateChange={handleDateChange} />
+      </S.DateWrapper>
       <S.DataContainer>
         {isLoading && <p>Loading...</p>}
         <S.TodoCategoryContainer>
@@ -282,21 +284,22 @@ const Todo = () => {
           ))}
         </S.TodoCategoryContainer>
 
-        <div>
+        <S.Line />
+
+        <S.ChartContainer>
           {isDailyLoading ? (
             <ChartSkeleton />
           ) : error ? (
             <p>🥲데이터를 가져오는 중 오류 발생</p>
           ) : (
             <div>
-              <PieChart date={dailyDate} data={data} />
               <PieList date={dailyDate} data={data} balance={balance} />
             </div>
           )}
-        </div>
-
-        <ImgSave />
+        </S.ChartContainer>
       </S.DataContainer>
+
+      <ImgSave />
     </S.DailyContainer>
   );
 };
