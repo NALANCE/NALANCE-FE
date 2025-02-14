@@ -18,6 +18,7 @@ export const StyledButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
 
+  font-family: 'Freesentation', sans-serif;
   font-weight: 500;
   font-size: 15px;
   line-height: 40px;
