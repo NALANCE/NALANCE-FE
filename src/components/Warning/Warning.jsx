@@ -3,8 +3,8 @@ import Notification from "components/common/Notification/Notification";
 import * as S from "./Warning.style";
 import { useEffect, useState } from "react";
 
-import warningBalance from "assets/icons/warningBalance.svg";
-import warningImbalance from "assets/icons/warningImbalance.svg";
+import warningBalance from "assets/img/warningBalance.png";
+import warningImbalance from "assets/img/warningImbalance.png";
 
 import warningToday from "assets/icons/warningToday.svg";
 import warningPrev from "assets/icons/warningPrev.svg";

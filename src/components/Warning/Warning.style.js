@@ -16,6 +16,7 @@ export const WarningContainer = styled.div`
 `;
 
 export const ChatCatContainer = styled.div`
+  width: 18.1rem;
   @media all and (min-width: 769px) and (orientation: landscape) {
     width: 18.1rem;
   }
@@ -53,5 +54,6 @@ export const CatContainer = styled.div`
     width: 100%;
     height: auto;
     object-fit: contain;
+    pointer-events: none;
   }
 `;
