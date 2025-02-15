@@ -46,6 +46,19 @@ const User1 = () => {
 
       const handleSubmit = async (e) => {
         setLoading(true);
+        console.log("다음");
+
+        if (!ageCheck || !useCheck) {
+          console.log("오류");
+          setCheckboxValid(false);
+          setErrorCheckbox("필수 항목 미동의시 가입이 불가능합니다.");
+          return; // 동의하지 않으면 진행 중단
+        }
+        
+        if(ageCheck && useCheck){
+          setCheckboxValid(true);
+          setErrorCheckbox("");
+        }
      
         const userData = {
           email: email,
@@ -128,12 +141,9 @@ const User1 = () => {
         const inputValue = e.target.value;
         setPw(inputValue); 
         const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
-        if (regex.test(inputValue)){
-            setPwValid(true);
-        }
-        else{
-            setPwValid(false);
-        }
+        const isValid = regex.test(inputValue); 
+        setPwValid(isValid);
+
         if (isValid) {
           setErrorPwMessage("");
       } else {
@@ -255,25 +265,19 @@ const User1 = () => {
         }
     }, [checkpw, pwcheckTouched]);
 
-    useEffect(()=>{
-      if(ageCheck === true && useCheck === true){
-        setCheckboxValid(true);
-        setErrorCheckbox("");
-      }
-      else{
-      setCheckboxValid(false);
-      setErrorCheckbox("필수 항목 미동의시 가입이 불가능합니다.");
-      }
-    },[ageCheck, useCheck]);
-  
       useEffect( ()=> {
-          if (emailValid && pwValid && OPTValid && checkpwValid && checkboxValid){
+          if (emailValid && pwValid && OPTValid && checkpwValid){
               setAllow(true);
               return;
           }
+          else{
           setAllow(false);
-      }, [email, pw, OTP, checkpw, checkboxValid]);
+          }
+      }, [emailValid, pwValid, OPTValid, checkpwValid]);
   
+      useEffect(() => {
+        console.log("Allow 상태 변경됨:", Allow);
+    }, [Allow]);
 
     // 비밀번호 보이기/숨기기 토글
     const toggleShowPassword = () => {
@@ -396,7 +400,6 @@ const User1 = () => {
         </S.ErrorMessegeDiv>
 
         <S.CheckboxWrap>
-
           <S.CheckboxInputWrap>
             <S.CheckboxInputRow>
               <S.Checkbox
@@ -410,6 +413,8 @@ const User1 = () => {
                   <S.Label htmlFor="check-age">'만 14세 이상입니다.'</S.Label>
             </S.CheckboxInputRow>
 
+            <S.CheckboxInputGap/>
+
             <S.CheckboxInputRow>
               <S.Checkbox
                   type="checkbox"
@@ -421,6 +426,8 @@ const User1 = () => {
                   <S.Label htmlFor="opt-in-personal-info">'본 서비스의 이용약관과 개인정보 정책에 동의합니다.'</S.Label>
             </S.CheckboxInputRow>
 
+            <S.CheckboxInputGap/>
+
             <S.CheckboxInputRow>
               <S.Checkbox
                   type="checkbox"
@@ -431,10 +438,8 @@ const User1 = () => {
                   <S.Option> 선택 </S.Option>
                   <S.Label htmlFor="opt-in-marketing">'마케팅 정보 수신에 동의합니다.'</S.Label>
             </S.CheckboxInputRow>
-
           </S.CheckboxInputWrap>
-
-          </S.CheckboxWrap>
+        </S.CheckboxWrap>
 
           <S.ErrorMessegeDiv>
           <S.ErrorMessageWrap hasError={!checkboxValid}>
@@ -445,7 +450,7 @@ const User1 = () => {
           <S.InputGap/>
         </S.CenterWrap>
 
-          <TriangleBtn text="다음" link="/User2" Allow={Allow} onClick={handleSubmit}/>
+          <TriangleBtn text="다음" Allow={Allow} onClick={handleSubmit}/>
       </S.ContentWrap>
       
     </>
