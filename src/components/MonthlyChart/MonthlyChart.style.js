@@ -32,11 +32,22 @@ export const IconWrapper = styled.div`
   flex-direction: column;
 
   width: 3.6rem;
-  height: 3.6rem;
+  gap: 0.6rem;
 
   margin-top: 2rem;
 
   cursor: pointer;
+
+  position: relative;
+  z-index: 100;
+
+  /* filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.25)); */
+
+  > img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
 `;
 
 export const ChartWrapper = styled.div`
@@ -50,6 +61,9 @@ export const ChartWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: relative;
+  z-index: 99;
 
   @media all and (min-width: 769px) and (orientation: landscape) {
     width: 17vw;
