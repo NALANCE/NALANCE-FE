@@ -7,4 +7,13 @@ export const NotificationContainer = styled(motion.div)`
 
   justify-content: center;
   align-items: center;
+
+  width: ${(props) => props.$hasWidth && "14.4rem"};
+  height: ${(props) => props.$hasWidth && "6.1rem"};
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;

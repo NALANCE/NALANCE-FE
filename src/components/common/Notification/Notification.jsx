@@ -1,7 +1,8 @@
+import { FlattenerSettings } from "igniteui-react-core";
 import * as S from "./Notification.style";
 import { motion } from "framer-motion";
 
-const Notification = ({ img, isClicked }) => {
+const Notification = ({ img, isClicked, $hasWidth = false }) => {
   return (
     <>
       {isClicked && (
@@ -13,6 +14,7 @@ const Notification = ({ img, isClicked }) => {
             opacity: { duration: 0.5 }, // opacity 애니메이션 시간 설정
             y: { duration: 0.5 }, // y 애니메이션 시간 설정
           }} // 애니메이션 지속 시간
+          $hasWidth={$hasWidth}
         >
           <img src={img}></img>
         </S.NotificationContainer>

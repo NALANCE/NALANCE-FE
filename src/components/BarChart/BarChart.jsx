@@ -41,7 +41,7 @@ const BarChart = ({ date, data }) => {
             <S1.CategoryItem>기록된 카테고리 내용이 없습니다.</S1.CategoryItem>
           </S1.NoItemWrapper>
           <S1.CatWrapper>
-            <img src={angryCatBig} />
+            <object data={angryCatBig} />
           </S1.CatWrapper>
         </S1.NoItemContainer>
       ) : (
