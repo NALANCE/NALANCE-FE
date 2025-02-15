@@ -12,8 +12,8 @@ export const NotificationContainer = styled(motion.div)`
   height: ${(props) => props.$hasWidth && "6.1rem"};
 
   > img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: ${(props) => props.$hasWidth && "100%"};
+    height: ${(props) => props.$hasWidth && "100%"};
+    object-fit: ${(props) => props.$hasWidth && "contain"};
   }
 `;
