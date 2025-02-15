@@ -18,7 +18,7 @@ export const ChatWrapper = styled.div`
 export const ChatImgWrapper = styled.div`
   width: clamp(8.1rem, 28.24vw, 17rem);
 
-  > img {
+  > object {
     width: 100%;
     height: auto;
     object-fit: contain;
@@ -86,7 +86,7 @@ export const CatImgWrapper = styled.div`
   width: clamp(20rem, 60.81vw, 24rem);
   height: auto;
 
-  > img {
+  > object {
     width: 100%;
     height: auto;
     object-fit: contain;
