@@ -87,7 +87,7 @@ const TimeTodoModal = ({ onClose, onTimeUpdate, todoId, date, startTime, endTime
     <S.ModalOverlay>
       <S.ModalContainer>
         <S.SvgWrapper>
-          <img src={time_modal} alt="Time Modal Icon" style={{ zIndex: -1 }} />
+          {/* <img src={time_modal} alt="Time Modal Icon" style={{ zIndex: -1 }} /> */}
           <S.ModalContent>
             <S.Title>시간 설정</S.Title>
             <S.TimeWrapper>

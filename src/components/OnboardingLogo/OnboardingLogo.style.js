@@ -71,6 +71,10 @@ export const FishWrapper = styled(motion.div)`
 
   width: clamp(10.3rem, 36.38vw, 14.3rem);
 
+  background: none !important;
+  background-color: transparent !important;
+  will-change: background;
+
   > img {
     width: 100%;
     height: auto;

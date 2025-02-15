@@ -141,21 +141,19 @@ const User1 = () => {
         const inputValue = e.target.value;
         setPw(inputValue); 
         const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
-        const isValid = regex.test(inputValue); 
-        setPwValid(isValid);
-
-        if (isValid) {
-          setErrorPwMessage("");
-      } else {
-          setErrorPwMessage("비밀번호는 영문자, 숫자, 특수문자를 포함하여야 합니다.");
-      }
+        if (regex.test(inputValue)){
+          setPwValid(true);
+        }
+        else{
+          setPwValid(false);
+        }
     }
 
     const handlePwBlur = () => {
       setPwTouched(true);
     }
 
-      const handleCheckpw = (e) => {
+    const handleCheckpw = (e) => {
         setCheckpw(e.target.value);
     }
 
