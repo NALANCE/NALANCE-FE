@@ -1,20 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="none">
-  <g filter="url(#a)">
-    <rect width="36" height="36" x="4" y="2" fill="#fff" rx="10" shape-rendering="crispEdges"/>
-    <rect width="35.3" height="35.3" x="4.35" y="2.35" stroke="#555" stroke-width=".7" rx="9.65" shape-rendering="crispEdges"/>
-    <circle cx="22" cy="20" r="12" fill="#D9D9D9"/>
-    <circle cx="22" cy="20" r="3" fill="#fff"/>
-  </g>
-  <defs>
-    <filter id="a" width="44" height="44" x="0" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
-      <feOffset dy="2"/>
-      <feGaussianBlur stdDeviation="2"/>
-      <feComposite in2="hardAlpha" operator="out"/>
-      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_154_548"/>
-      <feBlend in="SourceGraphic" in2="effect1_dropShadow_154_548" result="shape"/>
-    </filter>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 36 36" style="width: 100%; height: 100%;">
+  <rect width="35.7" height="35.7" x=".15" y=".15" fill="#fff" rx="9.85"/>
+  <rect width="35.7" height="35.7" x=".15" y=".15" stroke="#555" stroke-width=".3" rx="9.85"/>
+  <circle cx="18" cy="18" r="12" fill="#D9D9D9"/>
+  <circle cx="18" cy="18" r="3" fill="#fff"/>
 </svg>
