@@ -33,6 +33,8 @@ export const CatContainer = styled.div`
 
   margin-top: 1rem;
 
+  width: clamp(1.2rem, 10vw, 4.2rem);
+
   div {
     position: absolute;
     top: 100%; // 이미지 아래에 뜨도록
@@ -41,15 +43,13 @@ export const CatContainer = styled.div`
     margin-top: 8px; // 이미지 ~ 말풍선 간격
 
     z-index: 999;
-
-    width: clamp(1.2rem, 10vw, 4.2rem);
   }
 
   @media all and (min-width: 769px) and (orientation: landscape) {
     width: ${(props) => (props.$monthly == false ? "9.2rem" : `clamp(1.2rem,10vw,4.2rem)`)};
   }
 
-  > img {
+  > object {
     width: 100%;
     height: auto;
     object-fit: contain;

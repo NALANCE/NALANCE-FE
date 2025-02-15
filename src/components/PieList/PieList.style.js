@@ -58,7 +58,7 @@ export const CatWrapper = styled.div`
 
   width: clamp(5.5rem, 21vw, 9.2rem);
 
-  > img {
+  > object {
     width: 100%;
     height: auto;
     object-fit: contain;
