@@ -27,6 +27,9 @@ const BarChart = ({ date, data }) => {
       ? categoryRates.filter((item) => item.ratio === Math.min(...categoryRates.map((item) => item.ratio)))
       : []; // 비어 있으면 빈 배열 처리
 
+  // 비율 모두 동일한지
+  const allEqual = categoryRates.every((item) => item.ratio === categoryRates[0]?.ratio);
+
   // console.log("smallestCategories", smallestCategories);
 
   return (
@@ -56,7 +59,7 @@ const BarChart = ({ date, data }) => {
                 </S.Bar>
               </S.BarWrapper>
 
-              {smallestCategories.some((category) => category.category === item.category) && (
+              {smallestCategories.some((category) => category.category === item.category) && !allEqual && (
                 <Warning date={date} $isWarning={true} $monthly={true} />
               )}
             </S.StyledItemWrapper>
