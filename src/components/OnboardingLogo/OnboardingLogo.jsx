@@ -25,18 +25,18 @@ const OnboardingLogo = () => {
       {/* 말풍선 */}
       <S.ChatContainer>
         <S.ChatImgWrapperLeft>
-          <img src={onboarding1} />
+          <object data={onboarding1} />
         </S.ChatImgWrapperLeft>
         <S.ChatWrapper>
           <S.ChatImgWrapperRight>
-            <img src={onboarding2} />
+            <object data={onboarding2} />
           </S.ChatImgWrapperRight>
         </S.ChatWrapper>
       </S.ChatContainer>
 
       {/* 로고 */}
       <S.LogoWrapper>
-        <img src={onboarding_logo} />
+        <object data={onboarding_logo} />
       </S.LogoWrapper>
 
       <S.CatWrapper>

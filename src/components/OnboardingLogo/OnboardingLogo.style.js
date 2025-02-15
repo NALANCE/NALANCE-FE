@@ -48,7 +48,7 @@ export const LogoWrapper = styled.div`
 
   margin-top: 3vh;
 
-  > img {
+  > object {
     width: 100%;
     height: auto;
     object-fit: contain;
