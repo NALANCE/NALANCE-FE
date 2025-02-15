@@ -15,7 +15,7 @@ export const ChartContainer = styled.div`
 `;
 
 export const ChartWrapper = styled.div`
-  width: clamp(32.4rem, 82vw, 40rem);
+  width: clamp(23.9rem, 82vw, 40rem);
   height: ${(props) => (props.height ? props.height : `clamp(32.4rem, 82vw, 40rem)`)};
 
   margin: 0px;

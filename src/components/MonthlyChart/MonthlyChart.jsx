@@ -48,7 +48,7 @@ const MonthlyChart = ({ date, data }) => {
             </S.IconWrapper>
             {pieIcon === pieActive ? (
               <S.ChartWrapper>
-                <PieChart date={date} width={"184px"} height={"184px"} $marginTop={"0"} label={false} data={data} />
+                <PieChart date={date} width={"184px"} height={"239px"} $marginTop={"0"} label={false} data={data} />
               </S.ChartWrapper>
             ) : (
               <S.ChartWrapper>
