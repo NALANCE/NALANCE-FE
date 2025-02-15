@@ -17,7 +17,7 @@ export const ContentWrap = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media all and (min-width: 769px) {
+  @media all and (min-width: 769px) and (orientation: landscape){
   padding-top: 142px;
   display: flex;
   flex-direction: column;
@@ -75,10 +75,10 @@ export const Input = styled.input`
 `;
 
 export const ErrorMessageWrap = styled.div`
- color: ${({ hasError }) => (hasError ? "#B3261E" : "white")};
+  color: ${({ hasError }) => (hasError ? "#B3261E" : "white")};
   font-family: "Freesentation", sans-serif;
   font-size: 11px;
-  font-weight: 300;
+  font-weight: 200px;
   letter-spacing: 0.04em;
   margin-top: 3px;
   
@@ -99,7 +99,7 @@ export const BtnContainer = styled.div`
 export const BottomGap = styled.div`
   margin-bottom: 260px;
 
-  @media all and (min-width: 769px) {
+  @media all and (min-width: 769px) and (orientation: landscape){
   margin-bottom: 205px;
 }
 `;
