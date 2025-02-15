@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Notification from "../common/Notification/Notification";
 
 export const WarningContainer = styled.div`
   display: flex;
@@ -55,5 +56,16 @@ export const CatContainer = styled.div`
     height: auto;
     object-fit: contain;
     pointer-events: none;
+  }
+`;
+
+export const StyledNotification = styled(Notification)`
+  width: auto;
+  height: 6.1rem;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 `;

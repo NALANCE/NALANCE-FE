@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import warningBalance from "assets/img/warningBalance.png";
 import warningImbalance from "assets/img/warningImbalance.png";
 
-import warningToday from "assets/icons/warningToday.svg";
-import warningPrev from "assets/icons/warningPrev.svg";
+import warningToday from "assets/img/warningToday.png";
+import warningPrev from "assets/img/warningPrev.png";
 
 const Warning = ({ date, $isWarning = false, balance, $monthly = false }) => {
   const [isClicked, setIsClicked] = useState(false); // 말풍선
@@ -59,7 +59,9 @@ const Warning = ({ date, $isWarning = false, balance, $monthly = false }) => {
           {/* 고양이 얼굴 */}
           <object data={sadCat} alt="Sad Cat Icon" />
 
-          {$isWarning && isClicked && <Notification img={isToday ? warningToday : warningPrev} isClicked={isClicked} />}
+          {$isWarning && isClicked && (
+            <Notification img={isToday ? warningToday : warningPrev} isClicked={isClicked} $hasWidth={true} />
+          )}
         </S.CatContainer>
       </S.WarningContainer>
     </>
