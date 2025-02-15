@@ -1,5 +1,5 @@
-import onboarding1 from "assets/icons/onboarding1.svg";
-import onboarding2 from "assets/icons/onboarding2.svg";
+import onboarding1 from "assets/img/onboarding1.png";
+import onboarding2 from "assets/img/onboarding2.png";
 import onboarding_logo from "assets/icons/onboarding_logo.svg";
 import onboarding_cat from "assets/icons/onboarding_cat.svg";
 import onboarding_fish from "assets/icons/onboarding_fish.svg";

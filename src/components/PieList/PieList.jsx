@@ -34,7 +34,7 @@ const PieList = ({ date, data, balance }) => {
           </S.NoItemWrapper>
 
           <S.CatWrapper>
-            <img src={angryCatBig} />
+            <object data={angryCatBig} />
           </S.CatWrapper>
 
           <S.PieChartWrapper>

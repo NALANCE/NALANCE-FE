@@ -57,7 +57,7 @@ const Warning = ({ date, $isWarning = false, balance, $monthly = false }) => {
 
         <S.CatContainer onClick={handleCatClicked} $monthly={$monthly}>
           {/* 고양이 얼굴 */}
-          <img src={sadCat} alt="Sad Cat Icon" />
+          <object data={sadCat} alt="Sad Cat Icon" />
 
           {$isWarning && isClicked && <Notification img={isToday ? warningToday : warningPrev} isClicked={isClicked} />}
         </S.CatContainer>
