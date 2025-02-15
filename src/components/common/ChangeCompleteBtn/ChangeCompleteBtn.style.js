@@ -16,4 +16,9 @@ export const Button = styled.button`
   &:hover {
     background-color: ${({ disabled, theme }) => (disabled ? theme.colors.Light : theme.colors.btnDark)};
   }
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    width: 153px; /* 화면이 커져도 고정된 크기 */
+    height: 77px;
+  }
 `;

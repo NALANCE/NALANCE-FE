@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import emailValidator from "email-validator";
-import axios from "axios";
+import axiosInstance from "apis/defaultAxios";
 import Topbar from "components/Topbar/Topbar";
 import ChangeCompleteBtn from "components/common/ChangeCompleteBtn/ChangeCompleteBtn";
 import originalCat from "assets/icons/originalCat.svg";
@@ -17,14 +17,12 @@ const ModEmail = () => {
   const [errorMessage2, setErrorMessage2] = useState("");
 
   useEffect(() => {
-    // 토큰을 localStorage에 저장
-    localStorage.setItem("accessToken", "your-access-token");
-    localStorage.setItem("refreshToken", "your-refresh-token");
+
 
     const fetchCurrentEmail = async () => {
       try {
         const accessToken = localStorage.getItem("accessToken");
-        const response = await axios.get("/api/v0/members/me", {
+        const response = await axiosInstance.get("/api/v0/members/me", {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -57,7 +55,7 @@ const ModEmail = () => {
       return;
     }
     try {
-      const response = await axios.post("/api/v0/emails/send-verification", {
+      const response = await axiosInstance.post("/api/v0/emails/send-verification", {
         email,
       });
       if (response.data.isSuccess) {
@@ -79,7 +77,7 @@ const ModEmail = () => {
       return;
     }
     try {
-      const response = await axios.post("/api/v0/emails/verification", {
+      const response = await axiosInstance.post("/api/v0/emails/verification", {
         email,
         code: verificationCode,
       });
@@ -108,7 +106,7 @@ const ModEmail = () => {
     }
     try {
       const accessToken = localStorage.getItem("accessToken");
-      const response = await axios.patch(
+      const response = await axiosInstance.patch(
         "/api/v0/members/email",
         { email },
         {
@@ -138,7 +136,7 @@ const ModEmail = () => {
 
   return (
     <>
-      <Topbar pageTitle="이메일 수정" />
+      <Topbar pageTitle="아이디 수정" />
       <S.Container>
         <S.CurrentEmailContainer>
           <S.Icon src={originalCat} alt="Icon" />
@@ -151,7 +149,7 @@ const ModEmail = () => {
             type="email"
             value={email}
             onChange={handleEmailChange}
-            placeholder="새 이메일을 입력하세요"
+            placeholder="이메일"
           />
           <ControlBtn
             text={isCodeSent ? "재전송" : "전송"}
@@ -175,7 +173,7 @@ const ModEmail = () => {
                 setErrorMessage2("");
               }
             }}
-            placeholder="인증번호를 입력하세요"
+            placeholder="인증번호"
           />
           <ControlBtn
             text="확인"

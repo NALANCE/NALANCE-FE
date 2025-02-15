@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "apis/defaultAxios";
 import Topbar from "components/Topbar/Topbar";
 import ChangeCompleteBtn from "components/common/ChangeCompleteBtn/ChangeCompleteBtn";
 import passEye from "assets/icons/passEye.svg";
@@ -12,14 +12,6 @@ const ModPass = () => {
   const [errorMessage2, setErrorMessage2] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
-
-  // Access Token과 Refresh Token을 localStorage에 설정
-  useEffect(() => {
-    localStorage.setItem("accessToken", "your-access-token"); // Access Token 설정
-    localStorage.setItem("refreshToken", "your-refresh-token"); // Refresh Token 설정
-    console.log("Access Token과 Refresh Token이 설정되었습니다.");
-  }, []);
-
 
   const validatePassword = (password) => {
     const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
@@ -37,7 +29,7 @@ const ModPass = () => {
     } else {
       try {
         const accessToken = localStorage.getItem("accessToken"); // Access Token 가져오기
-        const response = await axios.post(
+        const response = await axiosInstance.post(
           "/api/v0/members/validate-password",
           { password: value },
           {
@@ -79,7 +71,7 @@ const ModPass = () => {
   const handlePasswordChange = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken"); // Access Token 가져오기
-      const response = await axios.patch(
+      const response = await axiosInstance.patch(
         "/api/v0/members/password",
         {
           password: newPassword,
@@ -119,7 +111,7 @@ const ModPass = () => {
           <S.InputWrapper>
             <S.Input
               type={showPassword ? "text" : "password"}
-              placeholder="새 비밀번호"
+              placeholder="비밀번호"
               value={newPassword}
               onChange={handleNewPasswordChange}
               hasError={!!errorMessage1}
@@ -139,7 +131,7 @@ const ModPass = () => {
           <S.InputWrapper>
             <S.Input
               type="password"
-              placeholder="새 비밀번호 확인"
+              placeholder="비밀번호 확인"
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
               hasError={!!errorMessage2}
