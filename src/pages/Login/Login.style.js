@@ -75,10 +75,10 @@ export const Input = styled.input`
 `;
 
 export const ErrorMessageWrap = styled.div`
- color: ${({ hasError }) => (hasError ? "#B3261E" : "white")};
+  color: ${({ hasError }) => (hasError ? "#B3261E" : "white")};
   font-family: "Freesentation", sans-serif;
   font-size: 11px;
-  font-weight: 300;
+  font-weight: 200px;
   letter-spacing: 0.04em;
   margin-top: 3px;
   
