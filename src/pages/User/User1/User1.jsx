@@ -351,7 +351,6 @@ const User1 = () => {
                   type={showPassword ? "text" : "password"}
                   className = "input"
                   placeholder = '비밀번호'
-                  iconUrl={showPassword? {eva_eye_on}:{eva_eye_off}}
                   value = {pw}
                   onChange = {handlePw}
                   onBlur = {handlePwBlur}

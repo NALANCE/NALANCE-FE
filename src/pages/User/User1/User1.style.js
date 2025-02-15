@@ -60,11 +60,6 @@ export const InputWrap = styled.div`
   }
   border: ${({ hasError }) => (hasError ? "1px solid  #B3261E" : "1px solid transparent")};
 
-  input[type="password"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-  }
 `;
 
 export const Input = styled.input`
@@ -77,6 +72,11 @@ export const Input = styled.input`
 
   &::placeholder {
     color: #B6B6B6;
+  }
+
+  &::-ms-reveal,
+  &::-ms-clear {
+    display: none;
   }
 
 `;
