@@ -17,7 +17,7 @@ export const ContentWrap = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media all and (min-width: 769px) {
+  @media all and (min-width: 769px) and (orientation: landscape){
   padding-top: 142px;
   display: flex;
   flex-direction: column;
@@ -99,7 +99,7 @@ export const BtnContainer = styled.div`
 export const BottomGap = styled.div`
   margin-bottom: 260px;
 
-  @media all and (min-width: 769px) {
+  @media all and (min-width: 769px) and (orientation: landscape){
   margin-bottom: 205px;
 }
 `;
