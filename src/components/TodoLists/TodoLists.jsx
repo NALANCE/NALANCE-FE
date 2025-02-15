@@ -119,7 +119,7 @@ const TodoLists = ({ todos, onTodoTextChange, onTimeUpdate, category, date, onDe
           
           {/* ✅ formattedDuration 값 활용 */}
           <S.Time onClick={() => openTimeModal(index)}>
-            {todo.formattedDuration || '0H00M'}
+            {todo.formattedDuration || "0M"}
           </S.Time>
         </S.ListItem>
       ))}
