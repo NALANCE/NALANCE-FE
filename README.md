@@ -10,9 +10,9 @@
 
 <br/>
   
-<div style="display: flex; justify-content: center; gap: 10px; width:100%;">
-  <img src="https://github.com/user-attachments/assets/caed5472-d266-4170-956f-d6ccead1d8f4" style="width: 45%;" />
-  <img src="https://github.com/user-attachments/assets/fce7fbf3-175e-4d20-9f80-d9f2b52de549" style="width: 45%;" />
+<div style="width: 80%; margin: 0 auto; display: flex; justify-content: space-between;">
+  <img src="https://github.com/user-attachments/assets/caed5472-d266-4170-956f-d6ccead1d8f4" style="width: 48%;" />
+  <img src="https://github.com/user-attachments/assets/fce7fbf3-175e-4d20-9f80-d9f2b52de549" style="width: 48%;" />
 </div>
 
 <br/>
