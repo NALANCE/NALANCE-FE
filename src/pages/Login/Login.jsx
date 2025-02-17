@@ -86,7 +86,7 @@ const Login = () => {
         </S.ContentWrap>
 
         <S.BtnContainer>
-          <LoginBtn text="로그인" link="/Todo" notAllow={true} onClickConfirmButton={handleLoginClick} />
+          <LoginBtn text="로그인" link="/todo" notAllow={true} onClickConfirmButton={handleLoginClick} />
         </S.BtnContainer>
         <S.BottomGap />
         <BottomLogo />
