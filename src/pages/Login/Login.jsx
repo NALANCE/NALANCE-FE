@@ -19,7 +19,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("nothing");
   const [loading, setLoading] = useState(false);
   const [haserror, sethaserror] = useState(false);
-  const [buttonClick, setbuttonClick]=useState(false);
+  const [buttonClick, setbuttonClick] = useState(false);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -50,7 +50,7 @@ const Login = () => {
         localStorage.setItem("accessToken", response.data.result.accessToken);
         localStorage.setItem("refreshToken", response.data.result.refreshToken);
 
-        navigate("/Todo");
+        navigate("/todo");
       } else {
         console.log("login failed", response);
         sethaserror(true);
@@ -82,13 +82,13 @@ const Login = () => {
             <S.Input type="password" className="input" placeholder="비밀번호" value={pw} onChange={handlePw} />
           </S.InputWrap>
 
-          <S.ErrorMessageWrap hasError={haserror&&buttonClick}>{errorMessage}</S.ErrorMessageWrap>
+          <S.ErrorMessageWrap hasError={haserror && buttonClick}>{errorMessage}</S.ErrorMessageWrap>
         </S.ContentWrap>
 
         <S.BtnContainer>
           <LoginBtn text="로그인" link="/Todo" notAllow={true} onClickConfirmButton={handleLoginClick} />
         </S.BtnContainer>
-        <S.BottomGap/>
+        <S.BottomGap />
         <BottomLogo />
       </S.Container>
     </>
