@@ -109,6 +109,7 @@ const User1 = () => {
         console.log(userEmail);
         if(emailValid){
           try{
+            console.log("요청 데이터 확인: ",userEmail);
             const response = await axiosInstance.post("/api/v0/emails/send-verification",userEmail);
             console.log('send-verification success', response);
             setCodeSentValid(true);
@@ -121,6 +122,8 @@ const User1 = () => {
           }
           catch(error){
             console.error('send-verification failed', error);
+            setEmailValid(false);
+            setErrorEmailMessage("이미 존재하는 이메일입니다.");
             setCodeSentValid(false);
           }
           finally{
