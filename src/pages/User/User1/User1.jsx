@@ -241,13 +241,15 @@ const User1 = () => {
 
 
       useEffect( ()=> {
-        if (pwTouched&& !pwValid){
-          setErrorPwMessage("비밀번호는 영문자, 숫자, 특수문자를 포함하여야 합니다.");
+        if(pwTouched){
+          if(pwValid){
+            setErrorPwMessage("");
+          }
+          else{
+            setErrorPwMessage("비밀번호는 영문자, 숫자, 특수문자를 포함하여야 합니다.");
+          }
         }
-        else{
-          setErrorPwMessage("");
-        }
-    }, [pw, pwValid]);
+    }, [pw, pwValid, pwTouched]);
 
       useEffect( ()=> {
         if(pwcheckTouched){
