@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const TopIcons = styled.div`
   display: none; /* 기본적으로 숨김 */
@@ -25,6 +25,8 @@ export const BackBtn = styled.button`
 
   background: none;
   border: none;
+
+  cursor: pointer;
 
   img {
     width: 3rem;
