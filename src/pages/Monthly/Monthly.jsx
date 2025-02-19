@@ -42,24 +42,26 @@ const Monthly = () => {
   }, [date]);
 
   return (
-    <S.DailyContainer className="ImgContainer">
-      <S.ItemContainer>
-        <S.ShowMonthWrapper>
-          <ShowMonth className="ShowMonth" />
-        </S.ShowMonthWrapper>
+    <>
+      <S.DailyContainer className="ImgContainer">
+        <S.ItemContainer>
+          <S.ShowMonthWrapper>
+            <ShowMonth className="ShowMonth" />
+          </S.ShowMonthWrapper>
 
-        <S.CalendarWrapper>
-          <Calendar date={date} onDateChange={handleDateChange} data={data} className="Calendar" />
-        </S.CalendarWrapper>
-      </S.ItemContainer>
+          <S.CalendarWrapper>
+            <Calendar date={date} onDateChange={handleDateChange} data={data} className="Calendar" />
+          </S.CalendarWrapper>
+        </S.ItemContainer>
 
-      <S.MonthlyChartWrapper>
-        {/* data가 null이 아니고 존재할 때만 MonthlyChart 렌더링 */}
-        {data ? <MonthlyChart date={date} data={data} className="MonthlyChart" /> : <SkeletonCircle />}
-      </S.MonthlyChartWrapper>
+        <S.MonthlyChartWrapper>
+          {/* data가 null이 아니고 존재할 때만 MonthlyChart 렌더링 */}
+          {data ? <MonthlyChart date={date} data={data} className="MonthlyChart" /> : <SkeletonCircle />}
+        </S.MonthlyChartWrapper>
+      </S.DailyContainer>
 
       <ImgSave />
-    </S.DailyContainer>
+    </>
   );
 };
 
