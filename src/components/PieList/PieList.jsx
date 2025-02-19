@@ -2,7 +2,7 @@ import { DAILY } from "../../../public/data/dailyDummy.js";
 import Warning from "components/Warning/Warning";
 import PieChart from "components/PieChart/PieChart";
 import * as S from "./PieList.style.js";
-import angryCatBig from "assets/icons/angryCatBig.svg";
+import angryCatBig from "assets/img/angryCatBig.png";
 import { useEffect, useState } from "react";
 
 import * as S_ from "../PieChart/PieChart.style.js";
@@ -34,7 +34,7 @@ const PieList = ({ date, data, balance }) => {
           </S.NoItemWrapper>
 
           <S.CatWrapper>
-            <object data={angryCatBig} />
+            <img src={angryCatBig} />
           </S.CatWrapper>
 
           <S.PieChartWrapper>
