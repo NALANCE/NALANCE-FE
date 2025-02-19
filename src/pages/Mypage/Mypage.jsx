@@ -8,7 +8,8 @@ const Mypage = () => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const handleLogout = () => {
- 
+
+    localStorage.removeItem("accessToken"); // 로컬 스토리지에서 토큰 삭제
     navigate("/"); // 로그아웃 후 로그인 페이지로 이동
   };
 
