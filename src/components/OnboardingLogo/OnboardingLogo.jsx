@@ -46,7 +46,7 @@ const OnboardingLogo = () => {
           animate={{ scale: 1, rotateZ: 360 }}
           transition={{ delay: 0.5, duration: 1, type: "spring", stiffness: 100, damping: 20 }}
         >
-          <img src={onboarding_fish} />
+          <img src={onboarding_fish} alt="fish" />
         </S.FishWrapper>
 
         <S.CatImgWrapper>

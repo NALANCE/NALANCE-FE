@@ -30,13 +30,13 @@ const ShowDate = ({ date, onDateChange }) => {
     <>
       <S.DateContainer>
         <button onClick={() => changeDate(-1)}>
-          <img src={backBtn} />
+          <img src={backBtn} alt="backBtn" />
         </button>
 
         <p>{formattedDate}</p>
 
         <button onClick={() => changeDate(+1)}>
-          <img src={nextBtn} />
+          <img src={nextBtn} alt="nextBtn" />
         </button>
       </S.DateContainer>
     </>

@@ -36,7 +36,7 @@ const Navbar = () => {
             <img src={navIcon}></img>
           </S.FishIcon>
           <S.LogoIcon>
-            <img src={navLogo}></img>
+            <img src={navLogo} alt="logo"></img>
           </S.LogoIcon>
         </S.TopContainer>
 
@@ -44,7 +44,7 @@ const Navbar = () => {
         <S.SidebarContainer $isOpen={isSidebarOpen}>
           <S.SidebarContent $isOpen={isSidebarOpen}>
             <S.FishNavIcon onClick={toggleSidebar}>
-              <img src={navIcon}></img>
+              <img src={navIcon} alt="navicon"></img>
             </S.FishNavIcon>
 
             {/* 메뉴 */}

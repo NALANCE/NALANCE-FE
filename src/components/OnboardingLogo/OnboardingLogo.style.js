@@ -18,9 +18,9 @@ export const ChatWrapper = styled.div`
 export const ChatImgWrapper = styled.div`
   width: clamp(8.1rem, 28.24vw, 17rem);
 
-  > object {
+  object {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
   }
 `;
@@ -77,7 +77,7 @@ export const FishWrapper = styled(motion.div)`
 
   > img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
   }
 `;
