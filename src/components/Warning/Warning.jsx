@@ -1,4 +1,5 @@
-import sadCat from "assets/icons/sadCat.svg";
+import sadCat from "assets/img/sadCatBig.png";
+import defaultCat from "assets/img/defaultCatBig.png";
 import Notification from "components/common/Notification/Notification";
 import * as S from "./Warning.style";
 import { useEffect, useState } from "react";
@@ -57,7 +58,7 @@ const Warning = ({ date, $isWarning = false, balance, $monthly = false }) => {
 
         <S.CatContainer onClick={handleCatClicked} $monthly={$monthly}>
           {/* 고양이 얼굴 */}
-          <object data={sadCat} alt="Sad Cat Icon" />
+          <img src={balance ? defaultCat : sadCat} alt="Cat Icon" />
 
           {$isWarning && isClicked && (
             <Notification img={isToday ? warningToday : warningPrev} isClicked={isClicked} $hasWidth={true} />

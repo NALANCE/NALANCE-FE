@@ -51,11 +51,10 @@ export const CatContainer = styled.div`
     width: ${(props) => (props.$monthly == false ? "9.2rem" : `clamp(1.2rem,10vw,4.2rem)`)};
   }
 
-  > object {
+  > img {
     width: 100%;
     height: auto;
     object-fit: contain;
-    pointer-events: none;
   }
 `;
 
