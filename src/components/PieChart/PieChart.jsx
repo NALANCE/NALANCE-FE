@@ -19,7 +19,7 @@ const PieChart = ({ date, width, height, $marginTop, label = true, data = [] }) 
   // 데이터를 담기 위해
   //const [data, setData] = useState(DAILY.result.data);
 
-  if (!data) console.log("데이터가 없음");
+  // if (!data) console.log("데이터가 없음");
 
   // 비율이 0 이상인 데이터
   const filteredData = data
