@@ -1,5 +1,5 @@
 import sadCat from "assets/img/sadCatBig.png";
-import defaultCat from "assets/img/defaultCatBig.png";
+import defaultCat from "assets/img/orginalCatBig.png";
 
 import Notification from "components/common/Notification/Notification";
 import * as S from "./Warning.style";
