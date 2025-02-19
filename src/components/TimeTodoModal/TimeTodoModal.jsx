@@ -6,7 +6,7 @@ import ControlBtn from 'components/common/ControlBtn/ControlBtn';
 import axiosInstance from "apis/defaultAxios";
 
 const TimeTodoModal = ({ onClose, onTimeUpdate, todoId, date, startTime, endTime, fetchTodos, categoryId }) => {
-  console.log("🧐 TimeTodoModal이 받은 todoId:", todoId);
+  // console.log("🧐 TimeTodoModal이 받은 todoId:", todoId);
 
   // startTime과 endTime이 존재하면 ":" 기준으로 분리하여 시(hour)와 분(minute) 추출
   const extractTime = (time) => {
@@ -57,7 +57,7 @@ const TimeTodoModal = ({ onClose, onTimeUpdate, todoId, date, startTime, endTime
       return;
     }
   
-    console.log(`✅ PATCH 요청: /api/v0/todos/${todoId}`, { newStartTime, newEndTime, date });
+    // console.log(`✅ PATCH 요청: /api/v0/todos/${todoId}`, { newStartTime, newEndTime, date });
   
     try {
       // 🟢 서버에 시간 업데이트 요청 (PATCH)
@@ -70,7 +70,7 @@ const TimeTodoModal = ({ onClose, onTimeUpdate, todoId, date, startTime, endTime
         headers: { Authorization: `Bearer ${accessToken}` },
       });
   
-      console.log("✅ Time update 성공!");
+      // console.log("✅ Time update 성공!");
   
       // 🔥 최신 Todo 데이터를 다시 가져오기 (GET 요청 실행)
       await fetchTodos(date, categoryId);

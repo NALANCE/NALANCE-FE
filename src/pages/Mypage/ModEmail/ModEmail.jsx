@@ -27,7 +27,7 @@ const ModEmail = () => {
             Authorization: `Bearer ${accessToken}`,
           },
         });
-        console.log("이메일 가져오기 성공:", response.data.result.email);
+        // console.log("이메일 가져오기 성공:", response.data.result.email);
         setCurrentEmail(response.data.result.email);
       } catch (error) {
         console.error("이메일 가져오기 실패:", error);
@@ -61,7 +61,7 @@ const ModEmail = () => {
       if (response.data.isSuccess) {
         setErrorMessage1("");
         setIsCodeSent(true);
-        console.log("인증번호 전송 성공:", response.data.message);
+        // console.log("인증번호 전송 성공:", response.data.message);
       } else {
         setErrorMessage1("인증번호 전송 실패: " + response.data.message);
       }
@@ -84,7 +84,7 @@ const ModEmail = () => {
       if (response.data.isSuccess) {
         setErrorMessage2("");
         setIsVerified(true);
-        console.log("인증 성공:", response.data.message);
+        // console.log("인증 성공:", response.data.message);
       } else {
         setErrorMessage2("인증 실패: " + response.data.message);
       }
@@ -124,7 +124,7 @@ const ModEmail = () => {
         setIsVerified(false);
         setErrorMessage1("");
         setErrorMessage2("");
-        console.log("이메일 변경 성공:", response.data.message);
+        // console.log("이메일 변경 성공:", response.data.message);
       } else {
         alert("이메일 변경 실패: " + response.data.message);
       }
