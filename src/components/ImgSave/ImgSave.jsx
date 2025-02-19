@@ -19,7 +19,7 @@ const ImgSave = () => {
   };
   return (
     <S.BtnWrapper>
-      <img src={imgSave} onClick={onClickImgBtn}></img>
+      <img src={imgSave} onClick={onClickImgBtn} alt="imgSave"></img>
     </S.BtnWrapper>
   );
 };
