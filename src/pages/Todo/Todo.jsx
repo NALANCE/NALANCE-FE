@@ -249,58 +249,60 @@ const Todo = () => {
   };
 
   return (
-    <S.DailyContainer className="ImgContainer">
-      <S.DateWrapper>
-        <ShowDate date={date} onDateChange={handleDateChange} />
-      </S.DateWrapper>
-      <S.DataContainer>
-        {isLoading && <p>Loading...</p>}
-        <S.TodoCategoryContainer>
-          {categories.map((category) => (
-            <div key={category.categoryId}>
-              <TodoCategoryBtn
-                defaultValue={category.categoryName}
-                color={category.color}
-                onAddTodo={() => handleAddTodoDirectly(category.categoryName)}
-              />
-              <TodoLists
-                todos={todos[category.categoryName] || []}
-                onTodoTextChange={(index, newText, status) =>
-                  handleTodoTextChange(
-                    category.categoryName,
-                    index,
-                    newText,
-                    status,
-                    todos[category.categoryName][index]?.todoId
-                  )
-                }
-                onDeleteTodo={deleteTodo}
-                category={category}
-                date={date}
-                onTimeUpdate={handleTimeUpdate}
-                fetchTodos={fetchTodos}
-              />
-            </div>
-          ))}
-        </S.TodoCategoryContainer>
+    <>
+      <S.DailyContainer className="ImgContainer">
+        <S.DateWrapper>
+          <ShowDate date={date} onDateChange={handleDateChange} />
+        </S.DateWrapper>
+        <S.DataContainer>
+          {isLoading && <p>Loading...</p>}
+          <S.TodoCategoryContainer>
+            {categories.map((category) => (
+              <div key={category.categoryId}>
+                <TodoCategoryBtn
+                  defaultValue={category.categoryName}
+                  color={category.color}
+                  onAddTodo={() => handleAddTodoDirectly(category.categoryName)}
+                />
+                <TodoLists
+                  todos={todos[category.categoryName] || []}
+                  onTodoTextChange={(index, newText, status) =>
+                    handleTodoTextChange(
+                      category.categoryName,
+                      index,
+                      newText,
+                      status,
+                      todos[category.categoryName][index]?.todoId
+                    )
+                  }
+                  onDeleteTodo={deleteTodo}
+                  category={category}
+                  date={date}
+                  onTimeUpdate={handleTimeUpdate}
+                  fetchTodos={fetchTodos}
+                />
+              </div>
+            ))}
+          </S.TodoCategoryContainer>
 
-        <S.Line />
+          <S.Line />
 
-        <S.ChartContainer>
-          {isDailyLoading ? (
-            <ChartSkeleton />
-          ) : error ? (
-            <p>🥲데이터를 가져오는 중 오류 발생</p>
-          ) : (
-            <div>
-              <PieList date={dailyDate} data={data} balance={balance} />
-            </div>
-          )}
-        </S.ChartContainer>
-      </S.DataContainer>
+          <S.ChartContainer>
+            {isDailyLoading ? (
+              <ChartSkeleton />
+            ) : error ? (
+              <p>🥲데이터를 가져오는 중 오류 발생</p>
+            ) : (
+              <div>
+                <PieList date={dailyDate} data={data} balance={balance} />
+              </div>
+            )}
+          </S.ChartContainer>
+        </S.DataContainer>
+      </S.DailyContainer>
 
       <ImgSave />
-    </S.DailyContainer>
+    </>
   );
 };
 

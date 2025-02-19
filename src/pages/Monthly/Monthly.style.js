@@ -14,7 +14,7 @@ export const DailyContainer = styled.div`
     gap: 13.5rem;
     justify-content: center;
     align-items: center;
-    margin-top: -5vh;
+    /* margin-top: -5vh; */
   }
 `;
 
