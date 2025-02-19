@@ -62,7 +62,7 @@ const Todo = () => {
       return;
     }
 
-    console.log("📅 fetchTodos 실행 - 전달된 date 값:", selectedDate);
+    // console.log("📅 fetchTodos 실행 - 전달된 date 값:", selectedDate);
 
     setIsLoading(true);
     try {
@@ -92,7 +92,7 @@ const Todo = () => {
         })),
       }));
 
-      console.log("📌 response.data.result.todoList:", todoList);
+      // console.log("📌 response.data.result.todoList:", todoList);
     } catch (error) {
       console.error("🚨 TODO 데이터 가져오기 실패:", error);
     } finally {
@@ -157,7 +157,7 @@ const Todo = () => {
           }
         );
 
-        console.log("✅ 새 Todo 생성 성공. ID 없음 -> GET 요청 실행");
+        // console.log("✅ 새 Todo 생성 성공. ID 없음 -> GET 요청 실행");
 
         // 🔥 새로 생성된 todoId를 GET 요청으로 가져오기
         await fetchTodos(date, category.categoryId);
@@ -174,7 +174,7 @@ const Todo = () => {
           }
         );
 
-        console.log("✅ Todo 수정 성공:", response.data);
+        // console.log("✅ Todo 수정 성공:", response.data);
         await fetchTodos(date, category.categoryId);
 
         // 🔥 기존 Todo 상태 업데이트
@@ -201,7 +201,7 @@ const Todo = () => {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
 
-      console.log("✅ Todo 삭제 성공:", todoId);
+      // console.log("✅ Todo 삭제 성공:", todoId);
 
       // 🔥 UI에서도 즉시 삭제
       setTodos((prevTodos) => {
@@ -231,7 +231,7 @@ const Todo = () => {
         }
       );
 
-      console.log("✅ Time update 성공:", response.data);
+      // console.log("✅ Time update 성공:", response.data);
 
       // 프론트엔드 상태 업데이트
       setTodos((prevTodos) => {

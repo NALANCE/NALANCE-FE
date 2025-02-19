@@ -48,7 +48,7 @@ const TodoLists = ({ todos, onTodoTextChange, onTimeUpdate, category, date, onDe
       });
   
       if (response.data.isSuccess) {
-        console.log("✅ Todo 상태 변경 성공:", response.data);
+        // console.log("✅ Todo 상태 변경 성공:", response.data);
   
         // 🔥 UI 상태 업데이트 (최신 데이터 반영)
         fetchTodos(date, category.categoryId);
