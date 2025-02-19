@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 // 아래에서 위로 슬라이드 애니메이션
 const slideUp = keyframes`
@@ -20,7 +20,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  z-index: 999;
+  z-index: 1001;
 `;
 
 export const ModalContainer = styled.div`
@@ -53,7 +53,7 @@ export const SvgWrapper = styled.div`
 `;
 
 export const ModalContent = styled.div`
-   position: relative; /* absolute 대신 relative로 변경 */
+  position: relative; /* absolute 대신 relative로 변경 */
   width: 100%;
   min-height: 200px; /* 최소 높이를 확보 */
   display: flex;
@@ -80,7 +80,6 @@ export const TimeWrapper = styled.div`
 export const TimeTitle = styled.h3`
   font-size: 16px;
   width: 40%;
-  
 `;
 
 export const TimeInputWrapper = styled.div`
@@ -103,13 +102,12 @@ export const TimeInputWrapper = styled.div`
   }
 `;
 
-
 export const Input = styled.input`
   width: 60px; /* 너비를 줄임 */
-  border: none; 
-  background: none; 
-  font-size: 30px; 
-  text-align: center; 
+  border: none;
+  background: none;
+  font-size: 30px;
+  text-align: center;
   &:focus {
     outline: none; /* 기본 outline 제거 */
   }
@@ -121,4 +119,3 @@ export const ErrorText = styled.p`
   margin-top: 15px;
   margin-bottom: 7px;
 `;
-

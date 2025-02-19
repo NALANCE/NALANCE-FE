@@ -42,7 +42,7 @@ export const CatContainer = styled.div`
     top: 100%; // 이미지 아래에 뜨도록
     left: 50%;
     transform: translateX(-50%) !important;
-    margin-top: 8px; // 이미지 ~ 말풍선 간격
+    margin-top: 3px; // 이미지 ~ 말풍선 간격
 
     z-index: 999;
   }
@@ -51,11 +51,10 @@ export const CatContainer = styled.div`
     width: ${(props) => (props.$monthly == false ? "9.2rem" : `clamp(1.2rem,10vw,4.2rem)`)};
   }
 
-  > object {
+  > img {
     width: 100%;
     height: auto;
     object-fit: contain;
-    pointer-events: none;
   }
 `;
 
