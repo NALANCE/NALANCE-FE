@@ -7,7 +7,7 @@ export const DailyContainer = styled.div`
 
   position: relative;
 
-  height: calc(100dvh - 190px);
+  /* height: calc(100dvh - 190px); */
 
   @media all and (min-width: 769px) and (orientation: landscape) {
     flex-direction: row;
