@@ -65,6 +65,8 @@ export const ChartWrapper = styled.div`
   position: relative;
   z-index: 99;
 
+  overflow: hidden;
+
   @media all and (min-width: 769px) and (orientation: landscape) {
     width: 17vw;
     height: 17vw;
