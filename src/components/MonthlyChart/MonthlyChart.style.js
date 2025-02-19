@@ -54,9 +54,9 @@ export const ChartWrapper = styled.div`
   width: 200px;
   height: 200px;
 
-  align-content: center;
+  /* align-content: center; */
   flex: 1;
-  text-align: -webkit-center;
+  /* text-align: -webkit-center; */
 
   display: flex;
   align-items: center;
