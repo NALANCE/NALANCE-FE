@@ -11,13 +11,31 @@ import PieChart from "components/PieChart/PieChart";
 import PieList from "components/PieList/PieList";
 import ChartSkeleton from "components/Skeleton/ChartSkeleton";
 
+import { getDailyData } from "apis/daily/getDailyData";
+
 const Todo = () => {
   const [categories, setCategories] = useState([]);
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [todos, setTodos] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
+  const [pieData, setPieData] = useState(null); // PieList에 전달할 데이터터
+
   const { date: dailyDate, handleDateChange, data, balance, error, isLoading: isDailyLoading } = useDailyData(); // 하루비율
+
+  useEffect(() => {
+    const getDataByTodos = async () => {
+      try {
+        const data = await getDailyData(date); // 데이터 새로 가져오기
+        setPieData(data); // 데이터 저장
+      } catch (err) {
+        setError("새로운 데이터 가져오는 데 실패함.");
+        console.error(err);
+      }
+    };
+
+    getDataByTodos();
+  }, [todos]); // todos 변경될 때마다 호출
 
   useEffect(() => {
     setDate(dailyDate);
@@ -294,7 +312,7 @@ const Todo = () => {
               <p>🥲데이터를 가져오는 중 오류 발생</p>
             ) : (
               <div>
-                <PieList date={dailyDate} data={data} balance={balance} />
+                <PieList date={dailyDate} data={pieData} balance={balance} todos={todos} />
               </div>
             )}
           </S.ChartContainer>
