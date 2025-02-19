@@ -64,7 +64,7 @@ axiosInstance.interceptors.response.use(
           // refreshToken도 만료된 경우, 사용자에게 재로그인 요청
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
-          window.location.href = "/login";
+          // window.location.href = "/login";
         }
       }
     }
