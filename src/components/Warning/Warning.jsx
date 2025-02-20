@@ -11,7 +11,7 @@ import warningImbalance from "assets/img/warningImbalance.png";
 import warningToday from "assets/img/warningToday.png";
 import warningPrev from "assets/img/warningPrev.png";
 
-const Warning = ({ date, $isWarning = false, balance, $monthly = false }) => {
+const Warning = ({ date, $isWarning = false, balance, $monthly = false, $margin = true }) => {
   const [isClicked, setIsClicked] = useState(false); // 말풍선
   const [isToday, setIsToday] = useState(false);
 
