@@ -54,3 +54,7 @@ export const StyledCategoryItem = styled(S.CategoryItem)`
   width: 100px;
   text-align: start;
 `;
+
+export const StyledPercentage = styled(StyledCategoryItem)`
+  margin-left: 5px;
+`;

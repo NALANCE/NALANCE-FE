@@ -33,7 +33,8 @@ export const CatContainer = styled.div`
   position: relative;
   display: inline-block;
 
-  margin-top: 1rem;
+  /* margin-top: 1rem;/ */
+  margin-top: ${(props) => (props.$margin ? "1rem" : "0px")};
 
   width: clamp(1.2rem, 10vw, 4.2rem);
 

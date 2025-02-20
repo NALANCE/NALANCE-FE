@@ -55,12 +55,12 @@ const BarChart = ({ date, data }) => {
 
               <S.BarWrapper>
                 <S.Bar width={`${item.ratio}%`} style={{ backgroundColor: item.color }}>
-                  <S.StyledCategoryItem>{item.ratio.toFixed(1)}%</S.StyledCategoryItem>
+                  <S.StyledPercentage>{item.ratio.toFixed(1)}%</S.StyledPercentage>
                 </S.Bar>
               </S.BarWrapper>
 
               {smallestCategories.some((category) => category.category === item.category) && !allEqual && (
-                <Warning date={date} $isWarning={true} $monthly={true} />
+                <Warning date={date} $isWarning={true} $monthly={true} $margin={false} />
               )}
             </S.StyledItemWrapper>
           ))}
