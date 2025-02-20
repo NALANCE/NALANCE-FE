@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 import BottomLogo from "components/BottomLogo/BottomLogo";
 import PageTitle from "components/common/PageTitle/PageTitle";
@@ -15,7 +14,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
 
-  const [notAllow, setNotAllow] = useState(true);
   const [errorMessage, setErrorMessage] = useState("nothing");
   const [loading, setLoading] = useState(false);
   const [haserror, sethaserror] = useState(false);
@@ -30,20 +28,20 @@ const Login = () => {
   };
 
   const handleLoginClick = async (e) => {
-    console.log("로그인 클릭!");
+    {/*console.log("로그인 클릭!");*/}
     setbuttonClick(true);
 
     setLoading(true);
-    console.log("setLoading 이후");
+    {/*console.log("setLoading 이후");*/}
     const userLogin = {
       email: email,
       password: pw,
     };
 
-    console.log(userLogin);
+    {/*console.log(userLogin);*/}
     try {
       const response = await axiosInstance.post("/api/v0/members/login", userLogin);
-      console.log("login success", response);
+      {/*console.log("login success", response);*/}
       if (response.data.isSuccess) {
         setErrorMessage("");
 
@@ -52,12 +50,12 @@ const Login = () => {
 
         navigate("/todo");
       } else {
-        console.log("login failed", response);
+        {/*console.log("login failed", response);*/}
         sethaserror(true);
         setErrorMessage("이메일 또는 비밀번호가 일치하지 않습니다.");
       }
     } catch (error) {
-      console.error("login failed", error);
+      {/*console.error("login failed", error);*/}
       sethaserror(true);
       setErrorMessage("이메일 또는 비밀번호가 일치하지 않습니다.");
     } finally {

@@ -41,15 +41,14 @@ const User1 = () => {
 
       const [OTPClicked, setOTPClicked] = useState(false);
       const [showPassword, setShowPassword] = useState(false);
-      const [checked, setChecked] = useState(false);
       const [loading, setLoading] = useState(false);
 
       const handleSubmit = async (e) => {
         setLoading(true);
-        console.log("다음");
+        {/*console.log("다음");*/}
 
         if (!ageCheck || !useCheck) {
-          console.log("오류");
+          {/*console.log("오류");*/}
           setCheckboxValid(false);
           setErrorCheckbox("필수 항목 미동의시 가입이 불가능합니다.");
           return; // 동의하지 않으면 진행 중단
@@ -70,7 +69,7 @@ const User1 = () => {
           ],
         };
       
-        console.log(userData);
+        {/*console.log(userData);*/}
         if(Allow){
           localStorage.setItem('signupUserData', JSON.stringify(userData));
           window.location.href = "/User2";
@@ -106,12 +105,12 @@ const User1 = () => {
           email: email
         };
       
-        console.log(userEmail);
+        {/*console.log(userEmail);*/}
         if(emailValid){
           try{
-            console.log("요청 데이터 확인: ",userEmail);
+            {/*console.log("요청 데이터 확인: ",userEmail);*/}
             const response = await axiosInstance.post("/api/v0/emails/send-verification",userEmail);
-            console.log('send-verification success', response);
+            {/*console.log('send-verification success', response);*/}
             setCodeSentValid(true);
             if(response.data.isSuccess){
               setErrorEmailMessage("인증번호가 전송되었습니다.");
@@ -121,7 +120,7 @@ const User1 = () => {
             }
           }
           catch(error){
-            console.error('send-verification failed', error);
+            {/*console.error('send-verification failed', error);*/}
             setEmailValid(false);
             setErrorEmailMessage("이미 존재하는 이메일입니다.");
             setCodeSentValid(false);
@@ -174,11 +173,11 @@ const User1 = () => {
           code: OTP
         };
       
-        console.log(userOTP);
+        {/*console.log(userOTP);*/}
         if(OTPTouched){
           try{
             const response = await axiosInstance.post("/api/v0/emails/verification",userOTP);
-            console.log('verification success', response);
+            {/*console.log('verification success', response);*/}
             if(response.data.isSuccess){
               setOTPValid(true);
               setErrorOTPMessage("인증번호가 확인되었습니다.");
@@ -190,7 +189,7 @@ const User1 = () => {
     
           }
           catch(error){
-            console.error('verification failed', error);
+            {/*console.error('verification failed', error);*/}
             setOTPValid(false);
             setErrorOTPMessage("인증번호가 틀렸습니다.    ");
           }
@@ -279,18 +278,14 @@ const User1 = () => {
       }, [emailValid, pwValid, OPTValid, checkpwValid]);
   
       useEffect(() => {
-        console.log("Allow 상태 변경됨:", Allow);
+        {/*console.log("Allow 상태 변경됨:", Allow);*/}
     }, [Allow]);
 
     // 비밀번호 보이기/숨기기 토글
     const toggleShowPassword = () => {
       setShowPassword(!showPassword); // showPassword 상태 토글
     };
-  
-    const toggleCheckbox = () => {
-      setChecked(!checked);
-    };
-
+ 
   return (
     <>
       <S.TopGap/>
