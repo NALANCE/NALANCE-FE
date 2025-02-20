@@ -28,6 +28,11 @@ export const Bubble = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  & > img:first-child {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;
 
 export const Speech = styled.img`
@@ -45,4 +50,14 @@ export const BtnWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: clamp(10px, 24px, 24px);
+`;
+
+export const BottomLogoWrapper = styled.div`
+  display: block; /* 기본적으로 보이게 설정 */
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    display: none; /* 태블릿 가로 모드에서는 숨김 */
+  }
+
+  padding-bottom: 30px;
 `;

@@ -1,12 +1,18 @@
 import styled from "styled-components";
 
 export const OnboardingContainer = styled.div`
+  box-sizing: border-box;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  height: 100vh;
+  padding: 0px 58px;
+
+  height: 100dvh;
+
+  position: relative;
 `;
 
 export const BtnContainer = styled.div`

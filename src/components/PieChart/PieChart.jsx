@@ -1,169 +1,75 @@
+import React, { useState, useRef, useEffect } from "react";
+
+import { IgrItemLegendModule } from "igniteui-react-charts";
+import { IgrDoughnutChart } from "igniteui-react-charts";
+import { IgrDoughnutChartModule } from "igniteui-react-charts";
+import { IgrRingSeriesModule } from "igniteui-react-charts";
+import { IgrRingSeries } from "igniteui-react-charts";
+
 import { DAILY } from "../../../public/data/dailyDummy.js";
-import ReactApexChart from "react-apexcharts";
-import * as S from "./PieChart.style.js";
-import { useEffect, useState } from "react";
-import Percentage from "../Percentage/Percentage.jsx";
 
-const PieChart = ({ date, width = "300", height = "300", $marginTop = "0.4rem" }) => {
-  const [chartData, setChartData] = useState({ series: [], labels: [] });
-  const [colors, setColors] = useState(["#555555"]); // 기본 색상
-  const [selectedIndex, setSelectedIndex] = useState(null); // 클릭한 인덱스를 저장
+import * as S from "./PieChart.style";
+
+// 모듈 사용할 수 있도록 가져옴
+IgrDoughnutChartModule.register();
+IgrRingSeriesModule.register();
+IgrItemLegendModule.register();
+
+const PieChart = ({ date, width, height, $marginTop, label = true, data = [] }) => {
+  // 데이터를 담기 위해
+  //const [data, setData] = useState(DAILY.result.data);
+
+  // if (!data) console.log("데이터가 없음");
+
+  // 비율이 0 이상인 데이터
+  const filteredData = data
+    .filter((item) => item.ratio > 0)
+    .map((item) => ({ ...item, label: `${item.ratio.toFixed(1)}%` }));
+
+  // 데이터 없을 경우 빈 그래프 나타내기 위한 더미 데이터
+  const displayData = filteredData.length > 0 ? filteredData : [{ ratio: 100, color: "#555555", label: "" }];
+
+  // 비율이 0 이상인 데이터의 색상 추출
+  const brushes = displayData.map((item) => item.color);
+
+  const chartRef = useRef(null); // 도넛 차트 컴포넌트를 참조
+  const legendRef = useRef(null); // 범례 컴포넌트를 참조
 
   useEffect(() => {
-    // 날짜 변경 시 selectedIndex 초기화
-    setSelectedIndex(null);
-  }, [date]); // date가 변경될 때마다 selectedIndex 초기화
-
-  useEffect(() => {
-    // 날짜 변경시 데이터 업데이트하기
-    const fetchDataForDate = () => {
-      const formattedDate = date; // 문자열 ex)2025-01-17
-
-      // 해당 날짜에 데이터가 있으면 차트 데이터 업데이트, 없으면 기본 데이터 사용
-      if (DAILY.date === formattedDate) {
-        // series가 0이 아닌 데이터로 새로운 배열 생성
-        const filteredData = DAILY.graphData.data
-          .map((value, index) => ({ value, label: DAILY.graphData.labels[index] }))
-          .filter((item) => item.value > 0);
-
-        const filteredSeries = filteredData.map((item) => item.value);
-        const filteredLabels = filteredData.map((item) => item.label);
-
-        // console.log("filteredSeries", filteredSeries);
-        // console.log("filteredLabels", filteredLabels);
-
-        setChartData({
-          series: filteredSeries, // 데이터 부분
-          labels: filteredLabels, // 라벨 부분
-        });
-
-        // console.log("chartData", chartData);
-
-        setColors(["#7DA7D9", "#ADC49E", "#F8A19A"]);
-      } else {
-        // 데이터가 없으면 (날짜가 다르면)
-        setChartData({
-          series: [], // 기본 데이터
-          labels: [""], // 기본 라벨
-        });
-        setColors(["#555555"]);
-      }
-    };
-
-    fetchDataForDate(); // date가 변경될 때 데이터가 업데이트 됨
-  }, [date]); // date가 변경되면 fetchDataForDate가 실행됨
-
-  //const colors = DAILY && DAILY.graphData && DAILY.graphData.data ? ["#7DA7D9", "#ADC49E", "#F8A19A"] : ["#555555"]; // 데이터 없는 경우 #555555
-
-  const Daily = {
-    series: chartData.series.length > 0 ? chartData.series : [100], // 더미데이터의 퍼센트 값
-    options: {
-      tooltip: {
-        enabled: false, // 툴팁 완전히 비활성화
-      },
-      states: {
-        hover: {
-          filter: {
-            type: "none", // hover시 효과 적용되지 않도록
-          },
-        },
-      },
-      chart: {
-        type: "donut",
-        events: {
-          dataPointSelection: (event, chartContext, config) => {
-            // console.log("config", config);
-
-            // 클릭 시 filter 제거
-            setTimeout(() => {
-              const paths = document.querySelectorAll("path[filter]");
-              paths.forEach((path) => {
-                path.removeAttribute("filter");
-              });
-            }, 0); // ApexCharts 렌더링 직후 실행
-
-            const clickedIndex = config.dataPointIndex;
-            setSelectedIndex(clickedIndex);
-          },
-        },
-        animations: {
-          enabled: true, // 애니메이션 비활성화
-        },
-      },
-      legend: {
-        show: false,
-      },
-      responsive: [
-        // 반응형 디자인
-        {
-          breakpoint: 480, // 480px 이하일 때
-          options: {
-            chart: {
-              // width: 300, // 차트의 너비 300px으로
-            },
-          },
-        },
-      ],
-      plotOptions: {
-        // 차트 데이터 시각화 관련
-        pie: {
-          expandOnClick: false,
-          donut: {
-            size: "15%", // 차트 가운데 크기
-            labels: {
-              show: false, // 클릭시 차트 중앙에 라벨 표시
-            },
-          },
-        },
-      },
-      dataLabels: {
-        enabled: true, // 그래프 위에 값 나타나도록
-
-        // 클릭된 것만 label뜨도록
-        formatter: (value, { seriesIndex }) => {
-          if (seriesIndex === selectedIndex && chartData.series.length > 0) {
-            // console.log("selectedIndex", selectedIndex);
-            const labelName = chartData.labels[seriesIndex]; // 선택된 label 이름
-            return `${value}%`;
-          }
-          return "";
-        },
-
-        style: {
-          colors: ["white"], // 글자 색상
-          fontSize: "1.6rem", // 글자 크기
-          fontWeight: 600, // 글자 굵기
-        },
-      },
-      fill: {
-        opacity: 1,
-        colors: colors, // colors로 색상
-      },
-      stroke: {
-        show: true, // 그래프 간 간격
-        width: chartData.series.length > 0 ? 5 : 0,
-      },
-    },
-
-    labels: DAILY && DAILY.graphData && DAILY.graphData.data ? DAILY.graphData.labels : [""], // series 배열의 각 값과 연결
-    title: {
-      text: "하루 통계",
-      align: "center",
-    },
-  };
+    if (chartRef.current && legendRef.current) {
+      chartRef.current.actualSeries[0].legend = legendRef.current;
+    }
+  }, []);
 
   return (
-    <S.ChartWrapper $marginTop={$marginTop}>
-      <ReactApexChart
-        key={JSON.stringify(Daily.series)}
-        options={Daily.options}
-        series={Daily.series}
-        type="donut"
-        width={width}
-        height={height}
-        className="chart"
-      />
-    </S.ChartWrapper>
+    <>
+      <S.ChartContainer $hasData={filteredData.length > 0} $marginTop={$marginTop}>
+        <S.ChartWrapper height={height}>
+          <IgrDoughnutChart
+            dataSource={displayData} // 필터링된 데이터
+            ref={chartRef}
+            width="100%"
+            height="100%"
+            allowSliceSelection="false" // 차트 조각 선택할 수 있도록
+            innerExtent={filteredData.length > 0 ? 0.15 : 0.25} // 도넛 차트의 중앙 원 크기
+            startAngle={-60} // 시작 각도
+          >
+            <IgrRingSeries
+              name="ring1"
+              dataSource={displayData}
+              valueMemberPath="ratio" // 표시할 값
+              labelMemberPath="label" // 라벨
+              legendLabelMemberPath="category" // 범례
+              brushes={brushes} // 데이터에서 추출한 색상 이용
+              labelsPosition={filteredData.length > 0 && label ? "OutsideEnd" : "None"} // 라벨을 조각 외부 끝에 위치하도록
+              labelExtent={20} // 라벨과 차트 중심 사이의 거리
+              radiusFactor={0.7} // 도넛 차트의 크기 비율
+              allowSliceExplosion="false" // 클릭 이벤트로 조각 폭발 가능
+            />
+          </IgrDoughnutChart>
+        </S.ChartWrapper>
+      </S.ChartContainer>
+    </>
   );
 };
 

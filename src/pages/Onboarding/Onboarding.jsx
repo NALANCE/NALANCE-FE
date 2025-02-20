@@ -2,13 +2,15 @@ import OnboardingLogo from "components/OnboardingLogo/OnboardingLogo";
 import LoginBtn from "components/common/LoginBtn/LoginBtn";
 import * as S from "./Onboarding.style";
 
-import { Link } from "react-router-dom";
-import RoundBtn from "../../components/common/RoundBtn/RoundBtn";
+import PCBgr from "components/PCBgr/PCBgr";
 
 const Onboarding = () => {
   return (
     <>
       <S.OnboardingContainer>
+        {/* 컴퓨터 비율  */}
+        <PCBgr />
+
         <OnboardingLogo />
 
         <S.BtnContainer>

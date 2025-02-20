@@ -8,7 +8,7 @@ export const CalendarContainer = styled.div`
   margin-top: 2.3rem;
 
   box-sizing: border-box;
-  width: 29.9rem;
+  width: clamp(24.9rem, 76vw, 29.9rem);
   height: 27rem;
 `;
 
@@ -21,14 +21,16 @@ export const DayContainer = styled.div`
   align-items: center;
   text-align: center;
 
-  width: 24rem;
+  /* width: 24rem; */
 `;
 
 export const DayWrapper = styled.div`
   font-family: "Freesentation", sans-serif;
-  font-weight: 500;
+  font-style: normal;
+  font-weight: 590;
   font-size: 2rem;
   line-height: 4rem;
+  color: #2f2f2f;
 `;
 
 export const DateContainer = styled.div`
@@ -45,7 +47,7 @@ export const DateWrapper = styled.div`
 
 export const DateBtn = styled.button`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   text-align: center;
 
@@ -53,7 +55,7 @@ export const DateBtn = styled.button`
 
   cursor: ${(props) => (props.day === 0 ? "default" : "pointer")};
   opacity: ${(props) => (props.day === 0 ? "0" : "1")};
-  color: ${(props) => (props.isSelected ? "red" : "black")};
+  color: ${(props) => (props.$isSelected ? "red" : "black")};
 
   background: none;
   border: none;

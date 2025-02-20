@@ -55,7 +55,7 @@ export const Container = styled.div`
   transition: width 0.2s ease;
   box-sizing: border-box;
 
-  overflow: hidden; /* 내용 초과 방지 */
+  overflow: hidden;
   white-space: nowrap;
 `;
 
@@ -69,7 +69,8 @@ export const ArrowIcon = styled.div`
 
 export const InputField = styled.input`
   color: ${({ theme }) => theme.colors.black};
-  font-size: 20px; /* 폰트 크기 설정 */
+  font-family: 'Freesentation', sans-serif;
+  font-size: 20px;
   font-weight: 500;
   line-height: 40px;
   text-align: center;
@@ -102,6 +103,8 @@ export const ButtonGroup = styled.div`
 
 export const ErrorMessage = styled.div`
   color: #b3261e;
+
+  font-family: 'Freesentation', sans-serif;
   font-size: 11px;
   font-style: normal;
   font-weight: 410;

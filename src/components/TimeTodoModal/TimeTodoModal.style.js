@@ -1,25 +1,40 @@
-import styled from 'styled-components';
+import styled, { keyframes } from "styled-components";
+
+// 아래에서 위로 슬라이드 애니메이션
+const slideUp = keyframes`
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+`;
 
 export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
-  z-index: 999;
+  align-items: flex-end;
+  z-index: 1001;
 `;
 
 export const ModalContainer = styled.div`
   position: relative;
-  width: 320px;
-  height: 150.272px;
+  width: 80%;
+  max-width: 400px;
+  min-height: 00px; /* 최소 높이를 더 높게 설정 */
   text-align: center;
   display: flex;
   flex-direction: column;
+  background: white;
+  border-radius: 20px 20px 0px 0px;
+  padding: 22px 48px 90px;
+  animation: ${slideUp} 0.3s ease-in-out;
 `;
 
 export const SvgWrapper = styled.div`
@@ -38,14 +53,14 @@ export const SvgWrapper = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  position: absolute;
-  top: 0;
-  width: 290px;
-  height: 136.383px;
+  position: relative; /* absolute 대신 relative로 변경 */
+  width: 100%;
+  min-height: 200px; /* 최소 높이를 확보 */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px; /* 패딩 추가 */
 `;
 
 export const Title = styled.h1`
@@ -65,7 +80,6 @@ export const TimeWrapper = styled.div`
 export const TimeTitle = styled.h3`
   font-size: 16px;
   width: 40%;
-  
 `;
 
 export const TimeInputWrapper = styled.div`
@@ -88,13 +102,15 @@ export const TimeInputWrapper = styled.div`
   }
 `;
 
-
 export const Input = styled.input`
   width: 60px; /* 너비를 줄임 */
-  border: none; 
-  background: none; 
-  font-size: 30px; 
-  text-align: center; 
+  border: none;
+  background: none;
+  font-size: 30px;
+  text-align: center;
+  &:focus {
+    outline: none; /* 기본 outline 제거 */
+  }
 `;
 
 export const ErrorText = styled.p`
@@ -103,4 +119,3 @@ export const ErrorText = styled.p`
   margin-top: 15px;
   margin-bottom: 7px;
 `;
-

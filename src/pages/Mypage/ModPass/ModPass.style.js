@@ -29,9 +29,12 @@ export const InputWrapper = styled.div`
 export const Input = styled.input`
   padding: 8px 12px;
   font-size: 15px;
-  border: 1px solid ${({ hasError, theme }) => (hasError ? theme.colors.error : "#ccc")};
-  border-radius: 5px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  height: 25px;
+  color: #868686;
+  border: 1px solid #E5E5E5;
+  font-weight: 500;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   width: 100%;
   &:focus {
     border-color: ${({ hasError, theme }) => (hasError ? theme.colors.error : theme.colors.b)};

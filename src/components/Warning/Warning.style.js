@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Notification from "../common/Notification/Notification";
 
 export const WarningContainer = styled.div`
   display: flex;
@@ -7,10 +8,24 @@ export const WarningContainer = styled.div`
   justify-content: center;
 
   position: relative;
-  right: ${(props) => props.right || "-10%"};
+  right: ${(props) => props.$right || "-10%"};
 
+  margin-top: ${(props) => (props.$isWarning ? "0px" : "2rem")};
   div {
     cursor: pointer;
+  }
+`;
+
+export const ChatCatContainer = styled.div`
+  width: 18.1rem;
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    width: 18.1rem;
+  }
+
+  > img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 `;
 
@@ -18,13 +33,39 @@ export const CatContainer = styled.div`
   position: relative;
   display: inline-block;
 
+  /* margin-top: 1rem;/ */
+  margin-top: ${(props) => (props.$margin ? "1rem" : "0px")};
+
+  width: clamp(1.2rem, 10vw, 4.2rem);
+
   div {
     position: absolute;
     top: 100%; // 이미지 아래에 뜨도록
     left: 50%;
     transform: translateX(-50%) !important;
-    margin-top: 8px; // 이미지 ~ 말풍선 간격
+    margin-top: 3px; // 이미지 ~ 말풍선 간격
 
     z-index: 999;
+  }
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    width: ${(props) => (props.$monthly == false ? "9.2rem" : `clamp(1.2rem,10vw,4.2rem)`)};
+  }
+
+  > img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+`;
+
+export const StyledNotification = styled(Notification)`
+  width: auto;
+  height: 6.1rem;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 `;

@@ -1,4 +1,9 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
+
+import Freesentation4 from "../assets/fonts/Freesentation-4Regular.ttf";
+import Freesentation5 from "../assets/fonts/Freesentation-5Medium.ttf";
+import Freesentation6 from "../assets/fonts/Freesentation-6SemiBold.ttf";
+import Freesentation8 from "../assets/fonts/Freesentation-8ExtraBold.ttf";
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -134,33 +139,37 @@ const GlobalStyle = createGlobalStyle`
   /* Light Weight */
   @font-face {
     font-family: 'Freesentation';
-    src: url('/src/assets/fonts/Freesentation-4Regular.ttf') format('truetype');
+    src: url(${Freesentation4}) format('truetype');
     font-weight: 300; /* Light */
     font-style: normal;
+    font-display: swap;
   }
 
   /* Medium Weight */
   @font-face {
     font-family: 'Freesentation';
-    src: url('/src/assets/fonts/Freesentation-5Medium.ttf') format('truetype');
+    src: url(${Freesentation5}) format('truetype');
     font-weight: 500; /* Medium */
     font-style: normal;
+    font-display: swap;
   }
 
   /* SemiBold Weight */
   @font-face {
     font-family: 'Freesentation';
-    src: url('/src/assets/fonts/Freesentation-6SemiBold.ttf') format('truetype');
+    src: url(${Freesentation6}) format('truetype');
     font-weight: 600; /* SemiBold */
     font-style: normal;
+    font-display: swap;
   }
 
   /* ExtraBold Weight */
   @font-face {
     font-family: 'Freesentation';
-    src: url('/src/assets/fonts/Freesentation-8ExtraBold.ttf') format('truetype');
+    src: url(${Freesentation8}) format('truetype');
     font-weight: 800; /* ExtraBold */
     font-style: normal;
+    font-display: swap;
   }
 
   /* 휴먼엑스포 폰트 */
@@ -169,15 +178,15 @@ const GlobalStyle = createGlobalStyle`
     src: url('/src/assets/fonts/HumanExpo.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
   }
 
   /* 모든 요소에 'Freesentation' 폰트와 500 글꼴 두께 적용 */
   /* 10px = 1rem */ 
-  * {
+  html,body {
     font-family: 'Freesentation', sans-serif;
     font-weight: 500;
-  }
-  
+  }  
 `;
 
 export default GlobalStyle;

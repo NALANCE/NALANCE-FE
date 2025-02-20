@@ -1,21 +1,19 @@
 import React from "react";
 
-export const lazyImport = (path) => React.lazy(() => import(`../pages/${path}`));
-
 export const routes = {
-  Onboarding: lazyImport("Onboarding/Onboarding.jsx"),
-  User1: lazyImport("User/User1/User1.jsx"),
-  User2: lazyImport("User/User2/User2.jsx"),
-  Login: lazyImport("Login/Login.jsx"),
-  Todo: lazyImport("Todo/Todo.jsx"),
-  Daily: lazyImport("Daily/Daily.jsx"),
-  Monthly: lazyImport("Monthly/Monthly.jsx"),
-  Mypage: lazyImport("Mypage/Mypage.jsx"),
-  ModEmail: lazyImport("Mypage/ModEmail/ModEmail.jsx"),
-  ModPass: lazyImport("Mypage/ModPass/ModPass.jsx"),
-  ModCategory: lazyImport("Mypage/ModCategory/ModCategory.jsx"),
-  Notice: lazyImport("Mypage/Notice/Notice.jsx"),
-  Ask: lazyImport("Mypage/Ask/Ask.jsx"),
-  Logout: lazyImport("Mypage/Logout/Logout.jsx"),
-  Drop: lazyImport("Mypage/Drop/Drop.jsx"),
+  Onboarding: React.lazy(() => import("../pages/Onboarding/Onboarding.jsx")),
+  User1: React.lazy(() => import("../pages/User/User1/User1.jsx")),
+  User2: React.lazy(() => import("../pages/User/User2/User2.jsx")),
+  Login: React.lazy(() => import("../pages/Login/Login.jsx")),
+  Todo: React.lazy(() => import("../pages/Todo/Todo.jsx")),
+  Daily: React.lazy(() => import("../pages/Daily/Daily.jsx")),
+  Monthly: React.lazy(() => import("../pages/Monthly/Monthly.jsx")),
+  Mypage: React.lazy(() => import("../pages/Mypage/Mypage.jsx")),
+  ModEmail: React.lazy(() => import("../pages/Mypage/ModEmail/ModEmail.jsx")),
+  ModPass: React.lazy(() => import("../pages/Mypage/ModPass/ModPass.jsx")),
+  ModCategory: React.lazy(() => import("../pages/Mypage/ModCategory/ModCategory.jsx")),
+  Notice: React.lazy(() => import("../pages/Mypage/Notice/Notice.jsx")),
+  Ask: React.lazy(() => import("../pages/Mypage/Ask/Ask.jsx")),
+  Logout: React.lazy(() => import("../pages/Mypage/Logout/Logout.jsx")),
+  Drop: React.lazy(() => import("../pages/Mypage/Drop/Drop.jsx")),
 };

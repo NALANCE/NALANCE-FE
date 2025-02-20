@@ -6,22 +6,24 @@ import ConfirmModal from '../common/ConfirmModal/ConfirmModal';
 import ColorPickerModal from '../ColorPickerModal/ColorPickerModal';
 
 const CategoryInput = ({
+  fieldId,
   backgroundColor,
   defaultValue = '',
   onSubmit,
   onDelete,
+  existingCategories = [],
 }) => {
   const COLORS = [
     '#FFE292',
     '#FFDAA3',
     '#FCC79B',
-    '#F8A980',
-    '#F8AA96',
-    '#F8A19A',
-    '#D792BF',
-    '#9D86BE',
-    '#6F85C1',
-    '#7DA7D9',
+    '#FFAD82',
+    '#FDB9A8',
+    '#F3ACA6',
+    '#E6A7D0',
+    '#CFB7F2',
+    '#99AFE9',
+    '#94BDEE',
     '#81D2E5',
     '#87D1D0',
     '#7BCBBE',
@@ -51,18 +53,23 @@ const CategoryInput = ({
     const container = containerRef.current;
     if (container) {
       const length = Math.min(inputValue.length, 5);
-
-      container.style.width = `${Math.max(40, 40 + length * 17.9)}px`;
+      container.style.width = `${Math.max(40, 40 + length * 20)}px`;
     }
   };
 
   useEffect(() => {
-    if (!backgroundColor) {
-      setRandomBackground(getRandomColor());
+    if (backgroundColor === undefined || backgroundColor === null) {
+      setRandomBackground(getUniqueColor());
+    } else {
+      setRandomBackground(backgroundColor);
     }
 
     adjustContainerWidth(defaultValue);
   }, [backgroundColor, defaultValue]);
+
+  useEffect(() => {
+    adjustContainerWidth(text);
+  }, [text]); // text 상태가 변경될 때마다 실행
 
   const handleFocusOrClick = () => {
     setIsFocused(true);
@@ -72,21 +79,40 @@ const CategoryInput = ({
       inputRef.current.scrollLeft = inputRef.current.scrollWidth;
     }
   };
+
   const handleBlur = () => {
-    if (!text.trim()) {
+    if (text.trim()) {
+      const isDuplicateName = existingCategories.some(
+        (category) =>
+          category.categoryId !== fieldId &&
+          category.categoryName.trim().toLowerCase() ===
+            text.trim().toLowerCase()
+      );
+
+      if (isDuplicateName) {
+        setErrorMessage('이미 존재하는 카테고리명입니다.');
+        setText('');
+        triggerErrorAnimation();
+        return;
+      }
+
+      onSubmit({
+        id: fieldId,
+        categoryName: text,
+        color: randomBackground,
+      });
+    } else {
       setErrorMessage('카테고리명을 입력해주세요.');
       triggerErrorAnimation();
       setTimeout(() => {
         inputRef.current.focus();
       }, 0);
       setIsInteractionBlocked(true);
-    } else {
-      setErrorMessage('');
-      setIsInteractionBlocked(false);
     }
     setIsFocused(false);
   };
 
+  // ✅ 입력값 변경 처리
   const handleChange = (e) => {
     const inputValue = e.target.value;
     setText(inputValue);
@@ -98,14 +124,28 @@ const CategoryInput = ({
     }
   };
 
+  // ✅ Enter 입력 시 저장
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && text.trim()) {
+      onSubmit({
+        id: fieldId,
+        categoryName: text,
+        color: randomBackground,
+      });
+    }
+  };
+
+  // ✅ 삭제 모달 열기
   const handleDelete = () => {
     setIsModalOpen(true);
   };
 
+  // ✅ 삭제 모달 닫기
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
+  // ✅ 카테고리 삭제 확정
   const confirmDelete = () => {
     if (onDelete) {
       onDelete();
@@ -114,6 +154,7 @@ const CategoryInput = ({
     setIsModalOpen(false);
   };
 
+  // ✅ 에러 애니메이션 트리거
   const triggerErrorAnimation = () => {
     setIsErrorAnimating(true);
     setTimeout(() => {
@@ -121,6 +162,7 @@ const CategoryInput = ({
     }, 500);
   };
 
+  // ✅ 색상 선택 모달 열기/닫기
   const openColorPicker = () => {
     setIsColorPickerOpen(true);
   };
@@ -129,9 +171,64 @@ const CategoryInput = ({
     setIsColorPickerOpen(false);
   };
 
+  // ✅ 기존에 없는 색상 찾기
+  const getUniqueColor = () => {
+    let newColor;
+    const existingColors = existingCategories.map((category) =>
+      category.color.replace('#', '').toUpperCase()
+    );
+
+    do {
+      newColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+    } while (existingColors.includes(newColor.replace('#', '').toUpperCase()));
+
+    return newColor;
+  };
+
+  // ✅ 색상 변경 핸들러
   const handleColorChange = (color) => {
-    setRandomBackground(color); // 배경 색 변경
+    const normalizedNewColor = color.replace('#', '').toUpperCase();
+
+    // console.log(
+    //   '🎨 기존 색상 목록:',
+    //   existingCategories.map((category) => category.color.toUpperCase())
+    // );
+    // console.log('🎨 선택한 색상:', normalizedNewColor);
+
+    // ✅ 자기 자신을 제외한 나머지 카테고리들과 비교
+    const isDuplicateColor = existingCategories
+      .filter((category) => category.categoryId !== fieldId) // ✅ 자기 자신 제외
+      .some(
+        (category) =>
+          category.color.replace('#', '').toUpperCase() === normalizedNewColor
+      );
+
+    let finalColor = color;
+
+    if (isDuplicateColor) {
+      setErrorMessage('해당 색상은 이미 존재합니다. 추천 색상으로 변경합니다.');
+      setIsColorPickerOpen(false);
+
+      finalColor = getUniqueColor(); // 새로운 추천 색상 선택
+      setRandomBackground(finalColor);
+
+      // 3.5초 후 에러 메시지 자동 제거
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 3500);
+
+      triggerErrorAnimation();
+    }
+
+    setRandomBackground(finalColor);
     closeColorPicker();
+    setIsColorPickerOpen(false);
+
+    onSubmit({
+      id: fieldId,
+      categoryName: text,
+      color: finalColor,
+    });
   };
 
   return (
@@ -155,6 +252,7 @@ const CategoryInput = ({
               onFocus={handleFocusOrClick}
               onClick={handleFocusOrClick}
               onBlur={handleBlur}
+              onKeyDown={handleKeyDown}
               placeholder=""
               autoFocus
             />
@@ -173,6 +271,7 @@ const CategoryInput = ({
             />
           </S.ButtonGroup>
         </S.InputWrapper>
+
         {errorMessage && (
           <S.ErrorMessage
             className={isErrorAnimating ? 'shake' : ''}
@@ -186,7 +285,13 @@ const CategoryInput = ({
           isOpen={isModalOpen}
           onClose={closeModal}
           onConfirm={confirmDelete}
-          message={`${text ? `'${text}'` : '항목'}을 삭제하시겠습니까?`}
+          message={`${
+            text
+              ? `'${
+                  text.length > 5 ? text.slice(0, 3) + '...' : text
+                }' 카테고리를`
+              : '이 항목을'
+          } 삭제할까요?`}
         />
 
         <ColorPickerModal

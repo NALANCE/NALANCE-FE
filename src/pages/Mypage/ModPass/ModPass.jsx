@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axiosInstance from "apis/defaultAxios";
 import Topbar from "components/Topbar/Topbar";
-import ChangeCompleteBtn from "components/common/ChangeCompleteBtn/ChangeCompleteBtn"; // ChangeCompleteBtn 임포트
-import passEye from "assets/icons/passEye.svg"; // passEye 아이콘 임포트
+import ChangeCompleteBtn from "components/common/ChangeCompleteBtn/ChangeCompleteBtn";
+import passEye from "assets/icons/passEye.svg";
 import * as S from "./ModPass.style";
 
 const ModPass = () => {
-  const [currentPassword, setCurrentPassword] = useState("123!"); // TODO: Add API call to get the current password
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage1, setErrorMessage1] = useState("");
@@ -18,23 +18,42 @@ const ModPass = () => {
     return regex.test(password);
   };
 
-  const handleNewPasswordChange = (e) => {
+  const handleNewPasswordChange = async (e) => {
     const value = e.target.value;
     setNewPassword(value);
+
     if (!value) {
       setErrorMessage1("");
-    } else if (value === currentPassword) {
-      setErrorMessage1("새 비밀번호가 현재 비밀번호와 동일합니다.");
     } else if (!validatePassword(value)) {
       setErrorMessage1("비밀번호는 영어, 숫자, 특수기호를 포함한 8자 이상이어야 합니다.");
     } else {
-      setErrorMessage1("");
+      try {
+        const accessToken = localStorage.getItem("accessToken"); // Access Token 가져오기
+        const response = await axiosInstance.post(
+          "/api/v0/members/validate-password",
+          { password: value },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`, // Authorization 헤더 추가
+            },
+          }
+        );
+        if (response.data.result) {
+          setErrorMessage1("새 비밀번호가 기존 비밀번호와 동일합니다.");
+        } else {
+          setErrorMessage1("");
+        }
+      } catch (error) {
+        console.error("비밀번호 검증 실패:", error);
+        setErrorMessage1("비밀번호 검증 중 문제가 발생했습니다.");
+      }
     }
   };
 
   const handleConfirmPasswordChange = (e) => {
     const value = e.target.value;
     setConfirmPassword(value);
+
     if (!value) {
       setErrorMessage2("");
     } else if (value !== newPassword) {
@@ -49,7 +68,36 @@ const ModPass = () => {
     setIsFlipped(!isFlipped);
   };
 
-  console.log(isFlipped);
+  const handlePasswordChange = async () => {
+    try {
+      const accessToken = localStorage.getItem("accessToken"); // Access Token 가져오기
+      const response = await axiosInstance.patch(
+        "/api/v0/members/password",
+        {
+          password: newPassword,
+          confirmPassword: confirmPassword,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Authorization 헤더 추가
+          },
+        }
+      );
+
+      if (response.data.isSuccess) {
+        alert("비밀번호 변경이 완료되었습니다.");
+        setNewPassword("");
+        setConfirmPassword("");
+        setErrorMessage1("");
+        setErrorMessage2("");
+      } else {
+        alert("비밀번호 변경 실패: " + response.data.message);
+      }
+    } catch (error) {
+      console.error("비밀번호 변경 실패:", error);
+      alert("비밀번호 변경 중 문제가 발생했습니다.");
+    }
+  };
 
   const isFormValid = () => {
     return newPassword && confirmPassword && !errorMessage1 && !errorMessage2;
@@ -63,7 +111,7 @@ const ModPass = () => {
           <S.InputWrapper>
             <S.Input
               type={showPassword ? "text" : "password"}
-              placeholder="새 비밀번호"
+              placeholder="비밀번호"
               value={newPassword}
               onChange={handleNewPasswordChange}
               hasError={!!errorMessage1}
@@ -80,20 +128,25 @@ const ModPass = () => {
           {errorMessage1 && <S.ErrorText>{errorMessage1}</S.ErrorText>}
         </S.ErrorTextContainer>
         <S.InputContainer>
-        <S.InputWrapper>
-          <S.Input
-            type="password"
-            placeholder="새 비밀번호 확인"
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
-            hasError={!!errorMessage2}
-          />
+          <S.InputWrapper>
+            <S.Input
+              type="password"
+              placeholder="비밀번호 확인"
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              hasError={!!errorMessage2}
+            />
           </S.InputWrapper>
         </S.InputContainer>
         <S.ErrorTextContainer>
           {errorMessage2 && <S.ErrorText>{errorMessage2}</S.ErrorText>}
         </S.ErrorTextContainer>
-        <ChangeCompleteBtn onClick={() => alert("비밀번호 변경이 완료되었습니다.")} text="비밀번호 변경" disabled={!isFormValid()} marginTop="200px"/>
+        <ChangeCompleteBtn
+          onClick={handlePasswordChange}
+          text="비밀번호 변경"
+          disabled={!isFormValid()}
+          marginTop="200px"
+        />
       </S.Container>
     </>
   );

@@ -1,4 +1,46 @@
-# 😺 NALANCE-FE  
+<img src="https://capsule-render.vercel.app/api?type=waving&color=FF9C60&height=250&section=header&text=😺NALANCE😺&fontSize=40" style="width: 100%;" />
+
+# 💡서비스 소개
+### 나의 삶의 발란스, NALANCE(나란스)
+### 페르소나의 발란스, NALANCE(나란스)
+
+: NALANCE는 사용자의 페르소나별 활동을 기록하고,<br/>
+기록을 토대로 비율을 계산해사용자가 삶의 균형을 건강하게 맞추며 살고 있는지를 알려주는 웹 서비스 입니다.
+<br/>
+
+<br/>
+  
+<div style="width: 80%; margin: 0 auto; display: flex; justify-content: space-between;">
+  <img src="https://github.com/user-attachments/assets/caed5472-d266-4170-956f-d6ccead1d8f4" style="width: 48%;" />
+  <img src="https://github.com/user-attachments/assets/fce7fbf3-175e-4d20-9f80-d9f2b52de549" style="width: 48%;" />
+</div>
+
+<br/>
+
+# ✨ 메인 기능
+![image](https://github.com/user-attachments/assets/e2cd79ab-9dc3-4ddc-91a8-e483765217f8)
+
+<br/>
+
+# 🛠️ 기술 스택
+#### 프론트엔드
+<div>
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+<img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=black">
+<img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
+<img src="https://img.shields.io/badge/yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white">
+<img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=black">
+<img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=black">
+</div>
+<br></br><br></br>
+
+# 👥 팀원 소개
+|김진효|맹도현|양재희|정주연|
+|:---:|:---:|:---:|:---:|
+|프론트엔드|프론트엔드|프론트엔드|프론트엔드|
+
+<br></br>
 
 ## 🎯 Git Convention
 양식: `Commit Type: 간단한 코드 설명 #number`  

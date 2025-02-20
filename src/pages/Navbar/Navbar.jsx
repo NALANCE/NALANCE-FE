@@ -35,14 +35,16 @@ const Navbar = () => {
           <S.FishIcon onClick={toggleSidebar}>
             <img src={navIcon}></img>
           </S.FishIcon>
-          <img src={navLogo}></img>
+          <S.LogoIcon>
+            <img src={navLogo} alt="logo"></img>
+          </S.LogoIcon>
         </S.TopContainer>
 
         {/* navbar(sidebar) */}
         <S.SidebarContainer $isOpen={isSidebarOpen}>
           <S.SidebarContent $isOpen={isSidebarOpen}>
             <S.FishNavIcon onClick={toggleSidebar}>
-              <img src={navIcon}></img>
+              <img src={navIcon} alt="navicon"></img>
             </S.FishNavIcon>
 
             {/* 메뉴 */}

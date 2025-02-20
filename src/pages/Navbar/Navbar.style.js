@@ -38,9 +38,26 @@ export const SidebarContent = styled.nav`
   display: ${(props) => (props.$isOpen ? "block" : "none")};
 `;
 
-export const FishIcon = styled.h1`
+export const FishIcon = styled.div`
   cursor: pointer;
-  font-size: 2rem;
+
+  width: clamp(2.3rem, 14vw, 8.4rem);
+
+  > img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+`;
+
+export const LogoIcon = styled.div`
+  width: clamp(13.4rem, 41vw, 37.9rem);
+
+  > img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
 `;
 
 export const FishNavIcon = styled.div`
@@ -51,7 +68,8 @@ export const FishNavIcon = styled.div`
 `;
 
 export const TopContainer = styled.div`
-  margin-top: clamp(2rem, 18.83vw, 6rem);
+  /* margin-top: clamp(4.3rem, 8vh, 5.9rem); */
+  margin-top: clamp(2rem, 3vh, 3rem);
 
   display: flex;
   flex-direction: row;
@@ -59,6 +77,10 @@ export const TopContainer = styled.div`
   align-items: center;
 
   padding: 0 4vw;
+
+  @media all and (min-width: 769px) and (orientation: landscape) {
+    margin-top: clamp(1rem, 2vh, 3rem);
+  }
 `;
 
 export const MenuList = styled.ul`

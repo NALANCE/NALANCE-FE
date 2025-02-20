@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const MainContainer = styled.div`
+  height : 784px;
+`
+
 // 최상위 컴포넌트 ( 타이틀 + 로고 제외 )
 export const Container = styled.div`
   height: 630px;
@@ -12,6 +16,14 @@ export const ContentWrap = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media all and (min-width: 769px) and (orientation: landscape){
+  padding-top: 142px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 `;
 
 export const InputTitle = styled.div`
@@ -63,14 +75,14 @@ export const Input = styled.input`
 `;
 
 export const ErrorMessageWrap = styled.div`
-  color: #b3261e;
-  font-family: 'Freesentation', sans-serif;
-  font-size: 20px;
-  font-weight: 300;
+  color: ${({ hasError }) => (hasError ? "#B3261E" : "white")};
+  font-family: "Freesentation", sans-serif;
+  font-size: 11px;
+  font-weight: 200px;
   letter-spacing: 0.04em;
   margin-top: 3px;
-
-  transform: translateX(-35px);
+  
+  transform: translateX(-49px);
 `;
 
 export const BtnContainer = styled.div`
@@ -82,4 +94,12 @@ export const BtnContainer = styled.div`
   & > :nth-child(2) {
     margin-top: 8px;
   }
+`;
+
+export const BottomGap = styled.div`
+  margin-bottom: 260px;
+
+  @media all and (min-width: 769px) and (orientation: landscape){
+  margin-bottom: 205px;
+}
 `;

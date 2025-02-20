@@ -4,9 +4,10 @@ import * as S from "./Calendar.style";
 
 const DAY_LIST = ["S", "M", "T", "W", "T", "F", "S"];
 
-const Calendar = ({ date, onDateChange }) => {
-  const { weekCalendarList, currentDate } = useCalendar();
+const Calendar = ({ date, onDateChange, data, color }) => {
+  const { weekCalendarList, currentDate, colorList } = useCalendar();
   const [selectedDate, setSelectedDate] = useState(null);
+  // console.log("colrList", colorList);
 
   // 처음 렌더링 될 때 오늘 날짜가 기본이 되도록
   useEffect(() => {
@@ -62,7 +63,7 @@ const Calendar = ({ date, onDateChange }) => {
               </S.DateBtn>
 
               {$day !== 0 && $isToday($day) && <S.TodayRed>TODAY</S.TodayRed>}
-              {$day !== 0 && !$isToday($day) && <S.CategoryCircle color={"#F8A19A"}></S.CategoryCircle>}
+              {$day !== 0 && !$isToday($day) && <S.CategoryCircle color={colorList[$day - 1]}></S.CategoryCircle>}
             </S.DateWrapper>
           ))}
         </S.DateContainer>

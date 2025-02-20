@@ -1,23 +1,16 @@
 import React, { useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
 
 import PageTitle from "components/common/PageTitle/PageTitle";
 import ControlBtn from "components/common/ControlBtn/ControlBtn";
 import TriangleBtn from "../../../components/common/TriangleBtn/TriangleBtn";
 import eva_eye_off from 'assets/icons/eva_eye_off.svg';
 import eva_eye_on from 'assets/icons/eva_eye_on.svg';
-import checkbox_check from 'assets/icons/checkbox_check.svg';
-import checkbox_uncheck from 'assets/icons/checkbox_uncheck.svg';
 
 import * as S from "./User1.style";
-
-const User = {
-  email: 'abc@naver.com',
-  pw: 'Nalance123!!'
-}
+import axiosInstance from "apis/defaultAxios";
 
 const User1 = () => {
-      const [email, setEmail] = useState('');
+      
       const [emailValid, setEmailValid] =useState(false);
       const [codesentValid, setCodeSentValid] = useState(false);
       const [pwValid, setPwValid] =useState(false);
@@ -25,6 +18,7 @@ const User1 = () => {
       const [checkpwValid, setcheckpwValid] = useState(false);
       const [checkboxValid, setCheckboxValid] = useState(false);
 
+      const [email, setEmail] = useState('');
       const [OTP, setOTP] = useState('');
       const [pw, setPw] = useState('');
       const [checkpw, setCheckpw] = useState('');
@@ -47,7 +41,42 @@ const User1 = () => {
 
       const [OTPClicked, setOTPClicked] = useState(false);
       const [showPassword, setShowPassword] = useState(false);
-      const [checked, setChecked] = useState(false);
+      const [loading, setLoading] = useState(false);
+
+      const handleSubmit = async (e) => {
+        setLoading(true);
+        {/*console.log("다음");*/}
+
+        if (!ageCheck || !useCheck) {
+          {/*console.log("오류");*/}
+          setCheckboxValid(false);
+          setErrorCheckbox("필수 항목 미동의시 가입이 불가능합니다.");
+          return; // 동의하지 않으면 진행 중단
+        }
+        
+        if(ageCheck && useCheck){
+          setCheckboxValid(true);
+          setErrorCheckbox("");
+        }
+     
+        const userData = {
+          email: email,
+          password: pw,
+          terms: [
+            { termsId: 1},
+            { termsId: 2},
+            ...(marketingCheck? [{termsId: 3}]:[]),
+          ],
+        };
+      
+        {/*console.log(userData);*/}
+        if(Allow){
+          localStorage.setItem('signupUserData', JSON.stringify(userData));
+          window.location.href = "/User2";
+        }
+      }
+      
+
 
       const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -70,15 +99,36 @@ const User1 = () => {
         }
       }
 
-    const handleSendCode = (e) => {
-      if(emailValid){
-        setCodeSentValid(true);
-        setErrorEmailMessage("인증번호가 전송되었습니다.");
-      }
-      else{
-        setCodeSentValid(false);
-        setErrorEmailMessage("잘못된 형식의 이메일입니다.");    
-      }
+    const handleSendCode = async (e) => {
+      setLoading(true);
+        const userEmail = {
+          email: email
+        };
+      
+        {/*console.log(userEmail);*/}
+        if(emailValid){
+          try{
+            {/*console.log("요청 데이터 확인: ",userEmail);*/}
+            const response = await axiosInstance.post("/api/v0/emails/send-verification",userEmail);
+            {/*console.log('send-verification success', response);*/}
+            setCodeSentValid(true);
+            if(response.data.isSuccess){
+              setErrorEmailMessage("인증번호가 전송되었습니다.");
+            }
+            else{
+              setErrorEmailMessage("잘못된 형식의 이메일입니다.");    
+            }
+          }
+          catch(error){
+            {/*console.error('send-verification failed', error);*/}
+            setEmailValid(false);
+            setErrorEmailMessage("이미 존재하는 이메일입니다.");
+            setCodeSentValid(false);
+          }
+          finally{
+            setLoading(false);
+          }
+        }
     }
       const handleOTP = (e) => {
         setOTP(e.target.value);
@@ -94,23 +144,18 @@ const User1 = () => {
         setPw(inputValue); 
         const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
         if (regex.test(inputValue)){
-            setPwValid(true);
+          setPwValid(true);
         }
         else{
-            setPwValid(false);
+          setPwValid(false);
         }
-        if (isValid) {
-          setErrorPwMessage("");
-      } else {
-          setErrorPwMessage("비밀번호는 영문자, 숫자, 특수문자를 포함하여야 합니다.");
-      }
     }
 
     const handlePwBlur = () => {
       setPwTouched(true);
     }
 
-      const handleCheckpw = (e) => {
+    const handleCheckpw = (e) => {
         setCheckpw(e.target.value);
     }
 
@@ -118,14 +163,42 @@ const User1 = () => {
       setPwCheckTouched(true);
     }
 
-    const handleOTPClick = () => {
+    const handleOTPClick = async (e) => {
+
       setOTPClicked(true);
-      if(OTPTouched && OPTValid){
-        setErrorOTPMessage("인증번호가 확인되었습니다.");
-      }
-      else{
-        setErrorOTPMessage("인증번호가 틀렸습니다.    ");
-      }
+
+      setLoading(true);
+        const userOTP = {
+          email: email,
+          code: OTP
+        };
+      
+        {/*console.log(userOTP);*/}
+        if(OTPTouched){
+          try{
+            const response = await axiosInstance.post("/api/v0/emails/verification",userOTP);
+            {/*console.log('verification success', response);*/}
+            if(response.data.isSuccess){
+              setOTPValid(true);
+              setErrorOTPMessage("인증번호가 확인되었습니다.");
+            }
+            else{
+              setOTPValid(false);
+              setErrorOTPMessage("인증번호가 틀렸습니다.    ");
+            }
+    
+          }
+          catch(error){
+            {/*console.error('verification failed', error);*/}
+            setOTPValid(false);
+            setErrorOTPMessage("인증번호가 틀렸습니다.    ");
+          }
+          finally{
+            setLoading(false);
+          }
+        }
+
+     
     }
 
     const ageBtnEvent=()=>{
@@ -165,28 +238,22 @@ const User1 = () => {
 
     }, [email])
 
-    useEffect (()=> {
-      if(OTP == 'abc'){
-        setOTPValid(true);
-      }
-      else{
-        setOTPValid(false);
-      }
-    }
-  );
+
       useEffect( ()=> {
-        if (pwTouched&& !pwValid){
-          setErrorPwMessage("비밀번호는 영문자, 숫자, 특수문자를 포함하여야 합니다.");
+        if(pwTouched){
+          if(pwValid){
+            setErrorPwMessage("");
+          }
+          else{
+            setErrorPwMessage("비밀번호는 영문자, 숫자, 특수문자를 포함하여야 합니다.");
+          }
         }
-        else{
-          setErrorPwMessage("");
-        }
-    }, [pw, pwValid]);
+    }, [pw, pwValid, pwTouched]);
 
       useEffect( ()=> {
         if(pwcheckTouched){
           setErrorPwCheckMessage("비밀번호가 일치하지 않습니다.");
-          if (pwValid && pw === checkpw){
+          if (pw === checkpw){
           setErrorPwCheckMessage("비밀번호가 일치합니다.");
           setcheckpwValid(true);
           }
@@ -200,37 +267,28 @@ const User1 = () => {
         }
     }, [checkpw, pwcheckTouched]);
 
-    useEffect(()=>{
-      if(ageCheck === true && useCheck === true){
-        setCheckboxValid(true);
-        setErrorCheckbox("");
-      }
-      else{
-      setCheckboxValid(false);
-      setErrorCheckbox("필수 항목 미동의시 가입이 불가능합니다.");
-      }
-    },[ageCheck, useCheck]);
-  
       useEffect( ()=> {
-          if (emailValid && pwValid && OPTValid && checkpwValid && checkboxValid){
+          if (emailValid && pwValid && OPTValid && checkpwValid){
               setAllow(true);
               return;
           }
+          else{
           setAllow(false);
-      }, [email, pw, OTP, checkpw, checkboxValid]);
+          }
+      }, [emailValid, pwValid, OPTValid, checkpwValid]);
   
+      useEffect(() => {
+        {/*console.log("Allow 상태 변경됨:", Allow);*/}
+    }, [Allow]);
 
     // 비밀번호 보이기/숨기기 토글
     const toggleShowPassword = () => {
       setShowPassword(!showPassword); // showPassword 상태 토글
     };
-  
-    const toggleCheckbox = () => {
-      setChecked(!checked);
-    };
-
+ 
   return (
     <>
+      <S.TopGap/>
       <PageTitle pageTitle="회원가입" />
 
       <S.ContentWrap>
@@ -291,10 +349,10 @@ const User1 = () => {
                   type={showPassword ? "text" : "password"}
                   className = "input"
                   placeholder = '비밀번호'
-                  iconUrl={showPassword? {eva_eye_on}:{eva_eye_off}}
                   value = {pw}
                   onChange = {handlePw}
-                  onBlur = {handlePwBlur}/>
+                  onBlur = {handlePwBlur}
+                  />
             <img
                   src={showPassword ? eva_eye_on : eva_eye_off}
                   alt="eye icon"
@@ -319,7 +377,15 @@ const User1 = () => {
                   placeholder = '비밀번호 확인'
                   value = {checkpw}
                   onChange = {handleCheckpw}
-                  onBlur = {handleCheckPwBlur}/>
+                  onBlur = {handleCheckPwBlur}
+                  onCopy={(e) => e.preventDefault()} // 복사 차단
+                  onPaste={(e) => e.preventDefault()} // 붙여넣기 차단
+                  onCut={(e) => e.preventDefault()} // 잘라내기 차단
+                  onKeyDown={(e) => {
+                    if (e.ctrlKey && (e.key === "c" || e.key === "v" || e.key === "x")) {
+                      e.preventDefault();
+                    }
+                  }}/>
           </S.InputWrap>
           <S.NoRoundBtn/>
         </S.LineWrap>
@@ -331,7 +397,6 @@ const User1 = () => {
         </S.ErrorMessegeDiv>
 
         <S.CheckboxWrap>
-
           <S.CheckboxInputWrap>
             <S.CheckboxInputRow>
               <S.Checkbox
@@ -339,10 +404,13 @@ const User1 = () => {
                   id="check-age"
                   name="check-age"
                   checked={ageCheck}
-                  onChange={ageBtnEvent}/>
+                  onChange={ageBtnEvent}
+                  />
                   <S.Option> 필수 </S.Option>
-                  <S.Label for="check-age">'만 14세 이상입니다.'</S.Label>
+                  <S.Label htmlFor="check-age">'만 14세 이상입니다.'</S.Label>
             </S.CheckboxInputRow>
+
+            <S.CheckboxInputGap/>
 
             <S.CheckboxInputRow>
               <S.Checkbox
@@ -352,8 +420,10 @@ const User1 = () => {
                   checked={useCheck}
                   onChange={useBtnEvent}/>
                   <S.Option> 필수 </S.Option>
-                  <S.Label for="opt-in-personal-info">'본 서비스의 이용약관과 개인정보 정책에 동의합니다.'</S.Label>
+                  <S.Label htmlFor="opt-in-personal-info">'본 서비스의 이용약관과 개인정보 정책에 동의합니다.'</S.Label>
             </S.CheckboxInputRow>
+
+            <S.CheckboxInputGap/>
 
             <S.CheckboxInputRow>
               <S.Checkbox
@@ -363,12 +433,10 @@ const User1 = () => {
                   checked={marketingCheck}
                   onChange={marketingBtnEvent}/>
                   <S.Option> 선택 </S.Option>
-                  <S.Label for="opt-in-marketing">'마케팅 정보 수신에 동의합니다.'</S.Label>
+                  <S.Label htmlFor="opt-in-marketing">'마케팅 정보 수신에 동의합니다.'</S.Label>
             </S.CheckboxInputRow>
-
           </S.CheckboxInputWrap>
-
-          </S.CheckboxWrap>
+        </S.CheckboxWrap>
 
           <S.ErrorMessegeDiv>
           <S.ErrorMessageWrap hasError={!checkboxValid}>
@@ -379,11 +447,8 @@ const User1 = () => {
           <S.InputGap/>
         </S.CenterWrap>
 
-          <TriangleBtn text="다음" link="/User2" Allow={Allow} />
+          <TriangleBtn text="다음" Allow={Allow} onClick={handleSubmit}/>
       </S.ContentWrap>
-
-      
-
       
     </>
   );
