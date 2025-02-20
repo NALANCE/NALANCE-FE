@@ -31,9 +31,9 @@ const User2 = () => {
   //   );
   // }, []);
 
-  useEffect(() => {
-    console.log('📋 현재 카테고리 목록:', categories);
-  }, [categories]);
+  // useEffect(() => {
+  //   console.log('📋 현재 카테고리 목록:', categories);
+  // }, [categories]);
 
   // ✅ User1에서 저장된 회원가입 데이터 불러오기
   const [signupData, setSignupData] = useState(null);
@@ -72,10 +72,10 @@ const User2 = () => {
       })),
     };
 
-    console.log(
-      '📤 최종 회원가입 요청 데이터:',
-      JSON.stringify(requestData, null, 2)
-    );
+    // console.log(
+    //   '📤 최종 회원가입 요청 데이터:',
+    //   JSON.stringify(requestData, null, 2)
+    // );
 
     try {
       const response = await axiosInstance.post(
@@ -83,7 +83,7 @@ const User2 = () => {
         requestData
       );
 
-      console.log('✅ 회원가입 응답:', response.data);
+      //console.log('✅ 회원가입 응답:', response.data);
 
       if (response.data.isSuccess) {
         window.location.href = '/login';

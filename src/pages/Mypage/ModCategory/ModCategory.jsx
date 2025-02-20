@@ -16,6 +16,10 @@ const ModCategory = () => {
   const [isErrorAnimating, setIsErrorAnimating] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // useEffect(() => {
+  //   console.log('🔄 categories 변경 감지:', categories);
+  // }, [categories]);
+
   // 📌 서버에서 카테고리 조회 (GET 요청)
   useEffect(() => {
     // //  AccessToken 및 RefreshToken 저장 (임시 테스트용)
@@ -30,7 +34,7 @@ const ModCategory = () => {
     const fetchCategories = async () => {
       try {
         const response = await axiosInstance.get('/api/v0/categories');
-        console.log('📥 GET 응답 데이터:', response.data);
+        //console.log('📥 GET 응답 데이터:', response.data);
 
         if (response.data.isSuccess && Array.isArray(response.data.result)) {
           const sortedCategories = response.data.result.sort(
@@ -72,7 +76,7 @@ const ModCategory = () => {
         color: categoryData.color,
       });
 
-      console.log('✅ POST 응답:', response.data);
+      //console.log('✅ POST 응답:', response.data);
 
       if (response.data.isSuccess) {
         setTimeout(() => {
@@ -120,6 +124,14 @@ const ModCategory = () => {
       return;
     }
 
+    setCategories((prevCategories) =>
+      prevCategories.map((category) =>
+        category.categoryId === categoryId
+          ? { ...category, categoryName: newName, color: newColor }
+          : category
+      )
+    );
+
     try {
       const response = await axiosInstance.patch(
         `/api/v0/categories/${categoryId}`,
@@ -133,7 +145,7 @@ const ModCategory = () => {
         ]
       );
 
-      console.log('✅ PATCH 응답:', response.data);
+      //console.log('✅ PATCH 응답:', response.data);
     } catch (error) {
       console.error('❌ 카테고리 수정 오류:', error);
 
@@ -169,7 +181,7 @@ const ModCategory = () => {
         displayOrder: index + 1,
       }));
 
-      console.log('📡 순서 변경 요청 데이터:', reorderedData);
+      //console.log('📡 순서 변경 요청 데이터:', reorderedData);
 
       const response = await axiosInstance.patch(
         '/api/v0/categories/order',
@@ -181,7 +193,7 @@ const ModCategory = () => {
         }
       );
 
-      console.log('✅ 순서 변경 응답:', response.data);
+      //console.log('✅ 순서 변경 응답:', response.data);
 
       if (response.data.isSuccess) {
         setCategories(updatedCategories);
@@ -202,7 +214,7 @@ const ModCategory = () => {
     const [movedItem] = reorderedCategories.splice(result.source.index, 1);
     reorderedCategories.splice(result.destination.index, 0, movedItem);
 
-    console.log('🔍 드래그 후 카테고리 데이터:', reorderedCategories);
+    //console.log('🔍 드래그 후 카테고리 데이터:', reorderedCategories);
 
     setCategories(reorderedCategories);
 

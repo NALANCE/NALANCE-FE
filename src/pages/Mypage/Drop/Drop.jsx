@@ -6,7 +6,7 @@ import Topbar from 'components/Topbar/Topbar';
 import BottomLogo from 'components/BottomLogo/BottomLogo';
 import DropBtn from 'components/DropBtn/DropBtn';
 import cat from 'assets/icons/drop_cat.svg';
-import bubble from 'assets/icons/drop_bubble.svg';
+import bubble from 'assets/icons/drop_bubble.png';
 import speech from 'assets/icons/drop_speech.svg';
 import * as S from './Drop.style';
 
