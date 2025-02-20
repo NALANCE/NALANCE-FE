@@ -189,16 +189,28 @@ const CategoryInput = ({
   const handleColorChange = (color) => {
     const normalizedNewColor = color.replace('#', '').toUpperCase();
 
-    const isDuplicateColor = existingCategories.some(
-      (category) =>
-        category.color.replace('#', '').toUpperCase() === normalizedNewColor
-    );
+    // console.log(
+    //   '🎨 기존 색상 목록:',
+    //   existingCategories.map((category) => category.color.toUpperCase())
+    // );
+    // console.log('🎨 선택한 색상:', normalizedNewColor);
+
+    // ✅ 자기 자신을 제외한 나머지 카테고리들과 비교
+    const isDuplicateColor = existingCategories
+      .filter((category) => category.categoryId !== fieldId) // ✅ 자기 자신 제외
+      .some(
+        (category) =>
+          category.color.replace('#', '').toUpperCase() === normalizedNewColor
+      );
+
+    let finalColor = color;
 
     if (isDuplicateColor) {
       setErrorMessage('해당 색상은 이미 존재합니다. 추천 색상으로 변경합니다.');
       setIsColorPickerOpen(false);
-      const newColor = getUniqueColor();
-      setRandomBackground(newColor);
+
+      finalColor = getUniqueColor(); // 새로운 추천 색상 선택
+      setRandomBackground(finalColor);
 
       // 3.5초 후 에러 메시지 자동 제거
       setTimeout(() => {
@@ -206,17 +218,16 @@ const CategoryInput = ({
       }, 3500);
 
       triggerErrorAnimation();
-      return;
     }
 
-    setRandomBackground(color);
+    setRandomBackground(finalColor);
     closeColorPicker();
     setIsColorPickerOpen(false);
 
     onSubmit({
       id: fieldId,
       categoryName: text,
-      color: color,
+      color: finalColor,
     });
   };
 

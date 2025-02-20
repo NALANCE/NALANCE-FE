@@ -28,6 +28,11 @@ export const Bubble = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  & > img:first-child {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;
 
 export const Speech = styled.img`
